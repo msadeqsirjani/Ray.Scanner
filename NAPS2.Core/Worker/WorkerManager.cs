@@ -1,13 +1,11 @@
-﻿using System;
+﻿using NAPS2.Platform;
+using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
 using System.Threading.Tasks;
-using NAPS2.Platform;
 
 namespace NAPS2.Worker
 {
@@ -32,15 +30,13 @@ namespace NAPS2.Worker
         {
             get
             {
-                if (_workerExePath == null)
+                if (_workerExePath != null) return _workerExePath;
+                foreach (var dir in SearchDirs)
                 {
-                    foreach (var dir in SearchDirs)
+                    _workerExePath = Path.Combine(dir, WORKER_EXE_NAME);
+                    if (File.Exists(WorkerExePath))
                     {
-                        _workerExePath = Path.Combine(dir, WORKER_EXE_NAME);
-                        if (File.Exists(WorkerExePath))
-                        {
-                            break;
-                        }
+                        break;
                     }
                 }
                 return _workerExePath;
@@ -113,11 +109,10 @@ namespace NAPS2.Worker
             {
                 return;
             }
-            if (_workerQueue == null)
-            {
-                _workerQueue = new BlockingCollection<WorkerContext>();
-                StartWorkerService();
-            }
+
+            if (_workerQueue != null) return;
+            _workerQueue = new BlockingCollection<WorkerContext>();
+            StartWorkerService();
         }
     }
 }

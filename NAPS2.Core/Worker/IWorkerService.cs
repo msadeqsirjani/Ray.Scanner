@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Threading.Tasks;
-using NAPS2.ImportExport.Email;
+﻿using NAPS2.ImportExport.Email;
 using NAPS2.ImportExport.Email.Mapi;
 using NAPS2.Scan;
 using NAPS2.Scan.Images;
 using NAPS2.Scan.Wia;
+using System;
+using System.Collections.Generic;
+using System.ServiceModel;
+using System.Threading.Tasks;
 
 namespace NAPS2.Worker
 {
@@ -22,7 +21,7 @@ namespace NAPS2.Worker
 
         [FaultContract(typeof(ScanDriverExceptionDetail))]
         [OperationContract]
-        WiaConfiguration Wia10NativeUI(string scanDevice, IntPtr hwnd);
+        WiaConfiguration Wia10NativeUi(string scanDevice, IntPtr hwnd);
 
         [OperationContract]
         List<ScanDevice> TwainGetDeviceList(TwainImpl twainImpl);

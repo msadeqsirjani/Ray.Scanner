@@ -515,7 +515,7 @@ namespace NAPS2.WinForms
 
         private async void tsSavePDF_Click(object sender, EventArgs e)
         {
-            if (await exportHelper.SavePDF(new List<ScannedImage> { ImageList.Images[ImageIndex] }, null))
+            if (await exportHelper.SavePdf(new List<ScannedImage> { ImageList.Images[ImageIndex] }, null))
             {
                 if (appConfigManager.Config.DeleteAfterSaving)
                 {

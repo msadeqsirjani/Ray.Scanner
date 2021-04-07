@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
-using NAPS2.Config;
+﻿using NAPS2.Config;
 using NAPS2.Lang.Resources;
+using System.IO;
+using System.Windows.Forms;
 
 namespace NAPS2.WinForms
 {
@@ -28,8 +25,8 @@ namespace NAPS2.WinForms
                 AddExtension = true,
                 Filter = MiscResources.FileTypePdf + @"|*.pdf|" +
                          MiscResources.FileTypeBmp + @"|*.bmp|" +
-                         MiscResources.FileTypeEmf + @"|*.emf|" +
-                         MiscResources.FileTypeExif + @"|*.exif|" +
+                         //MiscResources.FileTypeEmf + @"|*.emf|" +
+                         //MiscResources.FileTypeExif + @"|*.exif|" +
                          MiscResources.FileTypeGif + @"|*.gif|" +
                          MiscResources.FileTypeJpeg + @"|*.jpg;*.jpeg|" +
                          MiscResources.FileTypePng + @"|*.png|" +
@@ -74,8 +71,8 @@ namespace NAPS2.WinForms
                 OverwritePrompt = false,
                 AddExtension = true,
                 Filter = MiscResources.FileTypeBmp + @"|*.bmp|" +
-                            MiscResources.FileTypeEmf + @"|*.emf|" +
-                            MiscResources.FileTypeExif + @"|*.exif|" +
+                            //MiscResources.FileTypeEmf + @"|*.emf|" +
+                            //MiscResources.FileTypeExif + @"|*.exif|" +
                             MiscResources.FileTypeGif + @"|*.gif|" +
                             MiscResources.FileTypeJpeg + @"|*.jpg;*.jpeg|" +
                             MiscResources.FileTypePng + @"|*.png|" +
@@ -119,21 +116,21 @@ namespace NAPS2.WinForms
             return false;
         }
 
-        private (string, string) SplitPath(string path)
+        private static (string, string) SplitPath(string path)
         {
             if (Directory.Exists(path))
             {
                 return ("", path);
             }
-            string dir = Path.IsPathRooted(path) ? Path.GetDirectoryName(path) : "";
-            string name = Path.GetFileName(path);
+            var dir = Path.IsPathRooted(path) ? Path.GetDirectoryName(path) : "";
+            var name = Path.GetFileName(path);
             return (name, dir);
         }
 
-        public void ShowErrorWithDetails(string errorMesage, string details)
+        public void ShowErrorWithDetails(string errorMessage, string details)
         {
             var form = formFactory.Create<FError>();
-            form.ErrorMessage = errorMesage;
+            form.ErrorMessage = errorMessage;
             form.Details = details;
             form.ShowDialog();
         }

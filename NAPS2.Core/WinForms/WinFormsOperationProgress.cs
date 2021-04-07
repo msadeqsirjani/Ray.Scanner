@@ -1,10 +1,9 @@
-﻿using System;
+﻿using NAPS2.Config;
+using NAPS2.Lang.Resources;
+using NAPS2.Operation;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using NAPS2.Config;
-using NAPS2.Lang.Resources;
-using NAPS2.Operation;
 
 namespace NAPS2.WinForms
 {
@@ -16,7 +15,8 @@ namespace NAPS2.WinForms
 
         private readonly HashSet<IOperation> activeOperations = new HashSet<IOperation>();
 
-        public WinFormsOperationProgress(IFormFactory formFactory, NotificationManager notificationManager, IUserConfigManager userConfigManager)
+        public WinFormsOperationProgress(IFormFactory formFactory, NotificationManager notificationManager,
+            IUserConfigManager userConfigManager)
         {
             this.formFactory = formFactory;
             this.notificationManager = notificationManager;
@@ -27,12 +27,10 @@ namespace NAPS2.WinForms
         {
             lock (this)
             {
-                if (!activeOperations.Contains(op))
-                {
-                    activeOperations.Add(op);
-                    op.Finished += (sender, args) => activeOperations.Remove(op);
-                    if (op.IsFinished) activeOperations.Remove(op);
-                }
+                if (activeOperations.Contains(op)) return;
+                activeOperations.Add(op);
+                op.Finished += (sender, args) => activeOperations.Remove(op);
+                if (op.IsFinished) activeOperations.Remove(op);
             }
         }
 
@@ -107,17 +105,17 @@ namespace NAPS2.WinForms
             else
             {
                 numberLabel.Text = status.ProgressType == OperationProgressType.MB
-                    ? string.Format(MiscResources.SizeProgress, (status.CurrentProgress / 1000000.0).ToString("f1"), (status.MaxProgress / 1000000.0).ToString("f1"))
+                    ? string.Format(MiscResources.SizeProgress, (status.CurrentProgress / 1000000.0).ToString("f1"),
+                        (status.MaxProgress / 1000000.0).ToString("f1"))
                     : string.Format(MiscResources.ProgressFormat, status.CurrentProgress, status.MaxProgress);
                 progressBar.Maximum = status.MaxProgress;
                 progressBar.Value = status.CurrentProgress;
             }
+
             // Force the progress bar to render immediately
-            if (progressBar.Value < progressBar.Maximum)
-            {
-                progressBar.Value += 1;
-                progressBar.Value -= 1;
-            }
+            if (progressBar.Value >= progressBar.Maximum) return;
+            progressBar.Value += 1;
+            progressBar.Value -= 1;
         }
 
         public List<IOperation> ActiveOperations

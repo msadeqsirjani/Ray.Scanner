@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using NAPS2.Config;
+﻿using NAPS2.Config;
 using NAPS2.ImportExport;
 using NAPS2.ImportExport.Email;
 using NAPS2.ImportExport.Images;
@@ -14,6 +8,11 @@ using NAPS2.Ocr;
 using NAPS2.Operation;
 using NAPS2.Scan.Images;
 using NAPS2.Util;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NAPS2.WinForms
 {
@@ -28,7 +27,6 @@ namespace NAPS2.WinForms
         private readonly IOperationFactory operationFactory;
         private readonly IFormFactory formFactory;
         private readonly OcrManager ocrManager;
-        private readonly IEmailProviderFactory emailProviderFactory;
         private readonly IOperationProgress operationProgress;
         private readonly IUserConfigManager userConfigManager;
 
@@ -43,43 +41,37 @@ namespace NAPS2.WinForms
             this.operationFactory = operationFactory;
             this.formFactory = formFactory;
             this.ocrManager = ocrManager;
-            this.emailProviderFactory = emailProviderFactory;
             this.operationProgress = operationProgress;
             this.userConfigManager = userConfigManager;
         }
 
-        public async Task<bool> SavePDF(List<ScannedImage> images, ISaveNotify notify)
+        public async Task<bool> SavePdf(List<ScannedImage> images, ISaveNotify notify)
         {
-            if (images.Any())
+            if (!images.Any()) return false;
+            string savePath;
+
+            var pdfSettings = pdfSettingsContainer.PdfSettings;
+            if (pdfSettings.SkipSavePrompt && Path.IsPathRooted(pdfSettings.DefaultFileName))
             {
-                string savePath;
-
-                var pdfSettings = pdfSettingsContainer.PdfSettings;
-                if (pdfSettings.SkipSavePrompt && Path.IsPathRooted(pdfSettings.DefaultFileName))
+                savePath = pdfSettings.DefaultFileName;
+            }
+            else
+            {
+                if (!dialogHelper.PromptToSavePdf(pdfSettings.DefaultFileName, out savePath))
                 {
-                    savePath = pdfSettings.DefaultFileName;
-                }
-                else
-                {
-                    if (!dialogHelper.PromptToSavePdf(pdfSettings.DefaultFileName, out savePath))
-                    {
-                        return false;
-                    }
-                }
-
-                var changeToken = changeTracker.State;
-                string firstFileSaved = await ExportPDF(savePath, images, false, null);
-                if (firstFileSaved != null)
-                {
-                    changeTracker.Saved(changeToken);
-                    notify?.PdfSaved(firstFileSaved);
-                    return true;
+                    return false;
                 }
             }
-            return false;
+
+            var changeToken = changeTracker.State;
+            var firstFileSaved = await ExportPdf(savePath, images, false, null);
+            if (firstFileSaved == null) return false;
+            changeTracker.Saved(changeToken);
+            notify?.PdfSaved(firstFileSaved);
+            return true;
         }
 
-        public async Task<string> ExportPDF(string filename, List<ScannedImage> images, bool email, EmailMessage emailMessage)
+        public async Task<string> ExportPdf(string filename, List<ScannedImage> images, bool email, EmailMessage emailMessage)
         {
             var op = operationFactory.Create<SavePdfOperation>();
 
@@ -94,88 +86,33 @@ namespace NAPS2.WinForms
 
         public async Task<bool> SaveImages(List<ScannedImage> images, ISaveNotify notify)
         {
-            if (images.Any())
+            if (!images.Any()) return false;
+            string savePath;
+
+            var imageSettings = imageSettingsContainer.ImageSettings;
+            if (imageSettings.SkipSavePrompt && Path.IsPathRooted(imageSettings.DefaultFileName))
             {
-                string savePath;
-
-                var imageSettings = imageSettingsContainer.ImageSettings;
-                if (imageSettings.SkipSavePrompt && Path.IsPathRooted(imageSettings.DefaultFileName))
-                {
-                    savePath = imageSettings.DefaultFileName;
-                }
-                else
-                {
-                    if (!dialogHelper.PromptToSaveImage(imageSettings.DefaultFileName, out savePath))
-                    {
-                        return false;
-                    }
-                }
-
-                var op = operationFactory.Create<SaveImagesOperation>();
-                var changeToken = changeTracker.State;
-                if (op.Start(savePath, DateTime.Now, images))
-                {
-                    operationProgress.ShowProgress(op);
-                }
-                if (await op.Success)
-                {
-                    changeTracker.Saved(changeToken);
-                    notify?.ImagesSaved(images.Count, op.FirstFileSaved);
-                    return true;
-                }
+                savePath = imageSettings.DefaultFileName;
             }
-            return false;
-        }
-
-        public async Task<bool> EmailPDF(List<ScannedImage> images)
-        {
-            if (!images.Any())
+            else
             {
-                return false;
-            }
-
-            if (userConfigManager.Config.EmailSetup == null)
-            {
-                // First run; prompt for a 
-                var form = formFactory.Create<FEmailProvider>();
-                if (form.ShowDialog() != DialogResult.OK)
+                if (!dialogHelper.PromptToSaveImage(imageSettings.DefaultFileName, out savePath))
                 {
                     return false;
                 }
             }
 
-            var emailSettings = emailSettingsContainer.EmailSettings;
-            var invalidChars = new HashSet<char>(Path.GetInvalidFileNameChars());
-            var attachmentName = new string(emailSettings.AttachmentName.Where(x => !invalidChars.Contains(x)).ToArray());
-            if (string.IsNullOrEmpty(attachmentName))
+            var op = operationFactory.Create<SaveImagesOperation>();
+            var changeToken = changeTracker.State;
+            if (op.Start(savePath, DateTime.Now, images))
             {
-                attachmentName = "Scan.pdf";
+                operationProgress.ShowProgress(op);
             }
-            if (!attachmentName.EndsWith(".pdf", StringComparison.InvariantCultureIgnoreCase))
-            {
-                attachmentName += ".pdf";
-            }
-            attachmentName = fileNamePlaceholders.SubstitutePlaceholders(attachmentName, DateTime.Now, false);
 
-            var tempFolder = new DirectoryInfo(Path.Combine(Paths.Temp, Path.GetRandomFileName()));
-            tempFolder.Create();
-            try
-            {
-                string targetPath = Path.Combine(tempFolder.FullName, attachmentName);
-                var changeToken = changeTracker.State;
-
-                var message = new EmailMessage();
-                if (await ExportPDF(targetPath, images, true, message) != null)
-                {
-                    changeTracker.Saved(changeToken);
-                    return true;
-                }
-            }
-            finally
-            {
-                tempFolder.Delete(true);
-            }
-            return false;
+            if (!await op.Success) return false;
+            changeTracker.Saved(changeToken);
+            notify?.ImagesSaved(images.Count, op.FirstFileSaved);
+            return true;
         }
     }
 }

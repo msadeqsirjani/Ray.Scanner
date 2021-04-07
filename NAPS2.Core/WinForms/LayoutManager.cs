@@ -1,9 +1,9 @@
-﻿using System;
+﻿using NAPS2.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Windows.Forms;
-using NAPS2.Util;
 
 namespace NAPS2.WinForms
 {
@@ -84,75 +84,73 @@ namespace NAPS2.WinForms
         /// </summary>
         public void Activate()
         {
-            if (!Activated)
+            if (Activated) return;
+            Form.Resize += OnFormResize;
+            Activated = true;
+
+            // Prepare a dependency graph for the controls 
+            var controls = new HashSet<Control>(); // Nodes
+            var controlBindings = new Dictionary<Control, HashSet<Binding>>(); // Node values
+            var dependencies = new Dictionary<Control, HashSet<Control>>(); // Edges (direction 1)
+            var dependers = new Dictionary<Control, HashSet<Control>>(); // Edges (direction 2)
+
+            foreach (var binding in Bindings)
             {
-                Form.Resize += OnFormResize;
-                Activated = true;
+                // Set the initial values for use when evaluating the bindings
+                binding.InitialValue = binding.Value;
+                binding.InitialDependentValue = binding.DependentValue;
 
-                // Prepare a dependency graph for the controls 
-                var controls = new HashSet<Control>(); // Nodes
-                var controlBindings = new Dictionary<Control, HashSet<Binding>>(); // Node values
-                var dependencies = new Dictionary<Control, HashSet<Control>>(); // Edges (direction 1)
-                var dependers = new Dictionary<Control, HashSet<Control>>(); // Edges (direction 2)
+                // Populate the graph nodes
+                controls.Add(binding.Control);
+                controlBindings.AddMulti(binding.Control, binding);
 
-                foreach (Binding binding in Bindings)
+                // Ensure each control has a key in dependencies/dependers
+                dependencies.AddMulti(binding.Control, Enumerable.Empty<Control>());
+                dependers.AddMulti(binding.Control, Enumerable.Empty<Control>());
+
+                // Populate the graph edges by examining the binding's value expression
+                var walker = new DependencyWalker();
+                walker.Visit(binding.ValueFunc);
+                foreach (var control in walker.Dependencies)
                 {
-                    // Set the initial values for use when evaluating the bindings
-                    binding.InitialValue = binding.Value;
-                    binding.InitialDependentValue = binding.DependentValue;
-
-                    // Populate the graph nodes
-                    controls.Add(binding.Control);
-                    controlBindings.AddMulti(binding.Control, binding);
-
-                    // Ensure each control has a key in dependencies/dependers
-                    dependencies.AddMulti(binding.Control, Enumerable.Empty<Control>());
-                    dependers.AddMulti(binding.Control, Enumerable.Empty<Control>());
-
-                    // Populate the graph edges by examining the binding's value expression
-                    var walker = new DependencyWalker();
-                    walker.Visit(binding.ValueFunc);
-                    foreach (Control control in walker.Dependencies)
+                    if (control == binding.Control)
                     {
-                        if (control == binding.Control)
-                        {
-                            throw new InvalidOperationException("The layout bindings for control " + control.Name + " are self-dependent.");
-                        }
-                        controls.Add(control); // Populate the graph nodes
-                        dependers.AddMulti(control, binding.Control);
-                        dependencies.AddMulti(binding.Control, control);
-                        dependencies.AddMulti(control, Enumerable.Empty<Control>()); // Ensure each control has a key in dependencies/dependers
+                        throw new InvalidOperationException("The layout bindings for control " + control.Name + " are self-dependent.");
+                    }
+                    controls.Add(control); // Populate the graph nodes
+                    dependers.AddMulti(control, binding.Control);
+                    dependencies.AddMulti(binding.Control, control);
+                    dependencies.AddMulti(control, Enumerable.Empty<Control>()); // Ensure each control has a key in dependencies/dependers
+                }
+            }
+
+            // Topological sorting (see http://en.wikipedia.org/wiki/Topological_sorting)
+            activatedControlBindings.Clear();
+            var controlsWithoutDependencies = new HashSet<Control>(controls.Where(x => dependencies[x].Count == 0));
+            while (controlsWithoutDependencies.Count > 0)
+            {
+                var control = controlsWithoutDependencies.First();
+                controlsWithoutDependencies.Remove(control);
+                if (controlBindings.ContainsKey(control))
+                {
+                    activatedControlBindings.Add(new KeyValuePair<Control, HashSet<Binding>>(control, controlBindings[control]));
+                }
+                while (dependers[control].Count > 0)
+                {
+                    var depender = dependers[control].First();
+                    dependers[control].Remove(depender);
+                    dependencies[depender].Remove(control);
+                    if (dependencies[depender].Count == 0)
+                    {
+                        controlsWithoutDependencies.Add(depender);
                     }
                 }
+            }
 
-                // Topological sorting (see http://en.wikipedia.org/wiki/Topological_sorting)
-                activatedControlBindings.Clear();
-                var controlsWithoutDependencies = new HashSet<Control>(controls.Where(x => dependencies[x].Count == 0));
-                while (controlsWithoutDependencies.Count > 0)
-                {
-                    var control = controlsWithoutDependencies.First();
-                    controlsWithoutDependencies.Remove(control);
-                    if (controlBindings.ContainsKey(control))
-                    {
-                        activatedControlBindings.Add(new KeyValuePair<Control, HashSet<Binding>>(control, controlBindings[control]));
-                    }
-                    while (dependers[control].Count > 0)
-                    {
-                        var depender = dependers[control].First();
-                        dependers[control].Remove(depender);
-                        dependencies[depender].Remove(control);
-                        if (dependencies[depender].Count == 0)
-                        {
-                            controlsWithoutDependencies.Add(depender);
-                        }
-                    }
-                }
-
-                var controlsInDependencyCycles = dependencies.Where(x => x.Value.Count > 0).ToList();
-                if (controlsInDependencyCycles.Count > 0)
-                {
-                    throw new InvalidOperationException("The layout bindings have one or more cycles including these controls: " + string.Join(", ", controlsInDependencyCycles.Select(x => x.Key.Name)));
-                }
+            var controlsInDependencyCycles = dependencies.Where(x => x.Value.Count > 0).ToList();
+            if (controlsInDependencyCycles.Count > 0)
+            {
+                throw new InvalidOperationException("The layout bindings have one or more cycles including these controls: " + string.Join(", ", controlsInDependencyCycles.Select(x => x.Key.Name)));
             }
         }
 
@@ -161,11 +159,9 @@ namespace NAPS2.WinForms
         /// </summary>
         public void Deactivate()
         {
-            if (Activated)
-            {
-                Form.Resize -= OnFormResize;
-                Activated = false;
-            }
+            if (!Activated) return;
+            Form.Resize -= OnFormResize;
+            Activated = false;
         }
 
         private void OnFormResize(object sender, EventArgs args)
@@ -195,7 +191,7 @@ namespace NAPS2.WinForms
                     }
                     bindingTypesUsed[(int)binding.BindingType] = true;
 
-                    int offset = binding.InitialValue - binding.InitialDependentValue;
+                    var offset = binding.InitialValue - binding.InitialDependentValue;
                     switch (binding.BindingType)
                     {
                         case BindingType.Width:
@@ -205,8 +201,8 @@ namespace NAPS2.WinForms
                             binding.Value = binding.DependentValue + offset;
                             break;
                         case BindingType.Right:
-                            bool hasWidthBinding = bindings.Any(x => x.BindingType == BindingType.Width);
-                            bool hasLeftBinding = bindings.Any(x => x.BindingType == BindingType.Left);
+                            var hasWidthBinding = bindings.Any(x => x.BindingType == BindingType.Width);
+                            var hasLeftBinding = bindings.Any(x => x.BindingType == BindingType.Left);
                             if (hasWidthBinding && hasLeftBinding)
                             {
                                 throw new InvalidOperationException("The layout bindings (Left/Right/Width) for control " + control.Name + " are overspecified.");
@@ -221,8 +217,8 @@ namespace NAPS2.WinForms
                             }
                             break;
                         case BindingType.Bottom:
-                            bool hasHeightBinding = bindings.Any(x => x.BindingType == BindingType.Height);
-                            bool hasTopBinding = bindings.Any(x => x.BindingType == BindingType.Top);
+                            var hasHeightBinding = bindings.Any(x => x.BindingType == BindingType.Height);
+                            var hasTopBinding = bindings.Any(x => x.BindingType == BindingType.Top);
                             if (hasHeightBinding && hasTopBinding)
                             {
                                 throw new InvalidOperationException("The layout bindings (Top/Bottom/Height) for control " + control.Name + " are overspecified.");

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
-using NAPS2.Lang.Resources;
+﻿using NAPS2.Lang.Resources;
 using NAPS2.Logging;
 using NAPS2.Operation;
 using NAPS2.Scan.Exceptions;
@@ -13,6 +6,12 @@ using NAPS2.Scan.Images;
 using NAPS2.Scan.Wia.Native;
 using NAPS2.Util;
 using NAPS2.Worker;
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace NAPS2.Scan.Wia
 {
@@ -281,7 +280,7 @@ namespace NAPS2.Scan.Wia
                     WiaConfiguration config;
                     using (var worker = workerServiceFactory.Create())
                     {
-                        config = worker.Service.Wia10NativeUI(device.Id(), hwnd);
+                        config = worker.Service.Wia10NativeUi(device.Id(), hwnd);
                     }
                     var item = device.FindSubItem(config.ItemName);
                     device.Properties.DeserializeEditable(device.Properties.Delta(config.DeviceProps));
