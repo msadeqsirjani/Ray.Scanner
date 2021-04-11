@@ -1,3 +1,6 @@
+using NAPS2.Scan.Images;
+using NAPS2.Scan.Images.Transforms;
+using NAPS2.Util;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -5,10 +8,6 @@ using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using NAPS2.Scan.Images;
-using NAPS2.Scan.Images.Transforms;
-using NAPS2.Util;
-using Timer = System.Threading.Timer;
 
 namespace NAPS2.WinForms
 {
@@ -120,13 +119,11 @@ namespace NAPS2.WinForms
 
         private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
-            if (guideExists)
-            {
-                var old = e.Graphics.SmoothingMode;
-                e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                e.Graphics.DrawLine(new Pen(Color.Black, LINE_PEN_SIZE), guideStart, guideEnd);
-                e.Graphics.SmoothingMode = old;
-            }
+            if (!guideExists) return;
+            var old = e.Graphics.SmoothingMode;
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            e.Graphics.DrawLine(new Pen(Color.Black, LINE_PEN_SIZE), guideStart, guideEnd);
+            e.Graphics.SmoothingMode = old;
         }
     }
 }

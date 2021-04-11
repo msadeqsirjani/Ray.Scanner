@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 
 namespace NAPS2.Scan.Images.Transforms
 {
@@ -9,7 +7,7 @@ namespace NAPS2.Scan.Images.Transforms
     {
         // From https://stackoverflow.com/a/1626175
 
-        public static void ColorToHSV(Color color, out double hue, out double saturation, out double value)
+        public static void ColorToHsv(Color color, out double hue, out double saturation, out double value)
         {
             int max = Math.Max(color.R, Math.Max(color.G, color.B));
             int min = Math.Min(color.R, Math.Min(color.G, color.B));
@@ -19,32 +17,35 @@ namespace NAPS2.Scan.Images.Transforms
             value = max / 255d;
         }
 
-        public static Color ColorFromHSV(double hue, double saturation, double value)
+        public static Color ColorFromHsv(double hue, double saturation, double value)
         {
-            int hi = Convert.ToInt32(Math.Floor(hue / 60)) % 6;
-            double f = hue / 60 - Math.Floor(hue / 60);
+            var hi = Convert.ToInt32(Math.Floor(hue / 60)) % 6;
+            var f = hue / 60 - Math.Floor(hue / 60);
 
-            value = value * 255;
-            int v = Convert.ToInt32(value);
-            int p = Convert.ToInt32(value * (1 - saturation));
-            int q = Convert.ToInt32(value * (1 - f * saturation));
-            int t = Convert.ToInt32(value * (1 - (1 - f) * saturation));
+            value *= 255;
+            var v = Convert.ToInt32(value);
+            var p = Convert.ToInt32(value * (1 - saturation));
+            var q = Convert.ToInt32(value * (1 - f * saturation));
+            var t = Convert.ToInt32(value * (1 - (1 - f) * saturation));
 
-            if (hi == 0)
-                return Color.FromArgb(255, v, t, p);
-            else if (hi == 1)
-                return Color.FromArgb(255, q, v, p);
-            else if (hi == 2)
-                return Color.FromArgb(255, p, v, t);
-            else if (hi == 3)
-                return Color.FromArgb(255, p, q, v);
-            else if (hi == 4)
-                return Color.FromArgb(255, t, p, v);
-            else
-                return Color.FromArgb(255, v, p, q);
+            switch (hi)
+            {
+                case 0:
+                    return Color.FromArgb(255, v, t, p);
+                case 1:
+                    return Color.FromArgb(255, q, v, p);
+                case 2:
+                    return Color.FromArgb(255, p, v, t);
+                case 3:
+                    return Color.FromArgb(255, p, q, v);
+                case 4:
+                    return Color.FromArgb(255, t, p, v);
+                default:
+                    return Color.FromArgb(255, v, p, q);
+            }
         }
 
-        public static void ColorToHSL(Color color, out double hue, out double saturation, out double brightness)
+        public static void ColorToHsl(Color color, out double hue, out double saturation, out double brightness)
         {
             hue = color.GetHue();
             saturation = color.GetSaturation();
@@ -52,9 +53,9 @@ namespace NAPS2.Scan.Images.Transforms
         }
 
         // From https://blogs.msdn.microsoft.com/cjacks/2006/04/12/converting-from-hsb-to-rgb-in-net/
-        public static Color ColorFromHSL(double h, double s, double b)
+        public static Color ColorFromHsl(double h, double s, double b)
         {
-            int a = 255;
+            const int a = 255;
 
             if (s == 0)
             {
@@ -63,7 +64,6 @@ namespace NAPS2.Scan.Images.Transforms
             }
 
             double fMax, fMid, fMin;
-            int iSextant, iMax, iMid, iMin;
 
             if (0.5 < b)
             {
@@ -76,13 +76,13 @@ namespace NAPS2.Scan.Images.Transforms
                 fMin = b - (b * s);
             }
 
-            iSextant = (int)Math.Floor(h / 60f);
+            var iSextant = (int)Math.Floor(h / 60f);
             if (300f <= h)
             {
                 h -= 360f;
             }
             h /= 60f;
-            h -= 2f * (double)Math.Floor(((iSextant + 1f) % 6f) / 2f);
+            h -= 2f * Math.Floor(((iSextant + 1f) % 6f) / 2f);
             if (0 == iSextant % 2)
             {
                 fMid = h * (fMax - fMin) + fMin;
@@ -92,9 +92,9 @@ namespace NAPS2.Scan.Images.Transforms
                 fMid = fMin - h * (fMax - fMin);
             }
 
-            iMax = Convert.ToInt32(fMax * 255);
-            iMid = Convert.ToInt32(fMid * 255);
-            iMin = Convert.ToInt32(fMin * 255);
+            var iMax = Convert.ToInt32(fMax * 255);
+            var iMid = Convert.ToInt32(fMid * 255);
+            var iMin = Convert.ToInt32(fMin * 255);
 
             switch (iSextant)
             {

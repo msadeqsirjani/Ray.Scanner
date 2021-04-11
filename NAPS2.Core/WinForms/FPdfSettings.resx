@@ -133,7 +133,7 @@
     <value>17</value>
   </data>
   <data name="btnOK.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;تأیید</value>
   </data>
   <data name="&gt;&gt;btnOK.Name" xml:space="preserve">
     <value>btnOK</value>
@@ -160,7 +160,7 @@
     <value>18</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
-    <value>&amp;Cancel</value>
+    <value>&amp;لغو</value>
   </data>
   <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
     <value>btnCancel</value>
@@ -174,9 +174,9 @@
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <metadata name="ilProfileIcons.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="ilProfileIcons.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
+  </data>
   <data name="txtKeywords.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 149</value>
   </data>
@@ -214,7 +214,7 @@
     <value>11</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Keywords:</value>
+    <value>کلیدواژه‌ها:</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
@@ -265,7 +265,7 @@
     <value>9</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Subject:</value>
+    <value>موضوع:</value>
   </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
@@ -316,7 +316,7 @@
     <value>7</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Author:</value>
+    <value>مؤلف:</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -367,7 +367,7 @@
     <value>5</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Title:</value>
+    <value>عنوان:</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
@@ -391,7 +391,7 @@
     <value>20</value>
   </data>
   <data name="groupMetadata.Text" xml:space="preserve">
-    <value>Metadata</value>
+    <value>اَبَرداده</value>
   </data>
   <data name="&gt;&gt;groupMetadata.Name" xml:space="preserve">
     <value>groupMetadata</value>
@@ -406,28 +406,28 @@
     <value>10</value>
   </data>
   <data name="clbPerms.Items" xml:space="preserve">
-    <value>Allow Printing</value>
+    <value>اجازه چاپ</value>
   </data>
   <data name="clbPerms.Items1" xml:space="preserve">
-    <value>Allow Full Quality Printing</value>
+    <value>اجازه چاپ با کیفیت کامل</value>
   </data>
   <data name="clbPerms.Items2" xml:space="preserve">
-    <value>Allow Document Modification</value>
+    <value>اجازه تغییر سند</value>
   </data>
   <data name="clbPerms.Items3" xml:space="preserve">
-    <value>Allow Document Assembly</value>
+    <value>اجازه مونتاژ سند</value>
   </data>
   <data name="clbPerms.Items4" xml:space="preserve">
-    <value>Allow Content Copying</value>
+    <value>اجازه کپی محتوا</value>
   </data>
   <data name="clbPerms.Items5" xml:space="preserve">
-    <value>Allow Content Copying for Accessibility</value>
+    <value>اجازه کپی محتوا برای دستیابی پذیری</value>
   </data>
   <data name="clbPerms.Items6" xml:space="preserve">
-    <value>Allow Annotations</value>
+    <value>اجازه یادداشت</value>
   </data>
   <data name="clbPerms.Items7" xml:space="preserve">
-    <value>Allow Form Filling</value>
+    <value>اجازه پرکردن فرم</value>
   </data>
   <data name="clbPerms.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 120</value>
@@ -466,7 +466,7 @@
     <value>16</value>
   </data>
   <data name="cbShowUserPassword.Text" xml:space="preserve">
-    <value>Show</value>
+    <value>نمایش</value>
   </data>
   <data name="&gt;&gt;cbShowUserPassword.Name" xml:space="preserve">
     <value>cbShowUserPassword</value>
@@ -493,7 +493,7 @@
     <value>15</value>
   </data>
   <data name="cbShowOwnerPassword.Text" xml:space="preserve">
-    <value>Show</value>
+    <value>نمایش</value>
   </data>
   <data name="&gt;&gt;cbShowOwnerPassword.Name" xml:space="preserve">
     <value>cbShowOwnerPassword</value>
@@ -544,7 +544,7 @@
     <value>3</value>
   </data>
   <data name="lblUserPassword.Text" xml:space="preserve">
-    <value>User Password:</value>
+    <value>گذرواژه کاربر:</value>
   </data>
   <data name="&gt;&gt;lblUserPassword.Name" xml:space="preserve">
     <value>lblUserPassword</value>
@@ -592,7 +592,7 @@
     <value>1</value>
   </data>
   <data name="lblOwnerPassword.Text" xml:space="preserve">
-    <value>Owner Password:</value>
+    <value>گذرواژه مالک:</value>
   </data>
   <data name="&gt;&gt;lblOwnerPassword.Name" xml:space="preserve">
     <value>lblOwnerPassword</value>
@@ -619,7 +619,7 @@
     <value>4</value>
   </data>
   <data name="cbEncryptPdf.Text" xml:space="preserve">
-    <value>Encrypt PDF</value>
+    <value>رمزگذاری PDF</value>
   </data>
   <data name="&gt;&gt;cbEncryptPdf.Name" xml:space="preserve">
     <value>cbEncryptPdf</value>
@@ -643,7 +643,7 @@
     <value>21</value>
   </data>
   <data name="groupProtection.Text" xml:space="preserve">
-    <value>Encryption</value>
+    <value>رمزگذاری</value>
   </data>
   <data name="&gt;&gt;groupProtection.Name" xml:space="preserve">
     <value>groupProtection</value>
@@ -670,7 +670,7 @@
     <value>15</value>
   </data>
   <data name="cbRememberSettings.Text" xml:space="preserve">
-    <value>Remember these settings</value>
+    <value>این تنظیمات را بخاطر بسپار</value>
   </data>
   <data name="&gt;&gt;cbRememberSettings.Name" xml:space="preserve">
     <value>cbRememberSettings</value>
@@ -697,7 +697,7 @@
     <value>16</value>
   </data>
   <data name="btnRestoreDefaults.Text" xml:space="preserve">
-    <value>Restore &amp;Defaults</value>
+    <value>&amp;تنظيمات اوليه</value>
   </data>
   <data name="&gt;&gt;btnRestoreDefaults.Name" xml:space="preserve">
     <value>btnRestoreDefaults</value>
@@ -727,7 +727,7 @@
     <value>33</value>
   </data>
   <data name="linkPlaceholders.Text" xml:space="preserve">
-    <value>Placeholders</value>
+    <value>جانگهدار</value>
   </data>
   <data name="&gt;&gt;linkPlaceholders.Name" xml:space="preserve">
     <value>linkPlaceholders</value>
@@ -778,7 +778,7 @@
     <value>32</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Default File Path:</value>
+    <value>نام پرونده پیش فرض:</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -877,7 +877,7 @@
     <value>21</value>
   </data>
   <data name="groupCompat.Text" xml:space="preserve">
-    <value>Compatibility</value>
+    <value>سازگاری</value>
   </data>
   <data name="&gt;&gt;groupCompat.Name" xml:space="preserve">
     <value>groupCompat</value>
@@ -921,9 +921,9 @@
   <data name="&gt;&gt;cbSinglePagePdf.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -961,7 +961,7 @@
     <value>400, 700</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>PDF Settings</value>
+    <value>تنظیمات پی‌دی‌اف</value>
   </data>
   <data name="&gt;&gt;ilProfileIcons.Name" xml:space="preserve">
     <value>ilProfileIcons</value>

@@ -1,11 +1,10 @@
-using System;
+using NAPS2.Recovery;
+using NAPS2.Scan.Images.Transforms;
+using NAPS2.Util;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using NAPS2.Recovery;
-using NAPS2.Scan.Images.Transforms;
-using NAPS2.Util;
 
 namespace NAPS2.Scan.Images
 {
@@ -30,13 +29,13 @@ namespace NAPS2.Scan.Images
             lock (this)
             {
                 var newSelection = new int[selection.Count()];
-                int lowerBound = 0;
-                int j = 0;
-                foreach (int i in selection.OrderBy(x => x))
+                var lowerBound = 0;
+                var j = 0;
+                foreach (var i in selection.OrderBy(x => x))
                 {
                     if (i != lowerBound++)
                     {
-                        ScannedImage img = Images[i];
+                        var img = Images[i];
                         Images.RemoveAt(i);
                         Images.Insert(i - 1, img);
                         img.MovedTo(i - 1);
@@ -57,13 +56,13 @@ namespace NAPS2.Scan.Images
             lock (this)
             {
                 var newSelection = new int[selection.Count()];
-                int upperBound = Images.Count - 1;
-                int j = 0;
-                foreach (int i in selection.OrderByDescending(x => x))
+                var upperBound = Images.Count - 1;
+                var j = 0;
+                foreach (var i in selection.OrderByDescending(x => x))
                 {
                     if (i != upperBound--)
                     {
-                        ScannedImage img = Images[i];
+                        var img = Images[i];
                         Images.RemoveAt(i);
                         Images.Insert(i + 1, img);
                         img.MovedTo(i + 1);
@@ -87,10 +86,10 @@ namespace NAPS2.Scan.Images
                 var bottom = selList.Where(x => x < index).OrderByDescending(x => x).ToList();
                 var top = selList.Where(x => x >= index).OrderBy(x => x).ToList();
 
-                int offset = 1;
-                foreach (int i in bottom)
+                var offset = 1;
+                foreach (var i in bottom)
                 {
-                    ScannedImage img = Images[i];
+                    var img = Images[i];
                     Images.RemoveAt(i);
                     Images.Insert(index - offset, img);
                     img.MovedTo(index - offset);
@@ -98,9 +97,9 @@ namespace NAPS2.Scan.Images
                 }
 
                 offset = 0;
-                foreach (int i in top)
+                foreach (var i in top)
                 {
-                    ScannedImage img = Images[i];
+                    var img = Images[i];
                     Images.RemoveAt(i);
                     Images.Insert(index + offset, img);
                     img.MovedTo(index + offset);
@@ -117,7 +116,7 @@ namespace NAPS2.Scan.Images
             {
                 using (RecoveryImage.DeferSave())
                 {
-                    foreach (ScannedImage img in Images.ElementsAt(selection))
+                    foreach (var img in Images.ElementsAt(selection))
                     {
                         img.Dispose();
                     }
@@ -131,14 +130,14 @@ namespace NAPS2.Scan.Images
             lock (this)
             {
                 // Partition the image list in two
-                int count = Images.Count;
-                int split = (count + 1) / 2;
+                var count = Images.Count;
+                var split = (count + 1) / 2;
                 var p1 = Images.Take(split).ToList();
                 var p2 = Images.Skip(split).ToList();
 
                 // Rebuild the image list, taking alternating images from each the partitions
                 Images.Clear();
-                for (int i = 0; i < count; ++i)
+                for (var i = 0; i < count; ++i)
                 {
                     Images.Add(i % 2 == 0 ? p1[i / 2] : p2[i / 2]);
                 }
@@ -155,18 +154,18 @@ namespace NAPS2.Scan.Images
             lock (this)
             {
                 // Duplicate the list
-                int count = Images.Count;
-                int split = (count + 1) / 2;
+                var count = Images.Count;
+                var split = (count + 1) / 2;
                 var images = Images.ToList();
 
                 // Rebuild the image list, even-indexed images first
                 Images.Clear();
-                for (int i = 0; i < split; ++i)
+                for (var i = 0; i < split; ++i)
                 {
                     Images.Add(images[i * 2]);
                 }
 
-                for (int i = 0; i < (count - split); ++i)
+                for (var i = 0; i < (count - split); ++i)
                 {
                     Images.Add(images[i * 2 + 1]);
                 }
@@ -183,14 +182,14 @@ namespace NAPS2.Scan.Images
             lock (this)
             {
                 // Partition the image list in two
-                int count = Images.Count;
-                int split = (count + 1) / 2;
+                var count = Images.Count;
+                var split = (count + 1) / 2;
                 var p1 = Images.Take(split).ToList();
                 var p2 = Images.Skip(split).ToList();
 
                 // Rebuild the image list, taking alternating images from each the partitions (the latter in reverse order)
                 Images.Clear();
-                for (int i = 0; i < count; ++i)
+                for (var i = 0; i < count; ++i)
                 {
                     Images.Add(i % 2 == 0 ? p1[i / 2] : p2[p2.Count - 1 - i / 2]);
                 }
@@ -207,18 +206,18 @@ namespace NAPS2.Scan.Images
             lock (this)
             {
                 // Duplicate the list
-                int count = Images.Count;
-                int split = (count + 1) / 2;
+                var count = Images.Count;
+                var split = (count + 1) / 2;
                 var images = Images.ToList();
 
                 // Rebuild the image list, even-indexed images first (odd-indexed images in reverse order)
                 Images.Clear();
-                for (int i = 0; i < split; ++i)
+                for (var i = 0; i < split; ++i)
                 {
                     Images.Add(images[i * 2]);
                 }
 
-                for (int i = count - split - 1; i >= 0; --i)
+                for (var i = count - split - 1; i >= 0; --i)
                 {
                     Images.Add(images[i * 2 + 1]);
                 }
@@ -246,13 +245,13 @@ namespace NAPS2.Scan.Images
             lock (this)
             {
                 var selectionList = selection.ToList();
-                int pairCount = selectionList.Count / 2;
+                var pairCount = selectionList.Count / 2;
 
                 // Swap pairs in the selection, excluding the middle element (if the total count is odd)
-                for (int i = 0; i < pairCount; i++)
+                for (var i = 0; i < pairCount; i++)
                 {
-                    int x = selectionList[i];
-                    int y = selectionList[selectionList.Count - i - 1];
+                    var x = selectionList[i];
+                    var y = selectionList[selectionList.Count - i - 1];
                     var temp = Images[x];
                     Images[x] = Images[y];
                     Images[y] = temp;
@@ -270,7 +269,7 @@ namespace NAPS2.Scan.Images
             var images = Images.ElementsAt(selection).ToList();
             await Task.Factory.StartNew(() =>
             {
-                foreach (ScannedImage img in images)
+                foreach (var img in images)
                 {
                     lock (img)
                     {
@@ -288,7 +287,7 @@ namespace NAPS2.Scan.Images
 
         public void ResetTransforms(IEnumerable<int> selection)
         {
-            foreach (ScannedImage img in Images.ElementsAt(selection))
+            foreach (var img in Images.ElementsAt(selection))
             {
                 img.ResetTransforms();
             }

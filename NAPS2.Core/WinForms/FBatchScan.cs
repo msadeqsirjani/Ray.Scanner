@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using NAPS2.Config;
 using NAPS2.ImportExport;
 using NAPS2.Lang.Resources;
@@ -15,13 +7,17 @@ using NAPS2.Scan.Batch;
 using NAPS2.Scan.Exceptions;
 using NAPS2.Scan.Images;
 using NAPS2.Util;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace NAPS2.WinForms
 {
     public partial class FBatchScan : FormBase
     {
-        public const string PATCH_CODE_INFO_URL = "http://www.naps2.com/doc-batch-scan.html#patch-t";
-
         private readonly IProfileManager profileManager;
         private readonly AppConfigManager appConfigManager;
         private readonly IUserConfigManager userConfigManager;
@@ -65,10 +61,10 @@ namespace NAPS2.WinForms
             ConditionalControls.LockHeight(this);
 
             BatchSettings = userConfigManager.Config.LastBatchSettings ?? new BatchSettings();
-            UpdateUIFromSettings();
+            UpdateUiFromSettings();
         }
 
-        private void UpdateUIFromSettings()
+        private void UpdateUiFromSettings()
         {
             UpdateProfiles();
 
@@ -93,7 +89,7 @@ namespace NAPS2.WinForms
 
         private bool ValidateSettings()
         {
-            bool ok = true;
+            var ok = true;
 
             BatchSettings.ProfileDisplayName = comboProfile.Text;
             if (comboProfile.SelectedIndex == -1)
@@ -108,7 +104,7 @@ namespace NAPS2.WinForms
 
             if (rdMultipleScansDelay.Checked)
             {
-                if (!int.TryParse(txtNumberOfScans.Text, out int scanCount) || scanCount <= 0)
+                if (!int.TryParse(txtNumberOfScans.Text, out var scanCount) || scanCount <= 0)
                 {
                     ok = false;
                     scanCount = 0;
@@ -116,7 +112,7 @@ namespace NAPS2.WinForms
                 }
                 BatchSettings.ScanCount = scanCount;
 
-                if (!double.TryParse(txtTimeBetweenScans.Text, out double scanInterval) || scanInterval < 0)
+                if (!double.TryParse(txtTimeBetweenScans.Text, out var scanInterval) || scanInterval < 0)
                 {
                     ok = false;
                     scanInterval = 0;
@@ -134,13 +130,11 @@ namespace NAPS2.WinForms
                                         : SaveSeparator.FilePerPage;
 
             BatchSettings.SavePath = txtFilePath.Text;
-            if (BatchSettings.OutputType != BatchOutputType.Load && string.IsNullOrWhiteSpace(BatchSettings.SavePath))
-            {
-                ok = false;
-                txtFilePath.Focus();
-            }
+            if (BatchSettings.OutputType == BatchOutputType.Load ||
+                !string.IsNullOrWhiteSpace(BatchSettings.SavePath)) return ok;
+            txtFilePath.Focus();
 
-            return ok;
+            return false;
         }
 
         private void UpdateProfiles()
@@ -193,15 +187,10 @@ namespace NAPS2.WinForms
 
         private void btnChooseFolder_Click(object sender, EventArgs e)
         {
-            if (dialogHelper.PromptToSavePdfOrImage(null, out string savePath))
+            if (dialogHelper.PromptToSavePdfOrImage(null, out var savePath))
             {
                 txtFilePath.Text = savePath;
             }
-        }
-
-        private void linkPatchCodeInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start(PATCH_CODE_INFO_URL);
         }
 
         private void comboProfile_Format(object sender, ListControlConvertEventArgs e)
@@ -211,36 +200,28 @@ namespace NAPS2.WinForms
 
         private void btnEditProfile_Click(object sender, EventArgs e)
         {
-            if (comboProfile.SelectedItem != null)
-            {
-                var fedit = FormFactory.Create<FEditProfile>();
-                fedit.ScanProfile = (ScanProfile)comboProfile.SelectedItem;
-                fedit.ShowDialog();
-                if (fedit.Result)
-                {
-                    profileManager.Profiles[comboProfile.SelectedIndex] = fedit.ScanProfile;
-                    profileManager.Save();
-                    BatchSettings.ProfileDisplayName = fedit.ScanProfile.DisplayName;
-                    UpdateProfiles();
-                }
-            }
+            if (comboProfile.SelectedItem == null) return;
+            var fedit = FormFactory.Create<FEditProfile>();
+            fedit.ScanProfile = (ScanProfile)comboProfile.SelectedItem;
+            fedit.ShowDialog();
+            if (!fedit.Result) return;
+            profileManager.Profiles[comboProfile.SelectedIndex] = fedit.ScanProfile;
+            profileManager.Save();
+            BatchSettings.ProfileDisplayName = fedit.ScanProfile.DisplayName;
+            UpdateProfiles();
         }
 
         private void btnAddProfile_Click(object sender, EventArgs e)
         {
-            if (!(appConfigManager.Config.NoUserProfiles && profileManager.Profiles.Any(x => x.IsLocked)))
-            {
-                var fedit = FormFactory.Create<FEditProfile>();
-                fedit.ScanProfile = appConfigManager.Config.DefaultProfileSettings ?? new ScanProfile {Version = ScanProfile.CURRENT_VERSION};
-                fedit.ShowDialog();
-                if (fedit.Result)
-                {
-                    profileManager.Profiles.Add(fedit.ScanProfile);
-                    profileManager.Save();
-                    BatchSettings.ProfileDisplayName = fedit.ScanProfile.DisplayName;
-                    UpdateProfiles();
-                }
-            }
+            if (appConfigManager.Config.NoUserProfiles && profileManager.Profiles.Any(x => x.IsLocked)) return;
+            var fedit = FormFactory.Create<FEditProfile>();
+            fedit.ScanProfile = appConfigManager.Config.DefaultProfileSettings ?? new ScanProfile { Version = ScanProfile.CURRENT_VERSION };
+            fedit.ShowDialog();
+            if (!fedit.Result) return;
+            profileManager.Profiles.Add(fedit.ScanProfile);
+            profileManager.Save();
+            BatchSettings.ProfileDisplayName = fedit.ScanProfile.DisplayName;
+            UpdateProfiles();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -278,7 +259,7 @@ namespace NAPS2.WinForms
             EnableDisable(groupboxOutput, enabled);
         }
 
-        private void EnableDisable(Control root, bool enabled)
+        private static void EnableDisable(Control root, bool enabled)
         {
             foreach (Control control in root.Controls)
             {
@@ -351,12 +332,11 @@ namespace NAPS2.WinForms
         {
             if (batchRunning)
             {
-                if (MessageBox.Show(MiscResources.ConfirmCancelBatch, MiscResources.CancelBatch, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    cts.Cancel();
-                    btnCancel.Enabled = false;
-                    lblStatus.Text = MiscResources.BatchStatusCancelling;
-                }
+                if (MessageBox.Show(MiscResources.ConfirmCancelBatch, MiscResources.CancelBatch,
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+                cts.Cancel();
+                btnCancel.Enabled = false;
+                lblStatus.Text = MiscResources.BatchStatusCancelling;
             }
             else
             {

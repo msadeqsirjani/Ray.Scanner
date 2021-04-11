@@ -133,7 +133,7 @@
     <value>18</value>
   </data>
   <data name="btnOK.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;تأیید</value>
   </data>
   <data name="&gt;&gt;btnOK.Name" xml:space="preserve">
     <value>btnOK</value>
@@ -160,7 +160,7 @@
     <value>19</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
-    <value>&amp;Cancel</value>
+    <value>&amp;لغو</value>
   </data>
   <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
     <value>btnCancel</value>
@@ -190,7 +190,7 @@
     <value>17</value>
   </data>
   <data name="cbHighQuality.Text" xml:space="preserve">
-    <value>Maximum quality (large files)</value>
+    <value>حداکثر کیفیت (پرونده‌های بزرگ)</value>
   </data>
   <data name="&gt;&gt;cbHighQuality.Name" xml:space="preserve">
     <value>cbHighQuality</value>
@@ -204,9 +204,9 @@
   <data name="&gt;&gt;cbHighQuality.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <metadata name="ilProfileIcons.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="ilProfileIcons.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
+  </data>
   <data name="txtImageQuality.Location" type="System.Drawing.Point, System.Drawing">
     <value>364, 42</value>
   </data>
@@ -268,7 +268,7 @@
     <value>35</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Image Quality</value>
+    <value>کیفیت تصویر</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -463,7 +463,7 @@
     <value>2</value>
   </data>
   <data name="cbBrightnessContrastAfterScan.Text" xml:space="preserve">
-    <value>Apply brightness/contrast after scan</value>
+    <value>اعمال روشنایی و درخشش پس از اسکن</value>
   </data>
   <data name="&gt;&gt;cbBrightnessContrastAfterScan.Name" xml:space="preserve">
     <value>cbBrightnessContrastAfterScan</value>
@@ -511,7 +511,7 @@
     <value>0</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Twain Implementation:</value>
+    <value>پیاده‌سازی Twain:</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -535,7 +535,7 @@
     <value>36</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Compatibility</value>
+    <value>سازگاری</value>
   </data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
@@ -565,7 +565,7 @@
     <value>38</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Coverage Threshold</value>
+    <value>آستانه پوشش</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -592,7 +592,7 @@
     <value>37</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>White Threshold</value>
+    <value>آستانه سفید</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -724,7 +724,7 @@
     <value>17</value>
   </data>
   <data name="cbExcludeBlankPages.Text" xml:space="preserve">
-    <value>Exclude blank pages</value>
+    <value>جلوگیری از صفحات خالی</value>
   </data>
   <data name="&gt;&gt;cbExcludeBlankPages.Name" xml:space="preserve">
     <value>cbExcludeBlankPages</value>
@@ -748,7 +748,7 @@
     <value>37</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
-    <value>Blank Pages</value>
+    <value>صفحات خالی</value>
   </data>
   <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
     <value>groupBox3</value>
@@ -778,7 +778,7 @@
     <value>38</value>
   </data>
   <data name="btnRestoreDefaults.Text" xml:space="preserve">
-    <value>Restore &amp;Defaults</value>
+    <value>&amp;تنظيمات اوليه</value>
   </data>
   <data name="&gt;&gt;btnRestoreDefaults.Name" xml:space="preserve">
     <value>btnRestoreDefaults</value>
@@ -846,9 +846,9 @@
   <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -886,7 +886,7 @@
     <value>400, 604</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Advanced Profile Settings</value>
+    <value>تنظیمات پیشرفته پروفایل</value>
   </data>
   <data name="&gt;&gt;ilProfileIcons.Name" xml:space="preserve">
     <value>ilProfileIcons</value>

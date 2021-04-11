@@ -150,7 +150,7 @@
     <value>1</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
-    <value>&amp;Cancel</value>
+    <value>&amp;لغو</value>
   </data>
   <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
     <value>btnCancel</value>
@@ -177,7 +177,7 @@
     <value>4</value>
   </data>
   <data name="labelPage.Text" xml:space="preserve">
-    <value>Scanning page {0}</value>
+    <value>اسکن صفحه {0}</value>
   </data>
   <data name="&gt;&gt;labelPage.Name" xml:space="preserve">
     <value>labelPage</value>
@@ -191,9 +191,9 @@
   <data name="&gt;&gt;labelPage.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -211,7 +211,7 @@
     <value>CenterParent</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Acquiring data</value>
+    <value>دستیابی به داده‌ها</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FScanProgress</value>

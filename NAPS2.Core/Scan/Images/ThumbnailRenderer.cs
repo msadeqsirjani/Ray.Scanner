@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
+using NAPS2.Config;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using NAPS2.Config;
 
 namespace NAPS2.Scan.Images
 {
@@ -96,7 +92,7 @@ namespace NAPS2.Scan.Images
         public virtual Bitmap RenderThumbnail(Bitmap b, int size)
         {
             var result = new Bitmap(size, size);
-            using (Graphics g = Graphics.FromImage(result))
+            using (var g = Graphics.FromImage(result))
             {
                 // The location and dimensions of the old bitmap, scaled and positioned within the thumbnail bitmap
                 int left, top, width, height;

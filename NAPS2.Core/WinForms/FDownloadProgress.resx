@@ -150,7 +150,7 @@
     <value>1</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
-    <value>&amp;Cancel</value>
+    <value>&amp;لغو</value>
   </data>
   <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
     <value>btnCancel</value>
@@ -177,7 +177,7 @@
     <value>2</value>
   </data>
   <data name="labelSub.Text" xml:space="preserve">
-    <value>{0} / {1} MB</value>
+    <value>{0} / {1} مگابایت</value>
   </data>
   <data name="&gt;&gt;labelSub.Name" xml:space="preserve">
     <value>labelSub</value>
@@ -204,7 +204,7 @@
     <value>4</value>
   </data>
   <data name="labelTop.Text" xml:space="preserve">
-    <value>{0} / {1} files</value>
+    <value>{0} / {1} پرونده‌ها</value>
   </data>
   <data name="&gt;&gt;labelTop.Name" xml:space="preserve">
     <value>labelTop</value>
@@ -239,9 +239,9 @@
   <data name="&gt;&gt;progressBarTop.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -279,7 +279,7 @@
     <value>350, 195</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Download Progress</value>
+    <value>پیشرفت دانلود</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FDownloadProgress</value>

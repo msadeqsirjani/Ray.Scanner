@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Threading;
-using NAPS2.Lang.Resources;
+﻿using NAPS2.Lang.Resources;
 using NAPS2.Operation;
 using NAPS2.Scan.Images.Transforms;
 using NAPS2.Util;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace NAPS2.Scan.Images
 {
@@ -43,7 +41,7 @@ namespace NAPS2.Scan.Images
                         return null;
                     }
                     memoryLimitingSem.WaitOne();
-                    Bitmap bitmap = scannedImageRenderer.Render(img).Result;
+                    var bitmap = scannedImageRenderer.Render(img).Result;
                     try
                     {
                         if (CancelToken.IsCancellationRequested)

@@ -139,7 +139,7 @@
     <value>5</value>
   </data>
   <data name="btnDone.Text" xml:space="preserve">
-    <value>&amp;Done</value>
+    <value>&amp;انجام شد</value>
   </data>
   <data name="&gt;&gt;btnDone.Name" xml:space="preserve">
     <value>btnDone</value>
@@ -175,7 +175,7 @@
     <value>4</value>
   </data>
   <data name="btnScan.Text" xml:space="preserve">
-    <value>&amp;Scan</value>
+    <value>&amp;اسکن</value>
   </data>
   <data name="&gt;&gt;btnScan.Name" xml:space="preserve">
     <value>btnScan</value>
@@ -205,7 +205,7 @@
     <value>3</value>
   </data>
   <data name="lblStatus.Text" xml:space="preserve">
-    <value>Ready for scan {0}.</value>
+    <value>آماده برای اسکن {0}.</value>
   </data>
   <data name="&gt;&gt;lblStatus.Name" xml:space="preserve">
     <value>lblStatus</value>
@@ -219,9 +219,9 @@
   <data name="&gt;&gt;lblStatus.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -238,7 +238,7 @@
     <value>CenterParent</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Next Scan</value>
+    <value>اسکن بعدی</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FBatchPrompt</value>

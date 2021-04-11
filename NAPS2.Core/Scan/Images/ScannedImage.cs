@@ -1,16 +1,13 @@
+using NAPS2.Recovery;
+using NAPS2.Scan.Images.Transforms;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
-using System.Threading.Tasks;
-using NAPS2.Recovery;
-using NAPS2.Scan.Images.Transforms;
-using NAPS2.Util;
 
 namespace NAPS2.Scan.Images
 {
@@ -38,7 +35,7 @@ namespace NAPS2.Scan.Images
 
         public ScannedImage(Bitmap img, ScanBitDepth bitDepth, bool highQuality, int quality)
         {
-            string tempFilePath = ScannedImageHelper.SaveSmallestBitmap(img, bitDepth, highQuality, quality, out ImageFormat fileFormat);
+            var tempFilePath = ScannedImageHelper.SaveSmallestBitmap(img, bitDepth, highQuality, quality, out var fileFormat);
 
             transformList = new List<Transform>();
             recoveryImage = RecoveryImage.CreateNew(fileFormat, bitDepth, highQuality, transformList);
@@ -135,7 +132,7 @@ namespace NAPS2.Scan.Images
         {
             lock (this)
             {
-                return (Bitmap) thumbnail?.Clone();
+                return (Bitmap)thumbnail?.Clone();
             }
         }
 

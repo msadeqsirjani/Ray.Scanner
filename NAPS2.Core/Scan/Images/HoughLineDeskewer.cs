@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NAPS2.Scan.Images.Transforms;
+using System;
 using System.Drawing;
 using System.Linq;
-using NAPS2.Scan.Images.Transforms;
 
 namespace NAPS2.Scan.Images
 {
@@ -36,35 +35,33 @@ namespace NAPS2.Scan.Images
         {
             var bitArrays = UnsafeImageOps.ConvertToBitArrays(image);
 
-            int h = image.Height;
-            int w = image.Width;
+            var h = image.Height;
+            var w = image.Width;
             // Ignore a bit of the top/bottom so that artifacts from the edge
             // of the scan area aren't counted. (Left/right don't matter since
             // we only look at near-horizontal lines.)
-            int yOffset = (int)Math.Round(h * IGNORE_EDGE_FRACTION);
+            var yOffset = (int)Math.Round(h * IGNORE_EDGE_FRACTION);
 
             var sinCos = PrecalculateSinCos();
 
             // TODO: Consider reducing the precision of distance or angle,
             // TODO: possibly with a second pass to restore precision.
-            int dCount = 2 * (w + h);
-            int[,] scores = new int[dCount, ANGLE_STEPS];
+            var dCount = 2 * (w + h);
+            var scores = new int[dCount, ANGLE_STEPS];
 
             // TODO: This should be a good candidate for OpenCL optimization.
             // TODO: If you parallelize over the angle, you're operating over
             // TODO: the same input data with the same branches.
-            for (int y = 1 + yOffset; y <= h - 2 - yOffset; y++)
+            for (var y = 1 + yOffset; y <= h - 2 - yOffset; y++)
             {
-                for (int x = 1; x <= w - 2; x++)
+                for (var x = 1; x <= w - 2; x++)
                 {
-                    if (bitArrays[y][x] && !bitArrays[y + 1][x])
+                    if (!bitArrays[y][x] || bitArrays[y + 1][x]) continue;
+                    for (var i = 0; i < ANGLE_STEPS; i++)
                     {
-                        for (int i = 0; i < ANGLE_STEPS; i++)
-                        {
-                            var sc = sinCos[i];
-                            int d = (int)(y * sc.cos - x * sc.sin + w);
-                            scores[d, i]++;
-                        }
+                        var sc = sinCos[i];
+                        var d = (int)(y * sc.cos - x * sc.sin + w);
+                        scores[d, i]++;
                     }
                 }
             }
@@ -79,23 +76,21 @@ namespace NAPS2.Scan.Images
             return cluster.Sum() / cluster.Length;
         }
 
-        private double[] ClusterAngles(double[] angles)
+        private static double[] ClusterAngles(double[] angles)
         {
             angles = angles.OrderBy(x => x).ToArray();
-            int n = angles.Length;
-            int largestCluster = 0;
-            int largestClusterIndex = 0;
-            for (int i = 0; i < n; i++)
+            var n = angles.Length;
+            var largestCluster = 0;
+            var largestClusterIndex = 0;
+            for (var i = 0; i < n; i++)
             {
-                int clusterSize = angles
+                var clusterSize = angles
                     .Skip(i)
                     .TakeWhile(x => x < angles[i] + CLUSTER_TARGET_SPREAD)
                     .Count();
-                if (clusterSize > largestCluster)
-                {
-                    largestCluster = clusterSize;
-                    largestClusterIndex = i;
-                }
+                if (clusterSize <= largestCluster) continue;
+                largestCluster = clusterSize;
+                largestClusterIndex = i;
             }
             return angles
                 .Skip(largestClusterIndex)
@@ -106,30 +101,28 @@ namespace NAPS2.Scan.Images
         private static double[] GetAnglesOfBestLines(int[,] scores, int dCount)
         {
             var best = new (int angleIndex, int count)[BEST_MAX_COUNT];
-            for (int i = 0; i < dCount; i++)
+            for (var i = 0; i < dCount; i++)
             {
-                for (int angleIndex = 0; angleIndex < ANGLE_STEPS; angleIndex++)
+                for (var angleIndex = 0; angleIndex < ANGLE_STEPS; angleIndex++)
                 {
-                    int count = scores[i, angleIndex];
-                    if (count > best[BEST_MAX_COUNT - 1].count)
+                    var count = scores[i, angleIndex];
+                    if (count <= best[BEST_MAX_COUNT - 1].count) continue;
+                    best[BEST_MAX_COUNT - 1] = (angleIndex, count);
+                    for (var j = BEST_MAX_COUNT - 2; j >= 0; j--)
                     {
-                        best[BEST_MAX_COUNT - 1] = (angleIndex, count);
-                        for (int j = BEST_MAX_COUNT - 2; j >= 0; j--)
+                        if (count > best[j].count)
                         {
-                            if (count > best[j].count)
-                            {
-                                (best[j], best[j + 1]) = (best[j + 1], best[j]);
-                            }
+                            (best[j], best[j + 1]) = (best[j + 1], best[j]);
                         }
                     }
                 }
             }
 
             // Skip "insignificant" lines whose counts aren't close enough to the top 10
-            int threshold = (int)(best[BEST_THRESHOLD_INDEX].count * BEST_THRESOLD_FACTOR);
+            var threshold = (int)(best[BEST_THRESHOLD_INDEX].count * BEST_THRESOLD_FACTOR);
             var bestWithinThreshold = best.Where(x => x.count >= threshold);
 
-            double angleStepSize = (ANGLE_MAX - ANGLE_MIN) / (ANGLE_STEPS - 1);
+            const double angleStepSize = (ANGLE_MAX - ANGLE_MIN) / (ANGLE_STEPS - 1);
             var angles = bestWithinThreshold.Select(x => ANGLE_MIN + angleStepSize * x.angleIndex);
             return angles.ToArray();
         }
@@ -137,10 +130,10 @@ namespace NAPS2.Scan.Images
         private static SinCos[] PrecalculateSinCos()
         {
             var sinCos = new SinCos[ANGLE_STEPS];
-            double angleStepSize = (ANGLE_MAX - ANGLE_MIN) / (ANGLE_STEPS - 1);
-            for (int i = 0; i < ANGLE_STEPS; i++)
+            const double angleStepSize = (ANGLE_MAX - ANGLE_MIN) / (ANGLE_STEPS - 1);
+            for (var i = 0; i < ANGLE_STEPS; i++)
             {
-                double angle = (ANGLE_MIN + angleStepSize * i) * Math.PI / 180.0;
+                var angle = (ANGLE_MIN + angleStepSize * i) * Math.PI / 180.0;
                 sinCos[i].sin = (float)Math.Sin(angle);
                 sinCos[i].cos = (float)Math.Cos(angle);
             }

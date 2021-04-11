@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NAPS2.Lang.Resources;
+using NAPS2.Util;
+using System;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NAPS2.Lang.Resources;
-using NAPS2.Util;
 
 namespace NAPS2.WinForms
 {
@@ -33,7 +31,7 @@ namespace NAPS2.WinForms
 
         public Exception Exception { get; private set; }
 
-        public CancellationToken CancelToken { get; private set; }
+        public CancellationToken CancelToken { get; }
 
         public void OnProgress(int current, int max)
         {

@@ -2,7 +2,6 @@
 
 using NAPS2.Config;
 using NAPS2.ImportExport;
-using NAPS2.Lang;
 using NAPS2.Lang.Resources;
 using NAPS2.Logging;
 using NAPS2.Ocr;
@@ -16,12 +15,10 @@ using NAPS2.Update;
 using NAPS2.Util;
 using NAPS2.Worker;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -44,7 +41,6 @@ namespace NAPS2.WinForms
         private readonly StringWrapper stringWrapper;
         private readonly AppConfigManager appConfigManager;
         private readonly RecoveryManager recoveryManager;
-        private readonly OcrManager ocrManager;
         private readonly IProfileManager profileManager;
         private readonly IScanPerformer scanPerformer;
         private readonly ChangeTracker changeTracker;
@@ -76,8 +72,7 @@ namespace NAPS2.WinForms
         #region Initialization and Culture
 
         public FDesktop(StringWrapper stringWrapper, AppConfigManager appConfigManager, RecoveryManager recoveryManager,
-            OcrManager ocrManager, IProfileManager profileManager, IScanPerformer scanPerformer,
-            IScannedImagePrinter scannedImagePrinter, ChangeTracker changeTracker, StillImage stillImage,
+            OcrManager ocrManager, IProfileManager profileManager, IScanPerformer scanPerformer, ChangeTracker changeTracker, StillImage stillImage,
             IOperationFactory operationFactory, IUserConfigManager userConfigManager, KeyboardShortcutManager ksm,
             ThumbnailRenderer thumbnailRenderer, WinFormsExportHelper exportHelper,
             ScannedImageRenderer scannedImageRenderer, NotificationManager notify,
@@ -87,7 +82,6 @@ namespace NAPS2.WinForms
             this.stringWrapper = stringWrapper;
             this.appConfigManager = appConfigManager;
             this.recoveryManager = recoveryManager;
-            this.ocrManager = ocrManager;
             this.profileManager = profileManager;
             this.scanPerformer = scanPerformer;
             this.changeTracker = changeTracker;
@@ -149,7 +143,7 @@ namespace NAPS2.WinForms
 
             LoadToolStripLocation();
             RelayoutToolbar();
-            InitLanguageDropdown();
+            //InitLanguageDropdown();
             AssignKeyboardShortcuts();
             UpdateScanButton();
 
@@ -164,29 +158,6 @@ namespace NAPS2.WinForms
 
             thumbnailList1.MouseWheel += thumbnailList1_MouseWheel;
             thumbnailList1.SizeChanged += (sender, args) => layoutManager.UpdateLayout();
-        }
-
-        private void InitLanguageDropdown()
-        {
-            // Read a list of languages from the Languages.resx file
-            var resourceManager = LanguageNames.ResourceManager;
-            var resourceSet = resourceManager.GetResourceSet(CultureInfo.InvariantCulture, true, true);
-
-            foreach (var entry in resourceSet.Cast<DictionaryEntry>().OrderBy(x => x.Value))
-            {
-                var langCode = ((string)entry.Key).Replace("_", "-");
-                var langName = (string)entry.Value;
-
-                // Only include those languages for which localized resources exist
-                //var localizedResourcesPath =
-                //    Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? "", langCode,
-                //        "NAPS2.Core.resources.dll");
-                if (langCode == "en" || langCode == "fa" /*File.Exists(localizedResourcesPath)*/)
-                {
-                    var button = new ToolStripMenuItem(langName, null, (sender, args) => SetCulture(langCode));
-                    toolStripDropDownButton1.DropDownItems.Add(button);
-                }
-            }
         }
 
         private void RelayoutToolbar()
@@ -220,28 +191,30 @@ namespace NAPS2.WinForms
         {
             foreach (var btn in tStrip.Items.OfType<ToolStripItem>())
             {
-                if (btn is ToolStripSplitButton)
+                switch (btn)
                 {
-                    if (tStrip.Parent.Dock == DockStyle.Left || tStrip.Parent.Dock == DockStyle.Right)
-                    {
+                    case ToolStripSplitButton _ when tStrip.Parent.Dock == DockStyle.Left || tStrip.Parent.Dock == DockStyle.Right:
                         btn.Margin = new Padding(10, 1, 5, 2);
-                    }
-                    else
-                    {
+                        break;
+                    case ToolStripSplitButton _:
                         btn.Margin = new Padding(5, 1, 5, 2);
-                    }
-                }
-                else if (btn is ToolStripDoubleButton)
-                {
-                    btn.Padding = new Padding(5, 0, 5, 0);
-                }
-                else if (tStrip.Parent.Dock == DockStyle.Left || tStrip.Parent.Dock == DockStyle.Right)
-                {
-                    btn.Margin = new Padding(0, 1, 5, 2);
-                }
-                else
-                {
-                    btn.Padding = new Padding(10, 0, 10, 0);
+                        break;
+                    case ToolStripDoubleButton _:
+                        btn.Padding = new Padding(5, 0, 5, 0);
+                        break;
+                    default:
+                        {
+                            if (tStrip.Parent.Dock == DockStyle.Left || tStrip.Parent.Dock == DockStyle.Right)
+                            {
+                                btn.Margin = new Padding(0, 1, 5, 2);
+                            }
+                            else
+                            {
+                                btn.Padding = new Padding(10, 0, 10, 0);
+                            }
+
+                            break;
+                        }
                 }
             }
         }
@@ -250,41 +223,19 @@ namespace NAPS2.WinForms
         {
             foreach (var btn in tStrip.Items.OfType<ToolStripItem>())
             {
-                if (btn is ToolStripSplitButton)
+                switch (btn)
                 {
-                    btn.Margin = new Padding(0, 1, 0, 2);
-                }
-                else if (btn is ToolStripDoubleButton)
-                {
-                    btn.Padding = new Padding(0, 0, 0, 0);
-                }
-                else
-                {
-                    btn.Padding = new Padding(5, 0, 5, 0);
+                    case ToolStripSplitButton _:
+                        btn.Margin = new Padding(0, 1, 0, 2);
+                        break;
+                    case ToolStripDoubleButton _:
+                        btn.Padding = new Padding(0, 0, 0, 0);
+                        break;
+                    default:
+                        btn.Padding = new Padding(5, 0, 5, 0);
+                        break;
                 }
             }
-        }
-
-        private void SetCulture(string cultureId)
-        {
-            SaveToolStripLocation();
-            UserConfigManager.Config.Culture = cultureId;
-            UserConfigManager.Save();
-            cultureInitializer.InitCulture(Thread.CurrentThread);
-
-            // Update localized values
-            // Since all forms are opened modally and this is the root form, it should be the only one that needs to be updated live
-            SaveFormState = false;
-            Controls.Clear();
-            UpdateRtl();
-            InitializeComponent();
-            PostInitializeComponent();
-            AddThumbnails();
-            notify.Rebuild();
-            Focus();
-            WindowState = FormWindowState.Normal;
-            DoRestoreFormState();
-            SaveFormState = true;
         }
 
         private async void FDesktop_Shown(object sender, EventArgs e)
@@ -466,21 +417,12 @@ namespace NAPS2.WinForms
             }
         }
 
-        private async Task ScanWithDevice(string deviceID)
+        private async Task ScanWithDevice(string deviceId)
         {
             Activate();
-            ScanProfile profile;
-            if (profileManager.DefaultProfile?.Device?.ID == deviceID)
-            {
-                // Try to use the default profile if it has the right device
-                profile = profileManager.DefaultProfile;
-            }
-            else
-            {
-                // Otherwise just pick any old profile with the right device
-                // Not sure if this is the best way to do it, but it's hard to prioritize profiles
-                profile = profileManager.Profiles.FirstOrDefault(x => x.Device != null && x.Device.ID == deviceID);
-            }
+            var profile = profileManager.DefaultProfile?.Device?.ID == deviceId
+                ? profileManager.DefaultProfile
+                : profileManager.Profiles.FirstOrDefault(x => x.Device != null && x.Device.ID == deviceId);
 
             if (profile == null)
             {
@@ -497,9 +439,9 @@ namespace NAPS2.WinForms
                 {
                     // Populate the device field automatically (because we can do that!)
                     using (var deviceManager = new WiaDeviceManager())
-                    using (var device = deviceManager.FindDevice(deviceID))
+                    using (var device = deviceManager.FindDevice(deviceId))
                     {
-                        editSettingsForm.CurrentDevice = new ScanDevice(deviceID, device.Name());
+                        editSettingsForm.CurrentDevice = new ScanDevice(deviceId, device.Name());
                     }
                 }
                 catch (WiaException)
@@ -651,13 +593,11 @@ namespace NAPS2.WinForms
             SelectedIndices = selection;
             UpdateToolbar();
 
-            if (scrollToSelection)
-            {
-                // Scroll to selection
-                // If selection is empty (e.g. after interleave), this scrolls to top
-                thumbnailList1.EnsureVisible(SelectedIndices.LastOrDefault());
-                thumbnailList1.EnsureVisible(SelectedIndices.FirstOrDefault());
-            }
+            if (!scrollToSelection) return;
+            // Scroll to selection
+            // If selection is empty (e.g. after interleave), this scrolls to top
+            thumbnailList1.EnsureVisible(SelectedIndices.LastOrDefault());
+            thumbnailList1.EnsureVisible(SelectedIndices.FirstOrDefault());
         }
 
         private void ImageThumbnailChanged(object sender, EventArgs e)
@@ -794,36 +734,30 @@ namespace NAPS2.WinForms
 
         private void Clear()
         {
-            if (imageList.Images.Count > 0)
-            {
-                if (MessageBox.Show(string.Format(MiscResources.ConfirmClearItems, imageList.Images.Count),
-                    MiscResources.Clear, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                {
-                    imageList.Delete(Enumerable.Range(0, imageList.Images.Count));
-                    DeleteThumbnails();
-                    changeTracker.Clear();
-                }
-            }
+            if (imageList.Images.Count <= 0) return;
+            if (MessageBox.Show(string.Format(MiscResources.ConfirmClearItems, imageList.Images.Count),
+                    MiscResources.Clear, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) !=
+                DialogResult.OK) return;
+            imageList.Delete(Enumerable.Range(0, imageList.Images.Count));
+            DeleteThumbnails();
+            changeTracker.Clear();
         }
 
         private void Delete()
         {
-            if (SelectedIndices.Any())
+            if (!SelectedIndices.Any()) return;
+            if (MessageBox.Show(string.Format(MiscResources.ConfirmDeleteItems, SelectedIndices.Count()),
+                    MiscResources.Delete, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) !=
+                DialogResult.OK) return;
+            imageList.Delete(SelectedIndices);
+            DeleteThumbnails();
+            if (imageList.Images.Any())
             {
-                if (MessageBox.Show(string.Format(MiscResources.ConfirmDeleteItems, SelectedIndices.Count()),
-                    MiscResources.Delete, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                {
-                    imageList.Delete(SelectedIndices);
-                    DeleteThumbnails();
-                    if (imageList.Images.Any())
-                    {
-                        changeTracker.Made();
-                    }
-                    else
-                    {
-                        changeTracker.Clear();
-                    }
-                }
+                changeTracker.Made();
+            }
+            else
+            {
+                changeTracker.Clear();
             }
         }
 
@@ -898,32 +832,26 @@ namespace NAPS2.WinForms
             }
 
             var op = operationFactory.Create<DeskewOperation>();
-            if (op.Start(SelectedImages.ToList()))
-            {
-                operationProgress.ShowProgress(op);
-                changeTracker.Made();
-            }
+            if (!op.Start(SelectedImages.ToList())) return;
+            operationProgress.ShowProgress(op);
+            changeTracker.Made();
         }
 
         private void PreviewImage()
         {
-            if (SelectedIndices.Any())
+            if (!SelectedIndices.Any()) return;
+            using (var viewer = FormFactory.Create<FViewer>())
             {
-                using (var viewer = FormFactory.Create<FViewer>())
+                viewer.ImageList = imageList;
+                viewer.ImageIndex = SelectedIndices.First();
+                viewer.DeleteCallback = DeleteThumbnails;
+                viewer.SelectCallback = i =>
                 {
-                    viewer.ImageList = imageList;
-                    viewer.ImageIndex = SelectedIndices.First();
-                    viewer.DeleteCallback = DeleteThumbnails;
-                    viewer.SelectCallback = i =>
-                    {
-                        if (SelectedIndices.Count() <= 1)
-                        {
-                            SelectedIndices = new[] { i };
-                            thumbnailList1.Items[i].EnsureVisible();
-                        }
-                    };
-                    viewer.ShowDialog();
-                }
+                    if (SelectedIndices.Count() > 1) return;
+                    SelectedIndices = new[] { i };
+                    thumbnailList1.Items[i].EnsureVisible();
+                };
+                viewer.ShowDialog();
             }
         }
 
@@ -937,51 +865,37 @@ namespace NAPS2.WinForms
 
         private void ResetImage()
         {
-            if (SelectedIndices.Any())
-            {
-                if (MessageBox.Show(string.Format(MiscResources.ConfirmResetImages, SelectedIndices.Count()),
-                    MiscResources.ResetImage, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                {
-                    imageList.ResetTransforms(SelectedIndices);
-                    changeTracker.Made();
-                }
-            }
+            if (!SelectedIndices.Any()) return;
+            if (MessageBox.Show(string.Format(MiscResources.ConfirmResetImages, SelectedIndices.Count()),
+                    MiscResources.ResetImage, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) !=
+                DialogResult.OK) return;
+            imageList.ResetTransforms(SelectedIndices);
+            changeTracker.Made();
         }
 
         #endregion
 
         #region Actions - Save/Email/Import
 
-        private async void SavePDF(List<ScannedImage> images)
+        private async void SavePdf(List<ScannedImage> images)
         {
-            if (await exportHelper.SavePDF(images, notify))
+            if (!await exportHelper.SavePDF(images, notify)) return;
+            if (appConfigManager.Config.DeleteAfterSaving)
             {
-                if (appConfigManager.Config.DeleteAfterSaving)
+                SafeInvoke(() =>
                 {
-                    SafeInvoke(() =>
-                    {
-                        imageList.Delete(imageList.Images.IndiciesOf(images));
-                        DeleteThumbnails();
-                    });
-                }
+                    imageList.Delete(imageList.Images.IndiciesOf(images));
+                    DeleteThumbnails();
+                });
             }
         }
 
         private async void SaveImages(List<ScannedImage> images)
         {
-            if (await exportHelper.SaveImages(images, notify))
-            {
-                if (appConfigManager.Config.DeleteAfterSaving)
-                {
-                    imageList.Delete(imageList.Images.IndiciesOf(images));
-                    DeleteThumbnails();
-                }
-            }
-        }
-
-        private async void EmailPDF(List<ScannedImage> images)
-        {
-            await exportHelper.EmailPDF(images);
+            if (!await exportHelper.SaveImages(images, notify)) return;
+            if (!appConfigManager.Config.DeleteAfterSaving) return;
+            imageList.Delete(imageList.Images.IndiciesOf(images));
+            DeleteThumbnails();
         }
 
         private void Import()
@@ -993,10 +907,8 @@ namespace NAPS2.WinForms
                 Filter = MiscResources.FileTypeAllFiles + @"|*.*|" +
                          MiscResources.FileTypePdf + @"|*.pdf|" +
                          MiscResources.FileTypeImageFiles +
-                         @"|*.bmp;*.emf;*.exif;*.gif;*.jpg;*.jpeg;*.png;*.tiff;*.tif|" +
+                         @"|*.bmp;*.gif;*.jpg;*.jpeg;*.png;*.tiff;*.tif|" +
                          MiscResources.FileTypeBmp + @"|*.bmp|" +
-                         MiscResources.FileTypeEmf + @"|*.emf|" +
-                         MiscResources.FileTypeExif + @"|*.exif|" +
                          MiscResources.FileTypeGif + @"|*.gif|" +
                          MiscResources.FileTypeJpeg + @"|*.jpg;*.jpeg|" +
                          MiscResources.FileTypePng + @"|*.png|" +
@@ -1017,7 +929,7 @@ namespace NAPS2.WinForms
             }
         }
 
-        private List<string> OrderFiles(IEnumerable<string> files)
+        private static List<string> OrderFiles(IEnumerable<string> files)
         {
             // Custom ordering to account for numbers so that e.g. "10" comes after "2"
             var filesList = files.ToList();
@@ -1051,7 +963,6 @@ namespace NAPS2.WinForms
             ksm.Assign("Ctrl+Down", MoveDown);
             ksm.Assign("Ctrl+Right", MoveDown);
             ksm.Assign("Ctrl+Shift+Del", tsClear);
-            //ksm.Assign("F1", tsAbout);
             ksm.Assign("Ctrl+OemMinus", btnZoomOut);
             ksm.Assign("Ctrl+Oemplus", btnZoomIn);
             ksm.Assign("Del", ctxDelete);
@@ -1223,49 +1134,6 @@ namespace NAPS2.WinForms
             ShowProfilesForm();
         }
 
-        private void tsOcr_Click(object sender, EventArgs e)
-        {
-            if (appConfigManager.Config.HideOcrButton)
-            {
-                return;
-            }
-
-            if (ocrManager.MustUpgrade && !appConfigManager.Config.NoUpdatePrompt)
-            {
-                // Re-download a fixed version on Windows XP if needed
-                MessageBox.Show(MiscResources.OcrUpdateAvailable, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                var progressForm = FormFactory.Create<FDownloadProgress>();
-                progressForm.QueueFile(ocrManager.EngineToInstall.Component);
-                progressForm.ShowDialog();
-            }
-
-            if (ocrManager.MustInstallPackage)
-            {
-                const string packages = "\ntesseract-ocr";
-                MessageBox.Show(MiscResources.TesseractNotAvailable + packages, MiscResources.Error,
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (ocrManager.IsReady)
-            {
-                if (ocrManager.CanUpgrade && !appConfigManager.Config.NoUpdatePrompt)
-                {
-                    MessageBox.Show(MiscResources.OcrUpdateAvailable, "", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                    FormFactory.Create<FOcrLanguageDownload>().ShowDialog();
-                }
-
-                FormFactory.Create<FOcrSetup>().ShowDialog();
-            }
-            else
-            {
-                FormFactory.Create<FOcrLanguageDownload>().ShowDialog();
-                if (ocrManager.IsReady)
-                {
-                    FormFactory.Create<FOcrSetup>().ShowDialog();
-                }
-            }
-        }
-
         private void tsImport_Click(object sender, EventArgs e)
         {
             if (appConfigManager.Config.HideImportButton)
@@ -1285,18 +1153,18 @@ namespace NAPS2.WinForms
 
             var action = appConfigManager.Config.SaveButtonDefaultAction;
 
-            if (action == SaveButtonDefaultAction.AlwaysPrompt
-                || action == SaveButtonDefaultAction.PromptIfSelected && SelectedIndices.Any())
+            switch (action)
             {
-                tsdSavePDF.ShowDropDown();
-            }
-            else if (action == SaveButtonDefaultAction.SaveSelected && SelectedIndices.Any())
-            {
-                SavePDF(SelectedImages.ToList());
-            }
-            else
-            {
-                SavePDF(imageList.Images);
+                case SaveButtonDefaultAction.AlwaysPrompt:
+                case SaveButtonDefaultAction.PromptIfSelected when SelectedIndices.Any():
+                    tsdSavePDF.ShowDropDown();
+                    break;
+                case SaveButtonDefaultAction.SaveSelected when SelectedIndices.Any():
+                    SavePdf(SelectedImages.ToList());
+                    break;
+                default:
+                    SavePdf(imageList.Images);
+                    break;
             }
         }
 
@@ -1309,18 +1177,18 @@ namespace NAPS2.WinForms
 
             var action = appConfigManager.Config.SaveButtonDefaultAction;
 
-            if (action == SaveButtonDefaultAction.AlwaysPrompt
-                || action == SaveButtonDefaultAction.PromptIfSelected && SelectedIndices.Any())
+            switch (action)
             {
-                tsdSaveImages.ShowDropDown();
-            }
-            else if (action == SaveButtonDefaultAction.SaveSelected && SelectedIndices.Any())
-            {
-                SaveImages(SelectedImages.ToList());
-            }
-            else
-            {
-                SaveImages(imageList.Images);
+                case SaveButtonDefaultAction.AlwaysPrompt:
+                case SaveButtonDefaultAction.PromptIfSelected when SelectedIndices.Any():
+                    tsdSaveImages.ShowDropDown();
+                    break;
+                case SaveButtonDefaultAction.SaveSelected when SelectedIndices.Any():
+                    SaveImages(SelectedImages.ToList());
+                    break;
+                default:
+                    SaveImages(imageList.Images);
+                    break;
             }
         }
 
@@ -1344,11 +1212,6 @@ namespace NAPS2.WinForms
             Clear();
         }
 
-        private void tsAbout_Click(object sender, EventArgs e)
-        {
-            FormFactory.Create<FAbout>().ShowDialog();
-        }
-
         #endregion
 
         #region Event Handlers - Save/Email Menus
@@ -1360,7 +1223,7 @@ namespace NAPS2.WinForms
                 return;
             }
 
-            SavePDF(imageList.Images);
+            SavePdf(imageList.Images);
         }
 
         private void tsSavePDFSelected_Click(object sender, EventArgs e)
@@ -1370,7 +1233,7 @@ namespace NAPS2.WinForms
                 return;
             }
 
-            SavePDF(SelectedImages.ToList());
+            SavePdf(SelectedImages.ToList());
         }
 
         private void tsPDFSettings_Click(object sender, EventArgs e)
@@ -1414,57 +1277,47 @@ namespace NAPS2.WinForms
 
         private void tsCrop_Click(object sender, EventArgs e)
         {
-            if (SelectedIndices.Any())
-            {
-                var form = FormFactory.Create<FCrop>();
-                form.Image = SelectedImages.First();
-                form.SelectedImages = SelectedImages.ToList();
-                form.ShowDialog();
-            }
+            if (!SelectedIndices.Any()) return;
+            var form = FormFactory.Create<FCrop>();
+            form.Image = SelectedImages.First();
+            form.SelectedImages = SelectedImages.ToList();
+            form.ShowDialog();
         }
 
         private void tsBrightnessContrast_Click(object sender, EventArgs e)
         {
-            if (SelectedIndices.Any())
-            {
-                var form = FormFactory.Create<FBrightnessContrast>();
-                form.Image = SelectedImages.First();
-                form.SelectedImages = SelectedImages.ToList();
-                form.ShowDialog();
-            }
+            if (!SelectedIndices.Any()) return;
+            var form = FormFactory.Create<FBrightnessContrast>();
+            form.Image = SelectedImages.First();
+            form.SelectedImages = SelectedImages.ToList();
+            form.ShowDialog();
         }
 
         private void tsHueSaturation_Click(object sender, EventArgs e)
         {
-            if (SelectedIndices.Any())
-            {
-                var form = FormFactory.Create<FHueSaturation>();
-                form.Image = SelectedImages.First();
-                form.SelectedImages = SelectedImages.ToList();
-                form.ShowDialog();
-            }
+            if (!SelectedIndices.Any()) return;
+            var form = FormFactory.Create<FHueSaturation>();
+            form.Image = SelectedImages.First();
+            form.SelectedImages = SelectedImages.ToList();
+            form.ShowDialog();
         }
 
         private void tsBlackWhite_Click(object sender, EventArgs e)
         {
-            if (SelectedIndices.Any())
-            {
-                var form = FormFactory.Create<FBlackWhite>();
-                form.Image = SelectedImages.First();
-                form.SelectedImages = SelectedImages.ToList();
-                form.ShowDialog();
-            }
+            if (!SelectedIndices.Any()) return;
+            var form = FormFactory.Create<FBlackWhite>();
+            form.Image = SelectedImages.First();
+            form.SelectedImages = SelectedImages.ToList();
+            form.ShowDialog();
         }
 
         private void tsSharpen_Click(object sender, EventArgs e)
         {
-            if (SelectedIndices.Any())
-            {
-                var form = FormFactory.Create<FSharpen>();
-                form.Image = SelectedImages.First();
-                form.SelectedImages = SelectedImages.ToList();
-                form.ShowDialog();
-            }
+            if (!SelectedIndices.Any()) return;
+            var form = FormFactory.Create<FSharpen>();
+            form.Image = SelectedImages.First();
+            form.SelectedImages = SelectedImages.ToList();
+            form.ShowDialog();
         }
 
         private void tsReset_Click(object sender, EventArgs e)
@@ -1498,14 +1351,12 @@ namespace NAPS2.WinForms
 
         private void tsCustomRotation_Click(object sender, EventArgs e)
         {
-            if (SelectedIndices.Any())
-            {
-                var form = FormFactory.Create<FRotate>();
-                form.Image = SelectedImages.First();
-                form.SelectedImages = SelectedImages.ToList();
-                form.ShowDialog();
-                UpdateThumbnails(SelectedIndices.ToList(), false, true);
-            }
+            if (!SelectedIndices.Any()) return;
+            var form = FormFactory.Create<FRotate>();
+            form.Image = SelectedImages.First();
+            form.SelectedImages = SelectedImages.ToList();
+            form.ShowDialog();
+            UpdateThumbnails(SelectedIndices.ToList(), false, true);
         }
 
         #endregion
@@ -1622,12 +1473,10 @@ namespace NAPS2.WinForms
 
         private async void CopyImages()
         {
-            if (SelectedIndices.Any())
-            {
-                // TODO: Make copy an operation
-                var ido = await GetDataObjectForImages(SelectedImages, true);
-                Clipboard.SetDataObject(ido);
-            }
+            if (!SelectedIndices.Any()) return;
+            // TODO: Make copy an operation
+            var ido = await GetDataObjectForImages(SelectedImages, true);
+            Clipboard.SetDataObject(ido);
         }
 
         private void PasteImages()
@@ -1638,14 +1487,12 @@ namespace NAPS2.WinForms
                 return;
             }
 
-            if (ido.GetDataPresent(typeof(DirectImageTransfer).FullName))
-            {
-                var data = (DirectImageTransfer)ido.GetData(typeof(DirectImageTransfer).FullName);
-                ImportDirect(data, true);
-            }
+            if (!ido.GetDataPresent(typeof(DirectImageTransfer).FullName)) return;
+            var data = (DirectImageTransfer)ido.GetData(typeof(DirectImageTransfer).FullName);
+            ImportDirect(data, true);
         }
 
-        private bool CanPaste
+        private static bool CanPaste
         {
             get
             {

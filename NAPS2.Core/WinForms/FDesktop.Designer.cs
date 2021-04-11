@@ -92,7 +92,6 @@ namespace NAPS2.WinForms
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.tsClear = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -236,8 +235,7 @@ namespace NAPS2.WinForms
             this.toolStripSeparator2,
             this.tsDelete,
             this.tsClear,
-            this.toolStripSeparator3,
-            this.toolStripDropDownButton1});
+            this.toolStripSeparator3});
             this.tStrip.Name = "tStrip";
             this.tStrip.ShowItemToolTips = false;
             this.tStrip.TabStop = true;
@@ -596,14 +594,6 @@ namespace NAPS2.WinForms
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.Image = global::NAPS2.Icons.world;
-            resources.ApplyResources(this.toolStripDropDownButton1, "toolStripDropDownButton1");
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.toolStripDropDownButton1.ShowDropDownArrow = false;
-            // 
             // FDesktop
             // 
             resources.ApplyResources(this, "$this");
@@ -637,7 +627,6 @@ namespace NAPS2.WinForms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton tsProfiles;
         private System.Windows.Forms.ToolStripButton tsDelete;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripButton tsImport;
         private System.Windows.Forms.ToolStripSplitButton tsdSavePDF;
         private System.Windows.Forms.ToolStripMenuItem tsSavePDFAll;

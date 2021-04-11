@@ -55,7 +55,6 @@ namespace NAPS2.WinForms
             this.lblProfile = new System.Windows.Forms.Label();
             this.groupboxOutput = new System.Windows.Forms.GroupBox();
             this.panelSaveSeparator = new System.Windows.Forms.Panel();
-            this.linkPatchCodeInfo = new System.Windows.Forms.LinkLabel();
             this.rdSeparateByPatchT = new System.Windows.Forms.RadioButton();
             this.rdFilePerPage = new System.Windows.Forms.RadioButton();
             this.rdFilePerScan = new System.Windows.Forms.RadioButton();
@@ -214,19 +213,11 @@ namespace NAPS2.WinForms
             // 
             // panelSaveSeparator
             // 
-            this.panelSaveSeparator.Controls.Add(this.linkPatchCodeInfo);
             this.panelSaveSeparator.Controls.Add(this.rdSeparateByPatchT);
             this.panelSaveSeparator.Controls.Add(this.rdFilePerPage);
             this.panelSaveSeparator.Controls.Add(this.rdFilePerScan);
             resources.ApplyResources(this.panelSaveSeparator, "panelSaveSeparator");
             this.panelSaveSeparator.Name = "panelSaveSeparator";
-            // 
-            // linkPatchCodeInfo
-            // 
-            resources.ApplyResources(this.linkPatchCodeInfo, "linkPatchCodeInfo");
-            this.linkPatchCodeInfo.Name = "linkPatchCodeInfo";
-            this.linkPatchCodeInfo.TabStop = true;
-            this.linkPatchCodeInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkPatchCodeInfo_LinkClicked);
             // 
             // rdSeparateByPatchT
             // 
@@ -371,7 +362,6 @@ namespace NAPS2.WinForms
         private System.Windows.Forms.RadioButton rdSaveToSingleFile;
         private System.Windows.Forms.RadioButton rdLoadIntoNaps2;
         private System.Windows.Forms.Panel panelSaveSeparator;
-        private System.Windows.Forms.LinkLabel linkPatchCodeInfo;
         private System.Windows.Forms.RadioButton rdSeparateByPatchT;
         private System.Windows.Forms.RadioButton rdFilePerPage;
         private System.Windows.Forms.RadioButton rdFilePerScan;

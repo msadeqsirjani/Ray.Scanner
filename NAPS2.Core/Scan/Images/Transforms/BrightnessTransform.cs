@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 
 namespace NAPS2.Scan.Images.Transforms
 {
@@ -12,7 +10,7 @@ namespace NAPS2.Scan.Images.Transforms
 
         public override Bitmap Perform(Bitmap bitmap)
         {
-            float brightnessAdjusted = Brightness / 1000f;
+            var brightnessAdjusted = Brightness / 1000f;
             EnsurePixelFormat(ref bitmap);
             UnsafeImageOps.ChangeBrightness(bitmap, brightnessAdjusted);
             return bitmap;

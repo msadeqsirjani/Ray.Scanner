@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using NAPS2.Config;
+﻿using NAPS2.Config;
 using NAPS2.ImportExport;
 using NAPS2.ImportExport.Images;
 using NAPS2.ImportExport.Pdf;
@@ -14,8 +6,15 @@ using NAPS2.Lang.Resources;
 using NAPS2.Ocr;
 using NAPS2.Operation;
 using NAPS2.Scan.Images;
-using NAPS2.Scan.Twain;
 using NAPS2.WinForms;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace NAPS2.Scan.Batch
 {
@@ -52,6 +51,7 @@ namespace NAPS2.Scan.Batch
                 BatchForm = batchForm,
                 LoadImageCallback = imageCallback
             };
+
             await state.Do();
         }
 
@@ -137,44 +137,50 @@ namespace NAPS2.Scan.Batch
                 {
                     scans = new List<List<ScannedImage>>();
 
-                    if (Settings.ScanType == BatchScanType.Single)
+                    switch (Settings.ScanType)
                     {
-                        await InputOneScan(-1);
-                    }
-                    else if (Settings.ScanType == BatchScanType.MultipleWithDelay)
-                    {
-                        for (int i = 0; i < Settings.ScanCount; i++)
-                        {
-                            ProgressCallback(string.Format(MiscResources.BatchStatusWaitingForScan, i + 1));
-                            if (i != 0)
+                        case BatchScanType.Single:
+                            await InputOneScan(-1);
+                            break;
+                        case BatchScanType.MultipleWithDelay:
                             {
-                                ThreadSleepWithCancel(TimeSpan.FromSeconds(Settings.ScanIntervalSeconds), CancelToken);
-                                CancelToken.ThrowIfCancellationRequested();
-                            }
+                                for (var i = 0; i < Settings.ScanCount; i++)
+                                {
+                                    ProgressCallback(string.Format(MiscResources.BatchStatusWaitingForScan, i + 1));
+                                    if (i != 0)
+                                    {
+                                        ThreadSleepWithCancel(TimeSpan.FromSeconds(Settings.ScanIntervalSeconds), CancelToken);
+                                        CancelToken.ThrowIfCancellationRequested();
+                                    }
 
-                            if (!await InputOneScan(i))
-                            {
-                                return;
+                                    if (!await InputOneScan(i))
+                                    {
+                                        return;
+                                    }
+                                }
+
+                                break;
                             }
-                        }
-                    }
-                    else if (Settings.ScanType == BatchScanType.MultipleWithPrompt)
-                    {
-                        int i = 0;
-                        do
-                        {
-                            ProgressCallback(string.Format(MiscResources.BatchStatusWaitingForScan, i + 1));
-                            if (!await InputOneScan(i++))
+                        case BatchScanType.MultipleWithPrompt:
                             {
-                                return;
+                                var i = 0;
+                                do
+                                {
+                                    ProgressCallback(string.Format(MiscResources.BatchStatusWaitingForScan, i + 1));
+                                    if (!await InputOneScan(i++))
+                                    {
+                                        return;
+                                    }
+                                    CancelToken.ThrowIfCancellationRequested();
+                                } while (PromptForNextScan());
+
+                                break;
                             }
-                            CancelToken.ThrowIfCancellationRequested();
-                        } while (PromptForNextScan());
                     }
                 }, TaskCreationOptions.LongRunning).Unwrap();
             }
 
-            private void ThreadSleepWithCancel(TimeSpan sleepDuration, CancellationToken cancelToken)
+            private static void ThreadSleepWithCancel(TimeSpan sleepDuration, CancellationToken cancelToken)
             {
                 cancelToken.WaitHandle.WaitOne(sleepDuration);
             }
@@ -182,7 +188,7 @@ namespace NAPS2.Scan.Batch
             private async Task<bool> InputOneScan(int scanNumber)
             {
                 var scan = new List<ScannedImage>();
-                int pageNumber = 1;
+                var pageNumber = 1;
                 ProgressCallback(scanNumber == -1
                     ? string.Format(MiscResources.BatchStatusPage, pageNumber++)
                     : string.Format(MiscResources.BatchStatusScanPage, pageNumber++, scanNumber + 1));
@@ -231,32 +237,41 @@ namespace NAPS2.Scan.Batch
                 var now = DateTime.Now;
                 var allImages = scans.SelectMany(x => x).ToList();
 
-                if (Settings.OutputType == BatchOutputType.Load)
+                switch (Settings.OutputType)
                 {
-                    foreach (var image in allImages)
-                    {
-                        LoadImageCallback(image);
-                    }
-                }
-                else if (Settings.OutputType == BatchOutputType.SingleFile)
-                {
-                    await Save(now, 0, allImages);
-                    foreach (var img in allImages)
-                    {
-                        img.Dispose();
-                    }
-                }
-                else if (Settings.OutputType == BatchOutputType.MultipleFiles)
-                {
-                    int i = 0;
-                    foreach (var imageList in SaveSeparatorHelper.SeparateScans(scans, Settings.SaveSeparator))
-                    {
-                        await Save(now, i++, imageList);
-                        foreach (var img in imageList)
+                    case BatchOutputType.Load:
                         {
-                            img.Dispose();
+                            foreach (var image in allImages)
+                            {
+                                LoadImageCallback(image);
+                            }
+
+                            break;
                         }
-                    }
+                    case BatchOutputType.SingleFile:
+                        {
+                            await Save(now, 0, allImages);
+                            foreach (var img in allImages)
+                            {
+                                img.Dispose();
+                            }
+
+                            break;
+                        }
+                    case BatchOutputType.MultipleFiles:
+                        {
+                            var i = 0;
+                            foreach (var imageList in SaveSeparatorHelper.SeparateScans(scans, Settings.SaveSeparator))
+                            {
+                                await Save(now, i++, imageList);
+                                foreach (var img in imageList)
+                                {
+                                    img.Dispose();
+                                }
+                            }
+
+                            break;
+                        }
                 }
             }
 
@@ -297,7 +312,7 @@ namespace NAPS2.Scan.Batch
                 {
                     throw new ArgumentException();
                 }
-                string extension = Path.GetExtension(Settings.SavePath);
+                var extension = Path.GetExtension(Settings.SavePath);
                 Debug.Assert(extension != null);
                 return extension;
             }

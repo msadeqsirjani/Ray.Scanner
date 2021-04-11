@@ -121,7 +121,7 @@
     <value>Choose Profile</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>پاک کردن</value>
   </data>
   <data name="ConfirmClearItems" xml:space="preserve">
     <value>Are you sure you want to clear {0} item(s)?</value>

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
 
 namespace NAPS2.Scan.Images.Transforms
 {
@@ -19,14 +17,14 @@ namespace NAPS2.Scan.Images.Transforms
                 return bitmap;
             }
 
-            float hueShiftAdjusted = HueShift / 2000f * 360;
+            var hueShiftAdjusted = HueShift / 2000f * 360;
             if (hueShiftAdjusted < 0)
             {
                 hueShiftAdjusted += 360;
             }
 
             UnsafeImageOps.HueShift(bitmap, hueShiftAdjusted);
-            
+
             return bitmap;
         }
 

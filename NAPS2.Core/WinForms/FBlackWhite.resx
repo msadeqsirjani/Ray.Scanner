@@ -201,9 +201,9 @@
   <data name="&gt;&gt;tbThreshold.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -235,7 +235,7 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Black and White</value>
+    <value>سیاه و سفید</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FBlackWhite</value>

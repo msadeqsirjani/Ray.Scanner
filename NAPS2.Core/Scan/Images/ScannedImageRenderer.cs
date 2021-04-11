@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NAPS2.ImportExport.Pdf;
+using NAPS2.Scan.Images.Transforms;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using NAPS2.ImportExport.Pdf;
-using NAPS2.Scan.Images.Transforms;
 
 namespace NAPS2.Scan.Images
 {
@@ -43,9 +42,9 @@ namespace NAPS2.Scan.Images
             });
         }
 
-        private Bitmap ShrinkBitmap(Bitmap bitmap, int outputSize)
+        private static Bitmap ShrinkBitmap(Bitmap bitmap, int outputSize)
         {
-            double scaleFactor = Math.Min(outputSize / (double)bitmap.Height, outputSize / (double)bitmap.Width);
+            var scaleFactor = Math.Min(outputSize / (double)bitmap.Height, outputSize / (double)bitmap.Width);
             if (scaleFactor >= 1)
             {
                 return bitmap;

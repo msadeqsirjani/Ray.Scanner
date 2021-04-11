@@ -1,11 +1,10 @@
-﻿using System;
+﻿using NAPS2.Util;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
-using System.Reflection;
 using System.Xml.Serialization;
-using NAPS2.Util;
 
 namespace NAPS2.Scan.Images.Transforms
 {
@@ -58,18 +57,16 @@ namespace NAPS2.Scan.Images.Transforms
         /// <param name="bitmap">The bitmap that may be replaced.</param>
         protected static void EnsurePixelFormat(ref Bitmap bitmap)
         {
-            if (bitmap.PixelFormat == PixelFormat.Format1bppIndexed)
+            if (bitmap.PixelFormat != PixelFormat.Format1bppIndexed) return;
+            // Copy B&W over to grayscale
+            var bitmap2 = new Bitmap(bitmap.Width, bitmap.Height, PixelFormat.Format24bppRgb);
+            bitmap2.SafeSetResolution(bitmap.HorizontalResolution, bitmap.VerticalResolution);
+            using (var g = Graphics.FromImage(bitmap2))
             {
-                // Copy B&W over to grayscale
-                var bitmap2 = new Bitmap(bitmap.Width, bitmap.Height, PixelFormat.Format24bppRgb);
-                bitmap2.SafeSetResolution(bitmap.HorizontalResolution, bitmap.VerticalResolution);
-                using (var g = Graphics.FromImage(bitmap2))
-                {
-                    g.DrawImage(bitmap, 0, 0);
-                }
-                bitmap.Dispose();
-                bitmap = bitmap2;
+                g.DrawImage(bitmap, 0, 0);
             }
+            bitmap.Dispose();
+            bitmap = bitmap2;
         }
 
         /// <summary>
@@ -79,12 +76,10 @@ namespace NAPS2.Scan.Images.Transforms
         /// <param name="result">The result that may be replaced.</param>
         protected static void OptimizePixelFormat(Bitmap original, ref Bitmap result)
         {
-            if (original.PixelFormat == PixelFormat.Format1bppIndexed)
-            {
-                var bitmap2 = (Bitmap)BitmapHelper.CopyToBpp(result, 1).Clone();
-                result.Dispose();
-                result = bitmap2;
-            }
+            if (original.PixelFormat != PixelFormat.Format1bppIndexed) return;
+            var bitmap2 = (Bitmap)BitmapHelper.CopyToBpp(result, 1).Clone();
+            result.Dispose();
+            result = bitmap2;
         }
 
         /// <summary>

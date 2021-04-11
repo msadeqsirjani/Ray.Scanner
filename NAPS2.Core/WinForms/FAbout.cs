@@ -27,7 +27,7 @@ namespace NAPS2.WinForms
             RestoreFormState = false;
             InitializeComponent();
             labelProductName.Text = AssemblyProduct;
-            labelVersion.Text = String.Format(MiscResources.Version, AssemblyVersion);
+            labelVersion.Text = string.Format(MiscResources.Version, AssemblyVersion);
 
             // Some of the localization tools I use don't handle line breaks consistently.
             // This compensates by replacing "\n" with actual line breaks. --Ben
@@ -138,28 +138,24 @@ namespace NAPS2.WinForms
 
         private static string GetAssemblyAttributeValue<T>(Func<T, string> selector)
         {
-            object[] attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(T), false);
-            if (attributes.Length == 0)
-            {
-                return "";
-            }
-            return selector((T)attributes[0]);
+            var attributes = Assembly.GetEntryAssembly()?.GetCustomAttributes(typeof(T), false);
+            return attributes.Length == 0 ? "" : selector((T)attributes[0]);
         }
 
         public string AssemblyTitle
         {
             get
             {
-                string title = GetAssemblyAttributeValue<AssemblyTitleAttribute>(x => x.Title);
+                var title = GetAssemblyAttributeValue<AssemblyTitleAttribute>(x => x.Title);
                 if (string.IsNullOrEmpty(title))
                 {
-                    title = Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly().CodeBase);
+                    title = Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly()?.CodeBase);
                 }
                 return title;
             }
         }
 
-        public string AssemblyVersion => Assembly.GetEntryAssembly().GetName().Version.ToString();
+        public string AssemblyVersion => Assembly.GetEntryAssembly()?.GetName().Version.ToString();
 
         public string AssemblyDescription => GetAssemblyAttributeValue<AssemblyDescriptionAttribute>(x => x.Description);
 
