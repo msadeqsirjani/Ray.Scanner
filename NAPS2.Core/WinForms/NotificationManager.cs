@@ -1,12 +1,12 @@
-﻿using System;
+﻿using NAPS2.Config;
+using NAPS2.Operation;
+using NAPS2.Update;
+using NAPS2.Util;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using NAPS2.Config;
-using NAPS2.Operation;
-using NAPS2.Update;
-using NAPS2.Util;
 
 namespace NAPS2.WinForms
 {
@@ -71,12 +71,9 @@ namespace NAPS2.WinForms
         {
             var old = slots.ToList();
             slots.Clear();
-            for (int i = 0; i < old.Count; i++)
+            foreach (var t in old.Where(t => t != null))
             {
-                if (old[i] != null)
-                {
-                    Show(old[i].Clone());
-                }
+                Show(t.Clone());
             }
         }
 
@@ -87,7 +84,7 @@ namespace NAPS2.WinForms
                 return;
             }
 
-            int slot = FillNextSlot(n);
+            var slot = FillNextSlot(n);
             n.Location = GetPosition(n, slot);
             n.Resize += parentForm_Resize;
             n.BringToFront();
@@ -97,7 +94,7 @@ namespace NAPS2.WinForms
 
         private void parentForm_Resize(object sender, EventArgs e)
         {
-            for (int i = 0; i < slots.Count; i++)
+            for (var i = 0; i < slots.Count; i++)
             {
                 if (slots[i] != null)
                 {
@@ -109,11 +106,9 @@ namespace NAPS2.WinForms
         private void ClearSlot(NotifyWidgetBase n)
         {
             var index = slots.IndexOf(n);
-            if (index != -1)
-            {
-                parentForm.Controls.Remove(n);
-                slots[index] = null;
-            }
+            if (index == -1) return;
+            parentForm.Controls.Remove(n);
+            slots[index] = null;
         }
 
         private int FillNextSlot(NotifyWidgetBase n)
@@ -132,7 +127,7 @@ namespace NAPS2.WinForms
             return index;
         }
 
-        private Point GetPosition(NotifyWidgetBase n, int slot)
+        private Point GetPosition(Control n, int slot)
         {
             return new Point(parentForm.ClientSize.Width - n.Width - PADDING_X,
                 parentForm.ClientSize.Height - n.Height - PADDING_Y - (n.Height + SPACING_Y) * slot);

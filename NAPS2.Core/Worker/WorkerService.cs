@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.ServiceModel;
-using System.Threading;
-using System.Threading.Tasks;
-using NAPS2.ImportExport.Email;
+﻿using NAPS2.ImportExport.Email;
 using NAPS2.ImportExport.Email.Mapi;
 using NAPS2.Recovery;
 using NAPS2.Scan;
@@ -16,6 +8,13 @@ using NAPS2.Scan.Twain;
 using NAPS2.Scan.Wia;
 using NAPS2.Scan.Wia.Native;
 using NAPS2.Util;
+using System;
+using System.Collections.Generic;
+using System.Drawing.Imaging;
+using System.IO;
+using System.ServiceModel;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NAPS2.Worker
 {
@@ -31,7 +30,7 @@ namespace NAPS2.Worker
         private readonly ThumbnailRenderer thumbnailRenderer;
         private readonly MapiWrapper mapiWrapper;
 
-        private CancellationTokenSource twainScanCts = new CancellationTokenSource();
+        private readonly CancellationTokenSource twainScanCts = new CancellationTokenSource();
 
         public WorkerService(TwainWrapper twainWrapper, ThumbnailRenderer thumbnailRenderer, MapiWrapper mapiWrapper)
         {
@@ -46,7 +45,7 @@ namespace NAPS2.Worker
             RecoveryImage.RecoveryFolder = new DirectoryInfo(recoveryFolderPath);
         }
 
-        public WiaConfiguration Wia10NativeUI(string deviceId, IntPtr hwnd)
+        public WiaConfiguration Wia10NativeUi(string deviceId, IntPtr hwnd)
         {
             try
             {

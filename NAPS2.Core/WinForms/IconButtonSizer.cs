@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -9,10 +8,10 @@ namespace NAPS2.WinForms
     {
         private static int ButtonTextWidth(Button x)
         {
-            int oldWidth = x.Width;
+            var oldWidth = x.Width;
             x.AutoSize = true;
             x.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            int width = x.Width;
+            var width = x.Width;
             x.AutoSize = false;
             x.Width = oldWidth;
             return width;
@@ -36,7 +35,7 @@ namespace NAPS2.WinForms
                     btn.Width = buttonWidth;
                 }
                 // Update the padding so that the text center is in the same place on each button
-                int rightPadding = PaddingRight + (btn.Width - WidthOffset - ButtonTextWidth(btn)) / 2;
+                var rightPadding = PaddingRight + (btn.Width - WidthOffset - ButtonTextWidth(btn)) / 2;
                 btn.Padding = new Padding(btn.Padding.Left, btn.Padding.Top, rightPadding, btn.Padding.Bottom);
             }
         }

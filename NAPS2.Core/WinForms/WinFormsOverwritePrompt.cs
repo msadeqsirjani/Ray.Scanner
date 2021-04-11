@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
-using NAPS2.Lang.Resources;
+﻿using NAPS2.Lang.Resources;
 using NAPS2.Util;
+using System.IO;
+using System.Windows.Forms;
 
 namespace NAPS2.WinForms
 {
@@ -12,7 +9,7 @@ namespace NAPS2.WinForms
     {
         public DialogResult ConfirmOverwrite(string path)
         {
-            string fileName = Path.GetFileName(path);
+            var fileName = Path.GetFileName(path);
             var dialogResult = MessageBox.Show(string.Format(MiscResources.ConfirmOverwriteFile, fileName),
                 MiscResources.OverwriteFile, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             return dialogResult;
