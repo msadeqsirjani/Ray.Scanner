@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using NAPS2.ClientServer;
+﻿using NAPS2.ClientServer;
 using NAPS2.DI.Modules;
 using NAPS2.Logging;
 using NAPS2.Util;
 using NAPS2.WinForms;
 using NAPS2.Worker;
 using Ninject;
+using System;
+using System.Linq;
+using System.ServiceModel;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace NAPS2.DI.EntryPoints
 {
@@ -42,7 +41,7 @@ namespace NAPS2.DI.EntryPoints
                 var form = new BackgroundForm();
                 Invoker.Current = form;
 
-                int port = DEFAULT_PORT;
+                var port = DEFAULT_PORT;
                 foreach (var portArg in args.Where(a => a.StartsWith("/Port:", StringComparison.OrdinalIgnoreCase)))
                 {
                     if (int.TryParse(portArg.Substring(6), out int parsedPort))

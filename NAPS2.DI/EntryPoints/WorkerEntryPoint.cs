@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.ServiceModel;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using NAPS2.DI.Modules;
+﻿using NAPS2.DI.Modules;
 using NAPS2.Logging;
 using NAPS2.Util;
 using NAPS2.WinForms;
 using NAPS2.Worker;
 using Ninject;
+using System;
+using System.Diagnostics;
+using System.ServiceModel;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using Timer = System.Threading.Timer;
 
 namespace NAPS2.DI.EntryPoints
@@ -54,7 +52,7 @@ namespace NAPS2.DI.EntryPoints
                 Invoker.Current = form;
 
                 // Connect to the main NAPS2 process and listen for assigned work
-                string pipeName = string.Format(WorkerManager.PIPE_NAME_FORMAT, Process.GetCurrentProcess().Id);
+                var pipeName = string.Format(WorkerManager.PIPE_NAME_FORMAT, Process.GetCurrentProcess().Id);
                 using (var host = new ServiceHost(typeof(WorkerService)))
                 using (new Timer(CheckParent, procId, 0, PARENT_CHECK_INTERVAL))
                 {
