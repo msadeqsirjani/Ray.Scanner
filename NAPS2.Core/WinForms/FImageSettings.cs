@@ -93,12 +93,10 @@ namespace NAPS2.WinForms
 
         private void TxtJpegQuality_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(txtJpegQuality.Text, out int value))
+            if (!int.TryParse(txtJpegQuality.Text, out int value)) return;
+            if (value >= tbJpegQuality.Minimum && value <= tbJpegQuality.Maximum)
             {
-                if (value >= tbJpegQuality.Minimum && value <= tbJpegQuality.Maximum)
-                {
-                    tbJpegQuality.Value = value;
-                }
+                tbJpegQuality.Value = value;
             }
         }
 

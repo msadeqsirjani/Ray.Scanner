@@ -832,7 +832,7 @@
     <value>35</value>
   </data>
   <data name="cbSkipSavePrompt.Text" xml:space="preserve">
-    <value>Skip save prompt</value>
+    <value>رد کردن دستور ذخیره</value>
   </data>
   <data name="&gt;&gt;cbSkipSavePrompt.Name" xml:space="preserve">
     <value>cbSkipSavePrompt</value>
@@ -907,7 +907,7 @@
     <value>36</value>
   </data>
   <data name="cbSinglePagePdf.Text" xml:space="preserve">
-    <value>Single page files</value>
+    <value>پرونده های تک صفحه ای</value>
   </data>
   <data name="&gt;&gt;cbSinglePagePdf.Name" xml:space="preserve">
     <value>cbSinglePagePdf</value>

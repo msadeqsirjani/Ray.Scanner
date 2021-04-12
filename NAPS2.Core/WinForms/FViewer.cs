@@ -189,6 +189,7 @@ namespace NAPS2.WinForms
             // toolStrip1
             // 
             resources.ApplyResources(this.toolStrip1, "toolStrip1");
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tbPageCurrent,
             this.lblPageTotal,
@@ -210,8 +211,8 @@ namespace NAPS2.WinForms
             // 
             // tbPageCurrent
             // 
-            this.tbPageCurrent.Name = "tbPageCurrent";
             resources.ApplyResources(this.tbPageCurrent, "tbPageCurrent");
+            this.tbPageCurrent.Name = "tbPageCurrent";
             this.tbPageCurrent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbPageCurrent_KeyDown);
             this.tbPageCurrent.TextChanged += new System.EventHandler(this.tbPageCurrent_TextChanged);
             // 

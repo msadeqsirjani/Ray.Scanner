@@ -132,7 +132,7 @@
     <value>0</value>
   </data>
   <data name="lblWaiting.Text" xml:space="preserve">
-    <value>Waiting for authorization...</value>
+    <value>در انتظار برای احراز هویت ...</value>
   </data>
   <data name="&gt;&gt;lblWaiting.Name" xml:space="preserve">
     <value>lblWaiting</value>
@@ -503,7 +503,7 @@
     <value>CenterParent</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Authorize</value>
+    <value>احراز هویت</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FAuthorize</value>

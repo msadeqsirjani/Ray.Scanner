@@ -180,9 +180,9 @@
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <metadata name="ilProfileIcons.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="ilProfileIcons.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
+  </data>
   <data name="rdSeparateByPatchT.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -202,7 +202,7 @@
     <value>22</value>
   </data>
   <data name="rdSeparateByPatchT.Text" xml:space="preserve">
-    <value>Separate files by Patch-T</value>
+    <value>پرونده ها را توسط Patch-T جدا کنید</value>
   </data>
   <data name="&gt;&gt;rdSeparateByPatchT.Name" xml:space="preserve">
     <value>rdSeparateByPatchT</value>
@@ -454,7 +454,7 @@
     <value>29</value>
   </data>
   <data name="cbPromptForFilePath.Text" xml:space="preserve">
-    <value>Prompt for file path</value>
+    <value>درخواست مسیر فایل</value>
   </data>
   <data name="&gt;&gt;cbPromptForFilePath.Name" xml:space="preserve">
     <value>cbPromptForFilePath</value>
@@ -468,9 +468,9 @@
   <data name="&gt;&gt;cbPromptForFilePath.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
   </data>

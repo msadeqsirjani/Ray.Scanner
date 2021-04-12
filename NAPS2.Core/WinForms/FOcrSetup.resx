@@ -310,7 +310,7 @@
     <value>6</value>
   </data>
   <data name="labelOcrMode.Text" xml:space="preserve">
-    <value>OCR mode:</value>
+    <value>حالت OCR:</value>
   </data>
   <data name="&gt;&gt;labelOcrMode.Name" xml:space="preserve">
     <value>labelOcrMode</value>
@@ -340,7 +340,7 @@
     <value>8</value>
   </data>
   <data name="checkBoxRunInBG.Text" xml:space="preserve">
-    <value>&amp;Automatically run OCR after scanning</value>
+    <value>پس از اسکن ، به صورت خودکار OCR را اجرا کنید</value>
   </data>
   <data name="&gt;&gt;checkBoxRunInBG.Name" xml:space="preserve">
     <value>checkBoxRunInBG</value>

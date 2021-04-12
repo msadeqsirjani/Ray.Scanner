@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
 using NAPS2.ClientServer;
 using NAPS2.Config;
 using NAPS2.Lang.Resources;
@@ -14,6 +9,10 @@ using NAPS2.Scan.Sane;
 using NAPS2.Scan.Twain;
 using NAPS2.Scan.Wia;
 using NAPS2.Util;
+using System;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace NAPS2.WinForms
 {
@@ -30,7 +29,6 @@ namespace NAPS2.WinForms
         private bool useProxy;
 
         private int iconID;
-        private bool result;
 
         private bool suppressChangeEvent;
 
@@ -68,10 +66,7 @@ namespace NAPS2.WinForms
 
             pctIcon.Image = ilProfileIcons.IconsList.Images[ScanProfile.IconID];
             txtName.Text = ScanProfile.DisplayName;
-            if (CurrentDevice == null)
-            {
-                CurrentDevice = ScanProfile.Device;
-            }
+            CurrentDevice ??= ScanProfile.Device;
             isDefault = ScanProfile.IsDefault;
             useProxy = ScanProfile.DriverName == ProxiedScanDriver.DRIVER_NAME;
             iconID = ScanProfile.IconID;
@@ -151,20 +146,19 @@ namespace NAPS2.WinForms
             }
             else
             {
-                cmbPage.SelectedIndex = (int) ScanProfile.PageSize;
+                cmbPage.SelectedIndex = (int)ScanProfile.PageSize;
             }
         }
 
         private void SelectCustomPageSize(string name, PageDimensions dimens)
         {
-            for (int i = 0; i < cmbPage.Items.Count; i++)
+            for (var i = 0; i < cmbPage.Items.Count; i++)
             {
-                var item = (PageSizeListItem) cmbPage.Items[i];
-                if (item.Type == ScanPageSize.Custom && item.CustomName == name && item.CustomDimens == dimens)
-                {
-                    cmbPage.SelectedIndex = i;
-                    return;
-                }
+                var item = (PageSizeListItem)cmbPage.Items[i];
+                if (item.Type != ScanPageSize.Custom || item.CustomName != name ||
+                    item.CustomDimens != dimens) continue;
+                cmbPage.SelectedIndex = i;
+                return;
             }
 
             // Not found, so insert a new item
@@ -180,7 +174,7 @@ namespace NAPS2.WinForms
             cmbPage.SelectedIndex = cmbPage.Items.Count - 2;
         }
 
-        public bool Result => result;
+        public bool Result { get; private set; }
 
         public ScanProfile ScanProfile
         {
@@ -191,25 +185,31 @@ namespace NAPS2.WinForms
         private string DeviceDriverName
         {
             get => rdTWAIN.Checked ? TwainScanDriver.DRIVER_NAME
-                 : rdSANE.Checked  ? SaneScanDriver.DRIVER_NAME
+                 : rdSANE.Checked ? SaneScanDriver.DRIVER_NAME
                                    : WiaScanDriver.DRIVER_NAME;
             set
             {
-                if (value == TwainScanDriver.DRIVER_NAME)
+                switch (value)
                 {
-                    rdTWAIN.Checked = true;
-                }
-                else if (value == SaneScanDriver.DRIVER_NAME)
-                {
-                    rdSANE.Checked = true;
-                }
-                else if (value == WiaScanDriver.DRIVER_NAME || PlatformCompat.System.IsWiaDriverSupported)
-                {
-                    rdWIA.Checked = true;
-                }
-                else
-                {
-                    rdSANE.Checked = true;
+                    case TwainScanDriver.DRIVER_NAME:
+                        rdTWAIN.Checked = true;
+                        break;
+                    case SaneScanDriver.DRIVER_NAME:
+                        rdSANE.Checked = true;
+                        break;
+                    default:
+                        {
+                            if (value == WiaScanDriver.DRIVER_NAME || PlatformCompat.System.IsWiaDriverSupported)
+                            {
+                                rdWIA.Checked = true;
+                            }
+                            else
+                            {
+                                rdSANE.Checked = true;
+                            }
+
+                            break;
+                        }
                 }
             }
         }
@@ -231,16 +231,14 @@ namespace NAPS2.WinForms
             {
                 driver.DialogParent = this;
                 driver.ScanProfile = ScanProfile;
-                ScanDevice device = driver.PromptForDevice();
-                if (device != null)
+                var device = driver.PromptForDevice();
+                if (device == null) return;
+                if (string.IsNullOrEmpty(txtName.Text) ||
+                    CurrentDevice != null && CurrentDevice.Name == txtName.Text)
                 {
-                    if (string.IsNullOrEmpty(txtName.Text) ||
-                        CurrentDevice != null && CurrentDevice.Name == txtName.Text)
-                    {
-                        txtName.Text = device.Name;
-                    }
-                    CurrentDevice = device;
+                    txtName.Text = device.Name;
                 }
+                CurrentDevice = device;
             }
             catch (ScanDriverException e)
             {
@@ -273,7 +271,7 @@ namespace NAPS2.WinForms
                 }
                 return;
             }
-            var pageSize = (PageSizeListItem) cmbPage.SelectedItem;
+            var pageSize = (PageSizeListItem)cmbPage.SelectedItem;
             if (ScanProfile.DisplayName != null)
             {
                 profileNameTracker.RenamingProfile(ScanProfile.DisplayName, txtName.Text);
@@ -333,7 +331,7 @@ namespace NAPS2.WinForms
                 errorOutput.DisplayError(MiscResources.NameMissing);
                 return;
             }
-            result = true;
+            Result = true;
             SaveSettings();
             Close();
         }
@@ -355,63 +353,57 @@ namespace NAPS2.WinForms
 
         private void UpdateEnabledControls()
         {
-            if (!suppressChangeEvent)
-            {
-                suppressChangeEvent = true;
+            if (suppressChangeEvent) return;
+            suppressChangeEvent = true;
 
-                bool canUseNativeUi = DeviceDriverName != SaneScanDriver.DRIVER_NAME && !useProxy;
-                bool locked = ScanProfile.IsLocked;
-                bool deviceLocked = ScanProfile.IsDeviceLocked;
-                bool settingsEnabled = !locked && (rdbConfig.Checked || !canUseNativeUi);
+            var canUseNativeUi = DeviceDriverName != SaneScanDriver.DRIVER_NAME && !useProxy;
+            var locked = ScanProfile.IsLocked;
+            var deviceLocked = ScanProfile.IsDeviceLocked;
+            var settingsEnabled = !locked && (rdbConfig.Checked || !canUseNativeUi);
 
-                txtName.Enabled = !locked;
-                rdWIA.Enabled = rdTWAIN.Enabled = rdSANE.Enabled = !locked;
-                txtDevice.Enabled = !deviceLocked;
-                btnChooseDevice.Enabled = !deviceLocked;
-                rdbConfig.Enabled = rdbNative.Enabled = !locked;
+            txtName.Enabled = !locked;
+            rdWIA.Enabled = rdTWAIN.Enabled = rdSANE.Enabled = !locked;
+            txtDevice.Enabled = !deviceLocked;
+            btnChooseDevice.Enabled = !deviceLocked;
+            rdbConfig.Enabled = rdbNative.Enabled = !locked;
 
-                cmbSource.Enabled = settingsEnabled;
-                cmbResolution.Enabled = settingsEnabled;
-                cmbPage.Enabled = settingsEnabled;
-                cmbDepth.Enabled = settingsEnabled;
-                cmbAlign.Enabled = settingsEnabled;
-                cmbScale.Enabled = settingsEnabled;
-                trBrightness.Enabled = settingsEnabled;
-                trContrast.Enabled = settingsEnabled;
-                txtBrightness.Enabled = settingsEnabled;
-                txtContrast.Enabled = settingsEnabled;
+            cmbSource.Enabled = settingsEnabled;
+            cmbResolution.Enabled = settingsEnabled;
+            cmbPage.Enabled = settingsEnabled;
+            cmbDepth.Enabled = settingsEnabled;
+            cmbAlign.Enabled = settingsEnabled;
+            cmbScale.Enabled = settingsEnabled;
+            trBrightness.Enabled = settingsEnabled;
+            trContrast.Enabled = settingsEnabled;
+            txtBrightness.Enabled = settingsEnabled;
+            txtContrast.Enabled = settingsEnabled;
 
-                cbAutoSave.Enabled = !locked && !appConfigManager.Config.DisableAutoSave;
-                linkAutoSaveSettings.Visible = !locked && !appConfigManager.Config.DisableAutoSave;
+            cbAutoSave.Enabled = !locked && !appConfigManager.Config.DisableAutoSave;
+            linkAutoSaveSettings.Visible = !locked && !appConfigManager.Config.DisableAutoSave;
 
-                btnAdvanced.Enabled = !locked;
+            btnAdvanced.Enabled = !locked;
 
-                ConditionalControls.UnlockHeight(this);
-                ConditionalControls.SetVisible(panelUI, canUseNativeUi, 20);
-                ConditionalControls.LockHeight(this);
+            ConditionalControls.UnlockHeight(this);
+            ConditionalControls.SetVisible(panelUI, canUseNativeUi, 20);
+            ConditionalControls.LockHeight(this);
 
-                suppressChangeEvent = false;
-            }
+            suppressChangeEvent = false;
         }
 
         private void rdDriver_CheckedChanged(object sender, EventArgs e)
         {
-            if (((RadioButton)sender).Checked && !suppressChangeEvent)
-            {
-                ScanProfile.Device = null;
-                CurrentDevice = null;
-                UpdateEnabledControls();
-            }
+            if (!((RadioButton)sender).Checked || suppressChangeEvent) return;
+            ScanProfile.Device = null;
+            CurrentDevice = null;
+            UpdateEnabledControls();
         }
 
         private void txtBrightness_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(txtBrightness.Text, out int value))
+            if (!int.TryParse(txtBrightness.Text, out var value)) return;
+            if (value >= trBrightness.Minimum && value <= trBrightness.Maximum)
             {
-                if (value >= trBrightness.Minimum && value <= trBrightness.Maximum)
-                {
-                    trBrightness.Value = value;
-                }
+                trBrightness.Value = value;
             }
         }
 
@@ -422,12 +414,10 @@ namespace NAPS2.WinForms
 
         private void txtContrast_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(txtContrast.Text, out int value))
+            if (!int.TryParse(txtContrast.Text, out var value)) return;
+            if (value >= trContrast.Minimum && value <= trContrast.Maximum)
             {
-                if (value >= trContrast.Minimum && value <= trContrast.Maximum)
-                {
-                    trContrast.Value = value;
-                }
+                trContrast.Value = value;
             }
         }
 

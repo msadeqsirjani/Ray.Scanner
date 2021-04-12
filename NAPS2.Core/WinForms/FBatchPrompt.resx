@@ -205,7 +205,7 @@
     <value>3</value>
   </data>
   <data name="lblStatus.Text" xml:space="preserve">
-    <value>آماده برای اسکن {0}.</value>
+    <value>آماده برای اسکن</value>
   </data>
   <data name="&gt;&gt;lblStatus.Name" xml:space="preserve">
     <value>lblStatus</value>

@@ -319,7 +319,7 @@
     <value>7</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Wia Version:</value>
+    <value>نگارش WIA: </value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
@@ -349,7 +349,7 @@
     <value>6</value>
   </data>
   <data name="cbForcePageSizeCrop.Text" xml:space="preserve">
-    <value>Crop to page size</value>
+    <value>برش به اندازه صفحه</value>
   </data>
   <data name="&gt;&gt;cbForcePageSizeCrop.Name" xml:space="preserve">
     <value>cbForcePageSizeCrop</value>
@@ -379,7 +379,7 @@
     <value>5</value>
   </data>
   <data name="cbFlipDuplex.Text" xml:space="preserve">
-    <value>Flip duplexed pages</value>
+    <value>صفحات دو طرفه را ورق بزنید</value>
   </data>
   <data name="&gt;&gt;cbFlipDuplex.Name" xml:space="preserve">
     <value>cbFlipDuplex</value>
@@ -409,7 +409,7 @@
     <value>4</value>
   </data>
   <data name="cbWiaOffsetWidth.Text" xml:space="preserve">
-    <value>Offset width based on alignment (WIA)</value>
+    <value>عرض جابجایی بر اساس تراز (WIA)</value>
   </data>
   <data name="&gt;&gt;cbWiaOffsetWidth.Name" xml:space="preserve">
     <value>cbWiaOffsetWidth</value>
@@ -436,7 +436,7 @@
     <value>3</value>
   </data>
   <data name="cbForcePageSize.Text" xml:space="preserve">
-    <value>Stretch to page size</value>
+    <value>کشش به اندازه صفحه</value>
   </data>
   <data name="&gt;&gt;cbForcePageSize.Name" xml:space="preserve">
     <value>cbForcePageSize</value>
@@ -808,7 +808,7 @@
     <value>17</value>
   </data>
   <data name="cbAutoDeskew.Text" xml:space="preserve">
-    <value>Deskew scanned pages</value>
+    <value>Deskew صفحات اسکن شده</value>
   </data>
   <data name="&gt;&gt;cbAutoDeskew.Name" xml:space="preserve">
     <value>cbAutoDeskew</value>
@@ -832,7 +832,7 @@
     <value>39</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
-    <value>Post-processing</value>
+    <value>پس از پردازش</value>
   </data>
   <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
     <value>groupBox4</value>
