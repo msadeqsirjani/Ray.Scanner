@@ -1,7 +1,6 @@
 using NAPS2.ImportExport;
 using NAPS2.Scan;
 using System;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace NAPS2.WinForms
@@ -95,11 +94,6 @@ namespace NAPS2.WinForms
             {
                 txtFilePath.Text = form.FileName;
             }
-        }
-
-        private void LinkPatchCodeInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start(FBatchScan.PATCH_CODE_INFO_URL);
         }
     }
 }

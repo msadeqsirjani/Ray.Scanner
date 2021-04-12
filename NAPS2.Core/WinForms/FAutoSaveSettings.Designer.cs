@@ -33,7 +33,6 @@ namespace NAPS2.WinForms
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.ilProfileIcons = new NAPS2.WinForms.ILProfileIcons(this.components);
-            this.linkPatchCodeInfo = new System.Windows.Forms.LinkLabel();
             this.rdSeparateByPatchT = new System.Windows.Forms.RadioButton();
             this.rdFilePerPage = new System.Windows.Forms.RadioButton();
             this.rdFilePerScan = new System.Windows.Forms.RadioButton();
@@ -58,13 +57,6 @@ namespace NAPS2.WinForms
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
-            // 
-            // linkPatchCodeInfo
-            // 
-            resources.ApplyResources(this.linkPatchCodeInfo, "linkPatchCodeInfo");
-            this.linkPatchCodeInfo.Name = "linkPatchCodeInfo";
-            this.linkPatchCodeInfo.TabStop = true;
-            this.linkPatchCodeInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkPatchCodeInfo_LinkClicked);
             // 
             // rdSeparateByPatchT
             // 
@@ -133,7 +125,6 @@ namespace NAPS2.WinForms
             this.Controls.Add(this.linkPlaceholders);
             this.Controls.Add(this.txtFilePath);
             this.Controls.Add(this.lblFilePath);
-            this.Controls.Add(this.linkPatchCodeInfo);
             this.Controls.Add(this.rdSeparateByPatchT);
             this.Controls.Add(this.rdFilePerPage);
             this.Controls.Add(this.rdFilePerScan);
@@ -152,7 +143,6 @@ namespace NAPS2.WinForms
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private ILProfileIcons ilProfileIcons;
-        private System.Windows.Forms.LinkLabel linkPatchCodeInfo;
         private System.Windows.Forms.RadioButton rdSeparateByPatchT;
         private System.Windows.Forms.RadioButton rdFilePerPage;
         private System.Windows.Forms.RadioButton rdFilePerScan;

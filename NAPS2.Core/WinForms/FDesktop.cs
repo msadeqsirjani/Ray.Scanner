@@ -879,7 +879,7 @@ namespace NAPS2.WinForms
 
         private async void SavePdf(List<ScannedImage> images)
         {
-            if (!await exportHelper.SavePDF(images, notify)) return;
+            if (!await exportHelper.SavePdf(images, notify)) return;
             if (appConfigManager.Config.DeleteAfterSaving)
             {
                 SafeInvoke(() =>

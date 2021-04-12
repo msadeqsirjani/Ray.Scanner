@@ -123,10 +123,13 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>217, 229</value>
+    <value>289, 282</value>
+  </data>
+  <data name="btnOK.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnOK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>100, 28</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnOK.TabIndex" type="System.Int32, mscorlib">
@@ -145,16 +148,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnOK.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>10</value>
   </data>
   <data name="btnCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>298, 229</value>
+    <value>397, 282</value>
+  </data>
+  <data name="btnCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>100, 28</value>
   </data>
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -172,41 +178,11 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
-  <data name="ilProfileIcons.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="ilProfileIcons.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </data>
-  <data name="linkPatchCodeInfo.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkPatchCodeInfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="linkPatchCodeInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 170</value>
-  </data>
-  <data name="linkPatchCodeInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 13</value>
-  </data>
-  <data name="linkPatchCodeInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="linkPatchCodeInfo.Text" xml:space="preserve">
-    <value>اطلاعات بیشتر</value>
-  </data>
-  <data name="&gt;&gt;linkPatchCodeInfo.Name" xml:space="preserve">
-    <value>linkPatchCodeInfo</value>
-  </data>
-  <data name="&gt;&gt;linkPatchCodeInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkPatchCodeInfo.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;linkPatchCodeInfo.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
+  </metadata>
   <data name="rdSeparateByPatchT.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -214,10 +190,13 @@
     <value>NoControl</value>
   </data>
   <data name="rdSeparateByPatchT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 150</value>
+    <value>16, 185</value>
+  </data>
+  <data name="rdSeparateByPatchT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="rdSeparateByPatchT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 17</value>
+    <value>189, 21</value>
   </data>
   <data name="rdSeparateByPatchT.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -235,7 +214,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rdSeparateByPatchT.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="rdFilePerPage.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -244,10 +223,13 @@
     <value>NoControl</value>
   </data>
   <data name="rdFilePerPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 104</value>
+    <value>16, 128</value>
+  </data>
+  <data name="rdFilePerPage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="rdFilePerPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 17</value>
+    <value>149, 21</value>
   </data>
   <data name="rdFilePerPage.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -265,7 +247,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rdFilePerPage.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="rdFilePerScan.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopLeft</value>
@@ -274,10 +256,13 @@
     <value>NoControl</value>
   </data>
   <data name="rdFilePerScan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 127</value>
+    <value>16, 156</value>
+  </data>
+  <data name="rdFilePerScan.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="rdFilePerScan.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 23</value>
+    <value>429, 28</value>
   </data>
   <data name="rdFilePerScan.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -298,16 +283,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rdFilePerScan.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="btnChooseFolder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnChooseFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>339, 24</value>
+    <value>452, 30</value>
+  </data>
+  <data name="btnChooseFolder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnChooseFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 22</value>
+    <value>45, 27</value>
   </data>
   <data name="btnChooseFolder.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -334,10 +322,13 @@
     <value>NoControl</value>
   </data>
   <data name="linkPlaceholders.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 48</value>
+    <value>11, 59</value>
+  </data>
+  <data name="linkPlaceholders.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="linkPlaceholders.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 13</value>
+    <value>48, 17</value>
   </data>
   <data name="linkPlaceholders.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -358,10 +349,13 @@
     <value>3</value>
   </data>
   <data name="txtFilePath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 25</value>
+    <value>15, 31</value>
+  </data>
+  <data name="txtFilePath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="txtFilePath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 20</value>
+    <value>428, 22</value>
   </data>
   <data name="txtFilePath.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -385,10 +379,13 @@
     <value>NoControl</value>
   </data>
   <data name="lblFilePath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 9</value>
+    <value>11, 11</value>
+  </data>
+  <data name="lblFilePath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lblFilePath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 13</value>
+    <value>67, 17</value>
   </data>
   <data name="lblFilePath.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -412,10 +409,13 @@
     <value>True</value>
   </data>
   <data name="cbClearAfterSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 204</value>
+    <value>16, 251</value>
+  </data>
+  <data name="cbClearAfterSave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="cbClearAfterSave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 17</value>
+    <value>203, 21</value>
   </data>
   <data name="cbClearAfterSave.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
@@ -442,10 +442,13 @@
     <value>NoControl</value>
   </data>
   <data name="cbPromptForFilePath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 71</value>
+    <value>15, 87</value>
+  </data>
+  <data name="cbPromptForFilePath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="cbPromptForFilePath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 17</value>
+    <value>150, 21</value>
   </data>
   <data name="cbPromptForFilePath.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
@@ -465,14 +468,14 @@
   <data name="&gt;&gt;cbPromptForFilePath.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>385, 264</value>
+    <value>513, 315</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -498,11 +501,14 @@
         //8AAP//AAD//w==
 </value>
   </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>9999, 303</value>
+    <value>13326, 362</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>350, 303</value>
+    <value>461, 362</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>ذخیره خودکار تنظیمات‌</value>
@@ -511,12 +517,12 @@
     <value>ilProfileIcons</value>
   </data>
   <data name="&gt;&gt;ilProfileIcons.Type" xml:space="preserve">
-    <value>NAPS2.WinForms.ILProfileIcons, NAPS2.Core, Version=5.3.3.39130, Culture=neutral, PublicKeyToken=null</value>
+    <value>NAPS2.WinForms.ILProfileIcons, NAPS2.Core, Version=6.1.2.19864, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FAutoSaveSettings</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>NAPS2.WinForms.FormBase, NAPS2.Core, Version=5.3.3.39130, Culture=neutral, PublicKeyToken=null</value>
+    <value>NAPS2.WinForms.FormBase, NAPS2.Core, Version=6.1.2.19864, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>
