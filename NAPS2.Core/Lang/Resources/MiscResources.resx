@@ -118,40 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ChooseProfile" xml:space="preserve">
-    <value>Choose Profile</value>
+    <value>نمایه را انتخاب کنید</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>پاک کردن</value>
   </data>
   <data name="ConfirmClearItems" xml:space="preserve">
-    <value>Are you sure you want to clear {0} item(s)?</value>
+    <value>آیا مطمئن هستید که می خواهید {0} مورد را پاک کنید؟</value>
   </data>
   <data name="ConfirmDeleteItems" xml:space="preserve">
-    <value>Are you sure you want to delete {0} item(s)?</value>
+    <value>آیا مطمئن هستید که می خواهید {0} مورد را حذف کنید؟</value>
   </data>
   <data name="ConfirmDeleteMultipleProfiles" xml:space="preserve">
-    <value>Are you sure you want to delete {0} profiles?</value>
+    <value>آیا مطمئن هستید که می خواهید {0} نمایه را حذف کنید؟</value>
   </data>
   <data name="ConfirmDeleteSingleProfile" xml:space="preserve">
-    <value>Are you sure you want to delete the profile {0}?</value>
+    <value>آیا مطمئن هستید که می خواهید نمایه {0} را حذف کنید؟</value>
   </data>
   <data name="ConfirmOverwriteFile" xml:space="preserve">
-    <value>The file {0} already exists. Do you want to overwrite it?</value>
+    <value>پرونده {0} از قبل وجود دارد. آیا می خواهید آن را بازنویسی کنید؟</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>حذف</value>
   </data>
   <data name="DeviceNotFound" xml:space="preserve">
-    <value>The selected scanner could not be found.</value>
+    <value>اسکنر انتخاب شده یافت نشد.</value>
   </data>
   <data name="DeviceOffline" xml:space="preserve">
-    <value>The selected scanner is offline.</value>
+    <value>اسکنر انتخاب شده آفلاین است.</value>
   </data>
   <data name="DontHavePermission" xml:space="preserve">
-    <value>You don't have permission to save files at this location.</value>
+    <value>شما اجازه ذخیره پرونده در این مکان را ندارید.</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Error</value>
+    <value>خطا</value>
   </data>
   <data name="FileTypeBmp" xml:space="preserve">
     <value>Bitmap Files (*.bmp)</value>
@@ -178,262 +178,262 @@
     <value>TIFF File (*.tiff, *.tif)</value>
   </data>
   <data name="NameMissing" xml:space="preserve">
-    <value>Name missing.</value>
+    <value>نام موجود نیست</value>
   </data>
   <data name="NAPS2" xml:space="preserve">
-    <value>NAPS2</value>
+    <value>اسکنر اتوماسیون اداری رایورز</value>
   </data>
   <data name="NoDeviceSelected" xml:space="preserve">
-    <value>No device selected.</value>
+    <value>دستگاهی انتخاب نشده است.</value>
   </data>
   <data name="NoDevicesFound" xml:space="preserve">
-    <value>No scanning device was found.</value>
+    <value>هیچ دستگاهی برای اسکن یافت نشد.</value>
   </data>
   <data name="OverwriteFile" xml:space="preserve">
-    <value>Overwrite File</value>
+    <value>بازنویسی پرونده</value>
   </data>
   <data name="PdfStatus" xml:space="preserve">
-    <value>{0} of {1}</value>
+    <value>{0} از {1}</value>
   </data>
   <data name="ScannedImage" xml:space="preserve">
-    <value>Scanned Image</value>
+    <value>تصویر اسکن شده</value>
   </data>
   <data name="SelectProfileBeforeScan" xml:space="preserve">
-    <value>Select a profile before clicking Scan.</value>
+    <value>قبل از کلیک روی اسکن ، یک نمایه را انتخاب کنید.</value>
   </data>
   <data name="UnknownDriverError" xml:space="preserve">
-    <value>An error occurred with the scanning driver.</value>
+    <value>خطایی در درایور اسکن رخ داده است.</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>نگارش {0}</value>
   </data>
   <data name="EmailError" xml:space="preserve">
-    <value>An error occurred while trying to send an email.</value>
+    <value>هنگام تلاش برای ارسال ایمیل خطایی روی داد.</value>
   </data>
   <data name="InstallComplete" xml:space="preserve">
-    <value>Installation Complete</value>
+    <value>نصب کامل شد</value>
   </data>
   <data name="InstallCompletePromptRestart" xml:space="preserve">
-    <value>Installation complete. Do you want to restart NAPS2 now?</value>
+    <value>نصب کامل شد. آیا می خواهید برنامه را دوباره راه اندازی کنید؟</value>
   </data>
   <data name="InstallFailed" xml:space="preserve">
-    <value>Installation failed.</value>
+    <value>نصب انجام نشد.</value>
   </data>
   <data name="InstallFailedTitle" xml:space="preserve">
-    <value>Installation Failed</value>
+    <value>نصب انجام نشد</value>
   </data>
   <data name="AllCount" xml:space="preserve">
-    <value>All ({0})</value>
+    <value>همه</value>
   </data>
   <data name="SelectedCount" xml:space="preserve">
-    <value>Selected ({0})</value>
+    <value>انتخاب شده ({0})</value>
   </data>
   <data name="EstimatedDownloadSize" xml:space="preserve">
-    <value>Estimated download size: {0} MB</value>
+    <value>حجم تخمینی بارگیری: {0} مگابایت</value>
   </data>
   <data name="FilesProgressFormat" xml:space="preserve">
-    <value>{0} / {1} files</value>
+    <value>{0} / {1} پرونده</value>
   </data>
   <data name="SizeProgress" xml:space="preserve">
     <value>{0} / {1} MB</value>
   </data>
   <data name="ImportErrorCouldNot" xml:space="preserve">
-    <value>The file '{0}' could not be imported.</value>
+    <value>پرونده "{0}" وارد نشد.</value>
   </data>
   <data name="ImportErrorNAPS2Pdf" xml:space="preserve">
-    <value>The file '{0}' could not be imported. Only PDF files generated by NAPS2 can be imported.</value>
+    <value>پرونده "{0}" وارد نشد. فقط فایلهای PDF تولید شده توسط این برنامه قابل وارد شدن هستند.</value>
   </data>
   <data name="DownloadError" xml:space="preserve">
-    <value>Download Error</value>
+    <value>خطا در بارگیری</value>
   </data>
   <data name="FilesCouldNotBeDownloaded" xml:space="preserve">
-    <value>One or more files could not be downloaded.</value>
+    <value>یک یا چند پرونده بارگیری نمی شوند.</value>
   </data>
   <data name="CustomPageSizeFormat" xml:space="preserve">
-    <value>Custom ({0}x{1} {2})</value>
+    <value>سفارشی ({0} x {1} {2})</value>
   </data>
   <data name="Scan" xml:space="preserve">
-    <value>Scan</value>
+    <value>اسکن</value>
   </data>
   <data name="ConfirmResetImages" xml:space="preserve">
-    <value>Are you sure you want undo your changes to {0} image(s)?</value>
+    <value>آیا مطمئن هستید که می خواهید تغییرات خود را در {0} تصویر لغو کنید؟</value>
   </data>
   <data name="ResetImage" xml:space="preserve">
-    <value>Reset Image</value>
+    <value>تنظیم مجدد تصویر</value>
   </data>
   <data name="ExitWithUnsavedChanges" xml:space="preserve">
-    <value>You have unsaved changes. Are you sure you want to exit and discard those changes?</value>
+    <value>شما تغییرات ذخیره نشده ای دارید. آیا مطمئن هستید که می خواهید از آن تغییرات خارج شوید و آنها را کنار بگذارید؟</value>
   </data>
   <data name="ExitWithActiveOperations" xml:space="preserve">
-    <value>An operation is in progress. Are you sure you want to exit and cancel the operation?</value>
+    <value>عملیاتی در حال انجام است. آیا مطمئن هستید که می خواهید از این عملیات خارج شوید و آن را لغو کنید؟</value>
   </data>
   <data name="UnsavedChanges" xml:space="preserve">
-    <value>Unsaved Changes</value>
+    <value>تغییرات ذخیره نشده</value>
   </data>
   <data name="ActiveOperations" xml:space="preserve">
-    <value>Operation in Progress</value>
+    <value>عملیات در حال پیشرفت</value>
   </data>
   <data name="ScanPageProgress" xml:space="preserve">
-    <value>Scanning page {0}</value>
+    <value>در حال اسکن صفحه {0}</value>
   </data>
   <data name="NoFeederSupport" xml:space="preserve">
-    <value>The selected scanner does not support using a feeder. If your scanner does have a feeder, try using a different driver.</value>
+    <value>اسکنر انتخاب شده با استفاده از فیدر پشتیبانی نمی کند. اگر اسکنر شما فیدر دارد ، از درایور دیگری استفاده کنید.</value>
   </data>
   <data name="NoPagesInFeeder" xml:space="preserve">
-    <value>No pages are in the feeder.</value>
+    <value>هیچ صفحه ای در فیدر وجود ندارد.</value>
   </data>
   <data name="PdfNoPermissionToExtractContent" xml:space="preserve">
-    <value>You do not have permission to copy content from the file '{0}'.</value>
+    <value>شما اجازه کپی مطالب از پرونده "{0}" را ندارید.</value>
   </data>
   <data name="ErrorSaving" xml:space="preserve">
-    <value>An error occurred when trying to save the file.</value>
+    <value>هنگام تلاش برای ذخیره فایل ، خطایی روی داد.</value>
   </data>
   <data name="OfN" xml:space="preserve">
-    <value>of {0}</value>
+    <value>از {0}</value>
   </data>
   <data name="BatchError" xml:space="preserve">
-    <value>An unknown error ocurred during the batch scan.</value>
+    <value>هنگام اسکن دسته ای یک خطای ناشناخته رخ داده است.</value>
   </data>
   <data name="BatchStatusCancelled" xml:space="preserve">
-    <value>Batch cancelled.</value>
+    <value>دسته لغو شد</value>
   </data>
   <data name="BatchStatusCancelling" xml:space="preserve">
-    <value>Cancelling....</value>
+    <value>در حال لغو ...</value>
   </data>
   <data name="BatchStatusComplete" xml:space="preserve">
-    <value>Batch completed successfully.</value>
+    <value>دسته با موفقیت انجام شد</value>
   </data>
   <data name="BatchStatusError" xml:space="preserve">
-    <value>Batch scan stopped due to error.</value>
+    <value>اسکن دسته ای به دلیل خطا متوقف شد.</value>
   </data>
   <data name="BatchStatusPage" xml:space="preserve">
-    <value>Scanning page {0}...</value>
+    <value>در حال اسکن صفحه {0} ...</value>
   </data>
   <data name="BatchStatusScanPage" xml:space="preserve">
-    <value>Scanning page {0} (scan {1})...</value>
+    <value>در حال اسکن صفحه {0} (اسکن {1}) ...</value>
   </data>
   <data name="BatchStatusWaitingForScan" xml:space="preserve">
-    <value>Waiting for scan {0}...</value>
+    <value>در انتظار اسکن {0} ...</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>لغو</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>Close</value>
+    <value>بستن</value>
   </data>
   <data name="BatchStatusSaving" xml:space="preserve">
-    <value>Saving batch results...</value>
+    <value>در حال ذخیره نتایج دسته ای ...</value>
   </data>
   <data name="NoDuplexSupport" xml:space="preserve">
-    <value>The selected scanner does not support using duplex. If your scanner is supposed to support duplex, try using a different driver.</value>
+    <value>اسکنر انتخاب شده از دوبلکس پشتیبانی نمی کند. اگر قرار است اسکنر شما از دوبلکس پشتیبانی کند ، سعی کنید از درایور دیگری استفاده کنید.</value>
   </data>
   <data name="ProgressFormat" xml:space="preserve">
     <value>{0} / {1}</value>
   </data>
   <data name="ImportingFormat" xml:space="preserve">
-    <value>Importing {0}...</value>
+    <value>وارد کردن {0} ...</value>
   </data>
   <data name="ImportProgress" xml:space="preserve">
-    <value>Import Progress</value>
+    <value>پیشرفت در وارد کردن</value>
   </data>
   <data name="Recovering" xml:space="preserve">
-    <value>Recovering...</value>
+    <value>در حال بازیابی ...</value>
   </data>
   <data name="RecoveryProgress" xml:space="preserve">
-    <value>Recovery Progress</value>
+    <value>پیشرفت بازیابی</value>
   </data>
   <data name="SaveImages" xml:space="preserve">
-    <value>Save Images</value>
+    <value>ذخیره تصویر</value>
   </data>
   <data name="SaveImagesProgress" xml:space="preserve">
-    <value>Save Images Progress</value>
+    <value>پیشرفت ذخیره تصویر</value>
   </data>
   <data name="SavePdf" xml:space="preserve">
-    <value>Save PDF</value>
+    <value>ذخیره PDF</value>
   </data>
   <data name="SavePdfProgress" xml:space="preserve">
-    <value>Save PDF Progress</value>
+    <value>پیشرفت ذخیره PDF</value>
   </data>
   <data name="SavingFormat" xml:space="preserve">
-    <value>Saving {0}...</value>
+    <value>در حال ذخیره {0} ...</value>
   </data>
   <data name="Print" xml:space="preserve">
-    <value>Print</value>
+    <value>چاپ</value>
   </data>
   <data name="Copying" xml:space="preserve">
-    <value>Copying...</value>
+    <value>در حال کپی کردن ...</value>
   </data>
   <data name="CopyProgress" xml:space="preserve">
-    <value>Copy Progress</value>
+    <value>پیشرفت کپی کردن</value>
   </data>
   <data name="Importing" xml:space="preserve">
-    <value>Importing...</value>
+    <value>افزودن ...</value>
   </data>
   <data name="EmailPdf" xml:space="preserve">
-    <value>Email PDF</value>
+    <value>ایمیل PDF</value>
   </data>
   <data name="EmailPdfProgress" xml:space="preserve">
-    <value>Email PDF Progress</value>
+    <value>پیشرفت ارسال ایمیل PDF</value>
   </data>
   <data name="AutoSaveError" xml:space="preserve">
-    <value>An error occurred when trying to auto save.</value>
+    <value>هنگام تلاش برای ذخیره خودکار خطایی روی داد.</value>
   </data>
   <data name="FileTypeAllFiles" xml:space="preserve">
-    <value>All Files</value>
+    <value>تمام فایل ها</value>
   </data>
   <data name="FileTypeImageFiles" xml:space="preserve">
-    <value>Image Files</value>
+    <value>تصاویر</value>
   </data>
   <data name="DeviceBusy" xml:space="preserve">
-    <value>The selected scanner is busy.</value>
+    <value>اسکنر انتخاب شده مشغول است.</value>
   </data>
   <data name="DeviceCoverOpen" xml:space="preserve">
-    <value>The scanner's cover is open.</value>
+    <value>درپوش اسکنر باز است.</value>
   </data>
   <data name="DevicePaperJam" xml:space="preserve">
-    <value>The scanner has a paper jam.</value>
+    <value>اسکنر یک مربع کاغذ دارد.</value>
   </data>
   <data name="DeviceWarmingUp" xml:space="preserve">
-    <value>The scanner is warming up.</value>
+    <value>اسکنر در حال گرم شدن است.</value>
   </data>
   <data name="OcrUpdateAvailable" xml:space="preserve">
-    <value>An update to OCR is available.</value>
+    <value>به روزرسانی OCR موجود است.</value>
   </data>
   <data name="ImageSaved" xml:space="preserve">
-    <value>Image saved.</value>
+    <value>تصویر ذخیره شد</value>
   </data>
   <data name="ImagesSaved" xml:space="preserve">
-    <value>{0} images saved.</value>
+    <value>{0} تصویر ذخیره شد.</value>
   </data>
   <data name="PdfSaved" xml:space="preserve">
-    <value>PDF saved.</value>
+    <value>PDF ذخیره شد</value>
   </data>
   <data name="NamedPageSizeFormat" xml:space="preserve">
     <value>{0} ({1}x{2} {3})</value>
   </data>
   <data name="ConfirmDelete" xml:space="preserve">
-    <value>Are you sure you want to delete "{0}"?</value>
+    <value>آیا مطمئن هستید که می خواهید "{0}" را حذف کنید؟</value>
   </data>
   <data name="FileInUse" xml:space="preserve">
-    <value>The file could not be overwritten because it is currently in use.</value>
+    <value>امکان بازنویسی پرونده وجود ندارد زیرا اکنون در حال استفاده است.</value>
   </data>
   <data name="AutoDeskewing" xml:space="preserve">
     <value>Deskewing...</value>
   </data>
   <data name="AutoDeskewProgress" xml:space="preserve">
-    <value>Deskew Progress</value>
+    <value>Deskew پیشرفت</value>
   </data>
   <data name="DownloadNeeded" xml:space="preserve">
-    <value>Download Needed</value>
+    <value>بارگیری مورد نیاز</value>
   </data>
   <data name="PdfImportComponentNeeded" xml:space="preserve">
-    <value>An additional component is needed to import this PDF file. Would you like to download it now?</value>
+    <value>برای وارد کردن این فایل PDF یک جز مولفه اضافی مورد نیاز است. آیا می خواهید آن را بارگیری کنید؟</value>
   </data>
   <data name="ConfirmCancelBatch" xml:space="preserve">
-    <value>Are you sure you want to cancel the batch scan?</value>
+    <value>آیا مطمئن هستید که می خواهید اسکن دسته ای را لغو کنید؟</value>
   </data>
   <data name="CancelBatch" xml:space="preserve">
-    <value>Cancel Batch</value>
+    <value>لغو دسته</value>
   </data>
   <data name="Donate" xml:space="preserve">
     <value>Donate</value>
@@ -442,63 +442,63 @@
     <value>NAPS2 is completely free. Consider making a donation.</value>
   </data>
   <data name="SaneNotAvailable" xml:space="preserve">
-    <value>The SANE driver is not available. Make sure to install the required packages:</value>
+    <value>درایور SANE در دسترس نیست. اطمینان حاصل کنید که بسته های مورد نیاز را نصب کنید:</value>
   </data>
   <data name="TesseractNotAvailable" xml:space="preserve">
-    <value>The OCR engine is not available. Make sure to install the required package:</value>
+    <value>موتور OCR موجود نیست. اطمینان حاصل کنید که بسته مورد نیاز را نصب کنید:</value>
   </data>
   <data name="DriverNotSupported" xml:space="preserve">
-    <value>The selected driver is not supported on this system.</value>
+    <value>درایور انتخاب شده در این سیستم پشتیبانی نمی شود.</value>
   </data>
   <data name="OcrProgress" xml:space="preserve">
-    <value>OCR Progress</value>
+    <value>پیشرفت OCR</value>
   </data>
   <data name="RunningOcr" xml:space="preserve">
-    <value>Running OCR...</value>
+    <value>در حال اجرا OCR ...</value>
   </data>
   <data name="UpdateProgress" xml:space="preserve">
-    <value>Update Progress</value>
+    <value>پیشرفت را به روز کنید</value>
   </data>
   <data name="Updating" xml:space="preserve">
-    <value>Updating...</value>
+    <value>در حال بروز رسانی ...</value>
   </data>
   <data name="NoUpdates" xml:space="preserve">
-    <value>No updates available.</value>
+    <value>هیچ به روزرسانی در دسترس نیست</value>
   </data>
   <data name="CheckingForUpdates" xml:space="preserve">
-    <value>Checking...</value>
+    <value>در حال بررسی ...</value>
   </data>
   <data name="UpdateError" xml:space="preserve">
-    <value>An error occured when trying to install the update.</value>
+    <value>هنگام نصب به روزرسانی خطایی روی داد.</value>
   </data>
   <data name="Install" xml:space="preserve">
-    <value>Install {0}</value>
+    <value>نصب {0}</value>
   </data>
   <data name="UpdateAvailable" xml:space="preserve">
-    <value>An update is available.</value>
+    <value>به روزرسانی موجود است</value>
   </data>
   <data name="AuthError" xml:space="preserve">
-    <value>An error occurred when trying to authorize.</value>
+    <value>هنگام تلاش برای تأیید خطایی روی داد.</value>
   </data>
   <data name="UploadingEmail" xml:space="preserve">
-    <value>Uploading email...</value>
+    <value>در حال بارگذاری ایمیل ...</value>
   </data>
   <data name="ErrorEmailing" xml:space="preserve">
-    <value>An error occurred when trying to send the email.</value>
+    <value>هنگام تلاش برای ارسال ایمیل خطایی روی داد.</value>
   </data>
   <data name="Naps2Server" xml:space="preserve">
-    <value>NAPS2 Server</value>
+    <value>سرور اتوماسیون اداری رایورز</value>
   </data>
   <data name="ServerStarted" xml:space="preserve">
-    <value>Server started</value>
+    <value>سرور شروع شد</value>
   </data>
   <data name="ListeningOnPort" xml:space="preserve">
-    <value>Listening on port {0}</value>
+    <value>گوش دادن به درگاه {0}</value>
   </data>
   <data name="ScanProgressPage" xml:space="preserve">
-    <value>Scanning page {0}...</value>
+    <value>در حال اسکن صفحه {0} ...</value>
   </data>
   <data name="AcquiringData" xml:space="preserve">
-    <value>Acquiring data...</value>
+    <value>در حال کسب اطلاعات ...</value>
   </data>
 </root>
