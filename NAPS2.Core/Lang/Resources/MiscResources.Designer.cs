@@ -61,7 +61,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Acquiring data....
+        ///   Looks up a localized string similar to در حال کسب اطلاعات ....
         /// </summary>
         internal static string AcquiringData {
             get {
@@ -70,7 +70,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operation in Progress.
+        ///   Looks up a localized string similar to عملیات در حال پیشرفت.
         /// </summary>
         internal static string ActiveOperations {
             get {
@@ -79,7 +79,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All ({0}).
+        ///   Looks up a localized string similar to همه.
         /// </summary>
         internal static string AllCount {
             get {
@@ -88,7 +88,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred when trying to authorize..
+        ///   Looks up a localized string similar to هنگام تلاش برای تأیید خطایی روی داد..
         /// </summary>
         internal static string AuthError {
             get {
@@ -106,7 +106,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deskew Progress.
+        ///   Looks up a localized string similar to Deskew پیشرفت.
         /// </summary>
         internal static string AutoDeskewProgress {
             get {
@@ -115,7 +115,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred when trying to auto save..
+        ///   Looks up a localized string similar to هنگام تلاش برای ذخیره خودکار خطایی روی داد..
         /// </summary>
         internal static string AutoSaveError {
             get {
@@ -124,7 +124,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An unknown error ocurred during the batch scan..
+        ///   Looks up a localized string similar to هنگام اسکن دسته ای یک خطای ناشناخته رخ داده است..
         /// </summary>
         internal static string BatchError {
             get {
@@ -133,7 +133,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Batch cancelled..
+        ///   Looks up a localized string similar to دسته لغو شد.
         /// </summary>
         internal static string BatchStatusCancelled {
             get {
@@ -142,7 +142,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancelling.....
+        ///   Looks up a localized string similar to در حال لغو ....
         /// </summary>
         internal static string BatchStatusCancelling {
             get {
@@ -151,7 +151,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Batch completed successfully..
+        ///   Looks up a localized string similar to دسته با موفقیت انجام شد.
         /// </summary>
         internal static string BatchStatusComplete {
             get {
@@ -160,7 +160,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Batch scan stopped due to error..
+        ///   Looks up a localized string similar to اسکن دسته ای به دلیل خطا متوقف شد..
         /// </summary>
         internal static string BatchStatusError {
             get {
@@ -169,7 +169,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scanning page {0}....
+        ///   Looks up a localized string similar to در حال اسکن صفحه {0} ....
         /// </summary>
         internal static string BatchStatusPage {
             get {
@@ -178,7 +178,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saving batch results....
+        ///   Looks up a localized string similar to در حال ذخیره نتایج دسته ای ....
         /// </summary>
         internal static string BatchStatusSaving {
             get {
@@ -187,7 +187,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scanning page {0} (scan {1})....
+        ///   Looks up a localized string similar to در حال اسکن صفحه {0} (اسکن {1}) ....
         /// </summary>
         internal static string BatchStatusScanPage {
             get {
@@ -196,7 +196,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Waiting for scan {0}....
+        ///   Looks up a localized string similar to در انتظار اسکن {0} ....
         /// </summary>
         internal static string BatchStatusWaitingForScan {
             get {
@@ -205,7 +205,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to لغو.
         /// </summary>
         internal static string Cancel {
             get {
@@ -214,7 +214,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel Batch.
+        ///   Looks up a localized string similar to لغو دسته.
         /// </summary>
         internal static string CancelBatch {
             get {
@@ -223,7 +223,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Checking....
+        ///   Looks up a localized string similar to در حال بررسی ....
         /// </summary>
         internal static string CheckingForUpdates {
             get {
@@ -232,7 +232,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose Profile.
+        ///   Looks up a localized string similar to نمایه را انتخاب کنید.
         /// </summary>
         internal static string ChooseProfile {
             get {
@@ -250,7 +250,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close.
+        ///   Looks up a localized string similar to بستن.
         /// </summary>
         internal static string Close {
             get {
@@ -259,7 +259,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to cancel the batch scan?.
+        ///   Looks up a localized string similar to آیا مطمئن هستید که می خواهید اسکن دسته ای را لغو کنید؟.
         /// </summary>
         internal static string ConfirmCancelBatch {
             get {
@@ -268,7 +268,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to clear {0} item(s)?.
+        ///   Looks up a localized string similar to آیا مطمئن هستید که می خواهید {0} مورد را پاک کنید؟.
         /// </summary>
         internal static string ConfirmClearItems {
             get {
@@ -277,7 +277,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to delete &quot;{0}&quot;?.
+        ///   Looks up a localized string similar to آیا مطمئن هستید که می خواهید &quot;{0}&quot; را حذف کنید؟.
         /// </summary>
         internal static string ConfirmDelete {
             get {
@@ -286,7 +286,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to delete {0} item(s)?.
+        ///   Looks up a localized string similar to آیا مطمئن هستید که می خواهید {0} مورد را حذف کنید؟.
         /// </summary>
         internal static string ConfirmDeleteItems {
             get {
@@ -295,7 +295,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to delete {0} profiles?.
+        ///   Looks up a localized string similar to آیا مطمئن هستید که می خواهید {0} نمایه را حذف کنید؟.
         /// </summary>
         internal static string ConfirmDeleteMultipleProfiles {
             get {
@@ -304,7 +304,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to delete the profile {0}?.
+        ///   Looks up a localized string similar to آیا مطمئن هستید که می خواهید نمایه {0} را حذف کنید؟.
         /// </summary>
         internal static string ConfirmDeleteSingleProfile {
             get {
@@ -313,7 +313,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file {0} already exists. Do you want to overwrite it?.
+        ///   Looks up a localized string similar to پرونده {0} از قبل وجود دارد. آیا می خواهید آن را بازنویسی کنید؟.
         /// </summary>
         internal static string ConfirmOverwriteFile {
             get {
@@ -322,7 +322,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want undo your changes to {0} image(s)?.
+        ///   Looks up a localized string similar to آیا مطمئن هستید که می خواهید تغییرات خود را در {0} تصویر لغو کنید؟.
         /// </summary>
         internal static string ConfirmResetImages {
             get {
@@ -331,7 +331,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copying....
+        ///   Looks up a localized string similar to در حال کپی کردن ....
         /// </summary>
         internal static string Copying {
             get {
@@ -340,7 +340,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy Progress.
+        ///   Looks up a localized string similar to پیشرفت کپی کردن.
         /// </summary>
         internal static string CopyProgress {
             get {
@@ -349,7 +349,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom ({0}x{1} {2}).
+        ///   Looks up a localized string similar to سفارشی ({0} x {1} {2}).
         /// </summary>
         internal static string CustomPageSizeFormat {
             get {
@@ -358,7 +358,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete.
+        ///   Looks up a localized string similar to حذف.
         /// </summary>
         internal static string Delete {
             get {
@@ -367,7 +367,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The selected scanner is busy..
+        ///   Looks up a localized string similar to اسکنر انتخاب شده مشغول است..
         /// </summary>
         internal static string DeviceBusy {
             get {
@@ -376,7 +376,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The scanner&apos;s cover is open..
+        ///   Looks up a localized string similar to درپوش اسکنر باز است..
         /// </summary>
         internal static string DeviceCoverOpen {
             get {
@@ -385,7 +385,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The selected scanner could not be found..
+        ///   Looks up a localized string similar to اسکنر انتخاب شده یافت نشد..
         /// </summary>
         internal static string DeviceNotFound {
             get {
@@ -394,7 +394,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The selected scanner is offline..
+        ///   Looks up a localized string similar to اسکنر انتخاب شده آفلاین است..
         /// </summary>
         internal static string DeviceOffline {
             get {
@@ -403,7 +403,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The scanner has a paper jam..
+        ///   Looks up a localized string similar to اسکنر یک مربع کاغذ دارد..
         /// </summary>
         internal static string DevicePaperJam {
             get {
@@ -412,7 +412,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The scanner is warming up..
+        ///   Looks up a localized string similar to اسکنر در حال گرم شدن است..
         /// </summary>
         internal static string DeviceWarmingUp {
             get {
@@ -439,7 +439,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You don&apos;t have permission to save files at this location..
+        ///   Looks up a localized string similar to شما اجازه ذخیره پرونده در این مکان را ندارید..
         /// </summary>
         internal static string DontHavePermission {
             get {
@@ -448,7 +448,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download Error.
+        ///   Looks up a localized string similar to خطا در بارگیری.
         /// </summary>
         internal static string DownloadError {
             get {
@@ -457,7 +457,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download Needed.
+        ///   Looks up a localized string similar to بارگیری مورد نیاز.
         /// </summary>
         internal static string DownloadNeeded {
             get {
@@ -466,7 +466,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The selected driver is not supported on this system..
+        ///   Looks up a localized string similar to درایور انتخاب شده در این سیستم پشتیبانی نمی شود..
         /// </summary>
         internal static string DriverNotSupported {
             get {
@@ -475,7 +475,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred while trying to send an email..
+        ///   Looks up a localized string similar to هنگام تلاش برای ارسال ایمیل خطایی روی داد..
         /// </summary>
         internal static string EmailError {
             get {
@@ -484,7 +484,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email PDF.
+        ///   Looks up a localized string similar to ایمیل PDF.
         /// </summary>
         internal static string EmailPdf {
             get {
@@ -493,7 +493,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email PDF Progress.
+        ///   Looks up a localized string similar to پیشرفت ارسال ایمیل PDF.
         /// </summary>
         internal static string EmailPdfProgress {
             get {
@@ -502,7 +502,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error.
+        ///   Looks up a localized string similar to خطا.
         /// </summary>
         internal static string Error {
             get {
@@ -511,7 +511,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred when trying to send the email..
+        ///   Looks up a localized string similar to هنگام تلاش برای ارسال ایمیل خطایی روی داد..
         /// </summary>
         internal static string ErrorEmailing {
             get {
@@ -520,7 +520,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred when trying to save the file..
+        ///   Looks up a localized string similar to هنگام تلاش برای ذخیره فایل ، خطایی روی داد..
         /// </summary>
         internal static string ErrorSaving {
             get {
@@ -529,7 +529,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Estimated download size: {0} MB.
+        ///   Looks up a localized string similar to حجم تخمینی بارگیری: {0} مگابایت.
         /// </summary>
         internal static string EstimatedDownloadSize {
             get {
@@ -538,7 +538,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An operation is in progress. Are you sure you want to exit and cancel the operation?.
+        ///   Looks up a localized string similar to عملیاتی در حال انجام است. آیا مطمئن هستید که می خواهید از این عملیات خارج شوید و آن را لغو کنید؟.
         /// </summary>
         internal static string ExitWithActiveOperations {
             get {
@@ -547,7 +547,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have unsaved changes. Are you sure you want to exit and discard those changes?.
+        ///   Looks up a localized string similar to شما تغییرات ذخیره نشده ای دارید. آیا مطمئن هستید که می خواهید از آن تغییرات خارج شوید و آنها را کنار بگذارید؟.
         /// </summary>
         internal static string ExitWithUnsavedChanges {
             get {
@@ -556,7 +556,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file could not be overwritten because it is currently in use..
+        ///   Looks up a localized string similar to امکان بازنویسی پرونده وجود ندارد زیرا اکنون در حال استفاده است..
         /// </summary>
         internal static string FileInUse {
             get {
@@ -565,7 +565,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to One or more files could not be downloaded..
+        ///   Looks up a localized string similar to یک یا چند پرونده بارگیری نمی شوند..
         /// </summary>
         internal static string FilesCouldNotBeDownloaded {
             get {
@@ -574,7 +574,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} / {1} files.
+        ///   Looks up a localized string similar to {0} / {1} پرونده.
         /// </summary>
         internal static string FilesProgressFormat {
             get {
@@ -583,7 +583,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All Files.
+        ///   Looks up a localized string similar to تمام فایل ها.
         /// </summary>
         internal static string FileTypeAllFiles {
             get {
@@ -628,7 +628,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Image Files.
+        ///   Looks up a localized string similar to تصاویر.
         /// </summary>
         internal static string FileTypeImageFiles {
             get {
@@ -673,7 +673,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Image saved..
+        ///   Looks up a localized string similar to تصویر ذخیره شد.
         /// </summary>
         internal static string ImageSaved {
             get {
@@ -682,7 +682,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} images saved..
+        ///   Looks up a localized string similar to {0} تصویر ذخیره شد..
         /// </summary>
         internal static string ImagesSaved {
             get {
@@ -691,7 +691,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file &apos;{0}&apos; could not be imported..
+        ///   Looks up a localized string similar to پرونده &quot;{0}&quot; وارد نشد..
         /// </summary>
         internal static string ImportErrorCouldNot {
             get {
@@ -700,7 +700,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file &apos;{0}&apos; could not be imported. Only PDF files generated by NAPS2 can be imported..
+        ///   Looks up a localized string similar to پرونده &quot;{0}&quot; وارد نشد. فقط فایلهای PDF تولید شده توسط این برنامه قابل وارد شدن هستند..
         /// </summary>
         internal static string ImportErrorNAPS2Pdf {
             get {
@@ -709,7 +709,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Importing....
+        ///   Looks up a localized string similar to افزودن ....
         /// </summary>
         internal static string Importing {
             get {
@@ -718,7 +718,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Importing {0}....
+        ///   Looks up a localized string similar to وارد کردن {0} ....
         /// </summary>
         internal static string ImportingFormat {
             get {
@@ -727,7 +727,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import Progress.
+        ///   Looks up a localized string similar to پیشرفت در وارد کردن.
         /// </summary>
         internal static string ImportProgress {
             get {
@@ -736,7 +736,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Install {0}.
+        ///   Looks up a localized string similar to نصب {0}.
         /// </summary>
         internal static string Install {
             get {
@@ -745,7 +745,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Installation Complete.
+        ///   Looks up a localized string similar to نصب کامل شد.
         /// </summary>
         internal static string InstallComplete {
             get {
@@ -754,7 +754,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Installation complete. Do you want to restart NAPS2 now?.
+        ///   Looks up a localized string similar to نصب کامل شد. آیا می خواهید برنامه را دوباره راه اندازی کنید؟.
         /// </summary>
         internal static string InstallCompletePromptRestart {
             get {
@@ -763,7 +763,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Installation failed..
+        ///   Looks up a localized string similar to نصب انجام نشد..
         /// </summary>
         internal static string InstallFailed {
             get {
@@ -772,7 +772,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Installation Failed.
+        ///   Looks up a localized string similar to نصب انجام نشد.
         /// </summary>
         internal static string InstallFailedTitle {
             get {
@@ -781,7 +781,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Listening on port {0}.
+        ///   Looks up a localized string similar to گوش دادن به درگاه {0}.
         /// </summary>
         internal static string ListeningOnPort {
             get {
@@ -799,7 +799,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name missing..
+        ///   Looks up a localized string similar to نام موجود نیست.
         /// </summary>
         internal static string NameMissing {
             get {
@@ -808,7 +808,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NAPS2.
+        ///   Looks up a localized string similar to اسکنر اتوماسیون اداری رایورز.
         /// </summary>
         internal static string NAPS2 {
             get {
@@ -817,7 +817,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NAPS2 Server.
+        ///   Looks up a localized string similar to سرور اتوماسیون اداری رایورز.
         /// </summary>
         internal static string Naps2Server {
             get {
@@ -826,7 +826,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No device selected..
+        ///   Looks up a localized string similar to دستگاهی انتخاب نشده است..
         /// </summary>
         internal static string NoDeviceSelected {
             get {
@@ -835,7 +835,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No scanning device was found..
+        ///   Looks up a localized string similar to هیچ دستگاهی برای اسکن یافت نشد..
         /// </summary>
         internal static string NoDevicesFound {
             get {
@@ -844,7 +844,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The selected scanner does not support using duplex. If your scanner is supposed to support duplex, try using a different driver..
+        ///   Looks up a localized string similar to اسکنر انتخاب شده از دوبلکس پشتیبانی نمی کند. اگر قرار است اسکنر شما از دوبلکس پشتیبانی کند ، سعی کنید از درایور دیگری استفاده کنید..
         /// </summary>
         internal static string NoDuplexSupport {
             get {
@@ -853,7 +853,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The selected scanner does not support using a feeder. If your scanner does have a feeder, try using a different driver..
+        ///   Looks up a localized string similar to اسکنر انتخاب شده با استفاده از فیدر پشتیبانی نمی کند. اگر اسکنر شما فیدر دارد ، از درایور دیگری استفاده کنید..
         /// </summary>
         internal static string NoFeederSupport {
             get {
@@ -862,7 +862,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No pages are in the feeder..
+        ///   Looks up a localized string similar to هیچ صفحه ای در فیدر وجود ندارد..
         /// </summary>
         internal static string NoPagesInFeeder {
             get {
@@ -871,7 +871,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No updates available..
+        ///   Looks up a localized string similar to هیچ به روزرسانی در دسترس نیست.
         /// </summary>
         internal static string NoUpdates {
             get {
@@ -880,7 +880,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OCR Progress.
+        ///   Looks up a localized string similar to پیشرفت OCR.
         /// </summary>
         internal static string OcrProgress {
             get {
@@ -889,7 +889,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An update to OCR is available..
+        ///   Looks up a localized string similar to به روزرسانی OCR موجود است..
         /// </summary>
         internal static string OcrUpdateAvailable {
             get {
@@ -898,7 +898,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to of {0}.
+        ///   Looks up a localized string similar to از {0}.
         /// </summary>
         internal static string OfN {
             get {
@@ -907,7 +907,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Overwrite File.
+        ///   Looks up a localized string similar to بازنویسی پرونده.
         /// </summary>
         internal static string OverwriteFile {
             get {
@@ -916,7 +916,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An additional component is needed to import this PDF file. Would you like to download it now?.
+        ///   Looks up a localized string similar to برای وارد کردن این فایل PDF یک جز مولفه اضافی مورد نیاز است. آیا می خواهید آن را بارگیری کنید؟.
         /// </summary>
         internal static string PdfImportComponentNeeded {
             get {
@@ -925,7 +925,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You do not have permission to copy content from the file &apos;{0}&apos;..
+        ///   Looks up a localized string similar to شما اجازه کپی مطالب از پرونده &quot;{0}&quot; را ندارید..
         /// </summary>
         internal static string PdfNoPermissionToExtractContent {
             get {
@@ -934,7 +934,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PDF saved..
+        ///   Looks up a localized string similar to PDF ذخیره شد.
         /// </summary>
         internal static string PdfSaved {
             get {
@@ -943,7 +943,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} of {1}.
+        ///   Looks up a localized string similar to {0} از {1}.
         /// </summary>
         internal static string PdfStatus {
             get {
@@ -952,7 +952,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Print.
+        ///   Looks up a localized string similar to چاپ.
         /// </summary>
         internal static string Print {
             get {
@@ -970,7 +970,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recovering....
+        ///   Looks up a localized string similar to در حال بازیابی ....
         /// </summary>
         internal static string Recovering {
             get {
@@ -979,7 +979,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recovery Progress.
+        ///   Looks up a localized string similar to پیشرفت بازیابی.
         /// </summary>
         internal static string RecoveryProgress {
             get {
@@ -988,7 +988,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset Image.
+        ///   Looks up a localized string similar to تنظیم مجدد تصویر.
         /// </summary>
         internal static string ResetImage {
             get {
@@ -997,7 +997,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Running OCR....
+        ///   Looks up a localized string similar to در حال اجرا OCR ....
         /// </summary>
         internal static string RunningOcr {
             get {
@@ -1006,7 +1006,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The SANE driver is not available. Make sure to install the required packages:.
+        ///   Looks up a localized string similar to درایور SANE در دسترس نیست. اطمینان حاصل کنید که بسته های مورد نیاز را نصب کنید:.
         /// </summary>
         internal static string SaneNotAvailable {
             get {
@@ -1015,7 +1015,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save Images.
+        ///   Looks up a localized string similar to ذخیره تصویر.
         /// </summary>
         internal static string SaveImages {
             get {
@@ -1024,7 +1024,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save Images Progress.
+        ///   Looks up a localized string similar to پیشرفت ذخیره تصویر.
         /// </summary>
         internal static string SaveImagesProgress {
             get {
@@ -1033,7 +1033,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save PDF.
+        ///   Looks up a localized string similar to ذخیره PDF.
         /// </summary>
         internal static string SavePdf {
             get {
@@ -1042,7 +1042,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save PDF Progress.
+        ///   Looks up a localized string similar to پیشرفت ذخیره PDF.
         /// </summary>
         internal static string SavePdfProgress {
             get {
@@ -1051,7 +1051,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saving {0}....
+        ///   Looks up a localized string similar to در حال ذخیره {0} ....
         /// </summary>
         internal static string SavingFormat {
             get {
@@ -1060,7 +1060,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scan.
+        ///   Looks up a localized string similar to اسکن.
         /// </summary>
         internal static string Scan {
             get {
@@ -1069,7 +1069,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scanned Image.
+        ///   Looks up a localized string similar to تصویر اسکن شده.
         /// </summary>
         internal static string ScannedImage {
             get {
@@ -1078,7 +1078,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scanning page {0}.
+        ///   Looks up a localized string similar to در حال اسکن صفحه {0}.
         /// </summary>
         internal static string ScanPageProgress {
             get {
@@ -1087,7 +1087,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scanning page {0}....
+        ///   Looks up a localized string similar to در حال اسکن صفحه {0} ....
         /// </summary>
         internal static string ScanProgressPage {
             get {
@@ -1096,7 +1096,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Selected ({0}).
+        ///   Looks up a localized string similar to انتخاب شده ({0}).
         /// </summary>
         internal static string SelectedCount {
             get {
@@ -1105,7 +1105,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a profile before clicking Scan..
+        ///   Looks up a localized string similar to قبل از کلیک روی اسکن ، یک نمایه را انتخاب کنید..
         /// </summary>
         internal static string SelectProfileBeforeScan {
             get {
@@ -1114,7 +1114,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Server started.
+        ///   Looks up a localized string similar to سرور شروع شد.
         /// </summary>
         internal static string ServerStarted {
             get {
@@ -1132,7 +1132,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The OCR engine is not available. Make sure to install the required package:.
+        ///   Looks up a localized string similar to موتور OCR موجود نیست. اطمینان حاصل کنید که بسته مورد نیاز را نصب کنید:.
         /// </summary>
         internal static string TesseractNotAvailable {
             get {
@@ -1141,7 +1141,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred with the scanning driver..
+        ///   Looks up a localized string similar to خطایی در درایور اسکن رخ داده است..
         /// </summary>
         internal static string UnknownDriverError {
             get {
@@ -1150,7 +1150,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unsaved Changes.
+        ///   Looks up a localized string similar to تغییرات ذخیره نشده.
         /// </summary>
         internal static string UnsavedChanges {
             get {
@@ -1159,7 +1159,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An update is available..
+        ///   Looks up a localized string similar to به روزرسانی موجود است.
         /// </summary>
         internal static string UpdateAvailable {
             get {
@@ -1168,7 +1168,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured when trying to install the update..
+        ///   Looks up a localized string similar to هنگام نصب به روزرسانی خطایی روی داد..
         /// </summary>
         internal static string UpdateError {
             get {
@@ -1177,7 +1177,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Progress.
+        ///   Looks up a localized string similar to پیشرفت را به روز کنید.
         /// </summary>
         internal static string UpdateProgress {
             get {
@@ -1186,7 +1186,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updating....
+        ///   Looks up a localized string similar to در حال بروز رسانی ....
         /// </summary>
         internal static string Updating {
             get {
@@ -1195,7 +1195,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uploading email....
+        ///   Looks up a localized string similar to در حال بارگذاری ایمیل ....
         /// </summary>
         internal static string UploadingEmail {
             get {
@@ -1204,7 +1204,7 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version {0}.
+        ///   Looks up a localized string similar to نگارش {0}.
         /// </summary>
         internal static string Version {
             get {
