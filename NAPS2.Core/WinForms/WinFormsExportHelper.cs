@@ -1,6 +1,4 @@
-﻿using NAPS2.Config;
-using NAPS2.ImportExport;
-using NAPS2.ImportExport.Email;
+﻿using NAPS2.ImportExport.Email;
 using NAPS2.ImportExport.Images;
 using NAPS2.ImportExport.Pdf;
 using NAPS2.Lang.Resources;
@@ -20,29 +18,23 @@ namespace NAPS2.WinForms
     {
         private readonly PdfSettingsContainer pdfSettingsContainer;
         private readonly ImageSettingsContainer imageSettingsContainer;
-        private readonly EmailSettingsContainer emailSettingsContainer;
         private readonly DialogHelper dialogHelper;
-        private readonly FileNamePlaceholders fileNamePlaceholders;
         private readonly ChangeTracker changeTracker;
         private readonly IOperationFactory operationFactory;
-        private readonly IFormFactory formFactory;
         private readonly OcrManager ocrManager;
         private readonly IOperationProgress operationProgress;
-        private readonly IUserConfigManager userConfigManager;
 
-        public WinFormsExportHelper(PdfSettingsContainer pdfSettingsContainer, ImageSettingsContainer imageSettingsContainer, EmailSettingsContainer emailSettingsContainer, DialogHelper dialogHelper, FileNamePlaceholders fileNamePlaceholders, ChangeTracker changeTracker, IOperationFactory operationFactory, IFormFactory formFactory, OcrManager ocrManager, IEmailProviderFactory emailProviderFactory, IOperationProgress operationProgress, IUserConfigManager userConfigManager)
+        public WinFormsExportHelper(PdfSettingsContainer pdfSettingsContainer,
+            ImageSettingsContainer imageSettingsContainer, DialogHelper dialogHelper, ChangeTracker changeTracker,
+            IOperationFactory operationFactory, OcrManager ocrManager, IOperationProgress operationProgress)
         {
             this.pdfSettingsContainer = pdfSettingsContainer;
             this.imageSettingsContainer = imageSettingsContainer;
-            this.emailSettingsContainer = emailSettingsContainer;
             this.dialogHelper = dialogHelper;
-            this.fileNamePlaceholders = fileNamePlaceholders;
             this.changeTracker = changeTracker;
             this.operationFactory = operationFactory;
-            this.formFactory = formFactory;
             this.ocrManager = ocrManager;
             this.operationProgress = operationProgress;
-            this.userConfigManager = userConfigManager;
         }
 
         public async Task<bool> SavePdf(List<ScannedImage> images, ISaveNotify notify)
