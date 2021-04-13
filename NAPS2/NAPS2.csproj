@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NAPS2</RootNamespace>
     <AssemblyName>NAPS2</AssemblyName>
-    <ApplicationIcon>scanner-app.ico</ApplicationIcon>
+    <ApplicationIcon>eoa.ico</ApplicationIcon>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -187,6 +187,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="eoa.ico" />
     <Content Include="Setup\LanguageComponents.wxs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
