@@ -2,15 +2,15 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Product
       Id="*"
-      Name="NAPS2"
+      Name="Rayvarz Scanner Service"
       Language="1033"
-      Version="6.1.2"
-      Manufacturer="Ben Olden-Cooligan"
+      Version="1.0.0"
+      Manufacturer="Andishe Novin Rayvarz"
       UpgradeCode="FEB82971-B3E6-4F19-9684-1D543E644D73">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
-    <Media Id="1" Cabinet="NAPS2.cab" EmbedCab="yes" CompressionLevel="high" />
+    <Media Id="1" Cabinet="NAPS.cab" EmbedCab="yes" CompressionLevel="high" />
 
-    <Icon Id="icon.ico" SourceFile="..\NAPS2.Core\Icons\scanner.ico"/>
+    <Icon Id="icon.ico" SourceFile="..\NAPS2.Core\Icons\eoa.ico"/>
     <Property Id="ARPPRODUCTICON" Value="icon.ico" />
 
     <MajorUpgrade DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit." />
@@ -19,7 +19,7 @@
     <UIRef Id="WixUI_InstallDir" />
     <WixVariable Id="WixUILicenseRtf" Value="..\NAPS2\Setup\license.rtf" />
 
-    <Feature Id="MainApplication" Title="NAPS2" Level="1">
+    <Feature Id="MainApplication" Title="Rayvarz Scanner Service" Level="1">
       <ComponentRef Id="Exec" />
       <ComponentRef Id="Deps" />
       <ComponentRef Id="Deps64" />
@@ -31,34 +31,34 @@
 
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="INSTALLFOLDER" Name="NAPS2">
+        <Directory Id="INSTALLFOLDER" Name="Rayvarz Scanner Service">
           <Directory Id="LIBFOLDER" Name="lib">
             <Directory Id="LIB64FOLDER" Name="64" />
           </Directory>
         </Directory>
       </Directory>
       <Directory Id="ProgramMenuFolder">
-        <Directory Id="ProgramMenuDir" Name="NAPS2" />
+        <Directory Id="ProgramMenuDir" Name="Rayvarz Scanner Service" />
       </Directory>
       <Directory Id="SystemFolder" />
 
       <!-- Registry -->
       <Component Id="RegistryEntries" Guid="5A1EA674-0ED2-42DF-817A-772F1B91EAE3">
         <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\WIA_{1c3a7177-f3a7-439e-be47-e304a185f932}">
-          <RegistryValue Type="string" Name="Action" Value="Scan with NAPS2" />
+          <RegistryValue Type="string" Name="Action" Value="Scan with Rayvarz Scanner Service" />
           <RegistryValue Type="string" Name="CLSID" Value="WIACLSID" />
           <RegistryValue Type="string" Name="DefaultIcon" Value="sti.dll,0" />
           <RegistryValue Type="string" Name="InitCmdLine" Value="/WiaCmd;[INSTALLFOLDER]NAPS2.exe /StiDevice:%1 /StiEvent:%2;" />
-          <RegistryValue Type="string" Name="Provider" Value="NAPS2" />
+          <RegistryValue Type="string" Name="Provider" Value="Rayvarz Scanner Service" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\StillImage\Registered Applications">
-          <RegistryValue Type="string" Name="NAPS2" Value="[INSTALLFOLDER]NAPS2.exe" />
+          <RegistryValue Type="string" Name="Rayvarz Scanner Service" Value="[INSTALLFOLDER]NAPS2.exe" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="SYSTEM\CurrentControlSet\Control\StillImage\Events\STIProxyEvent\{1c3a7177-f3a7-439e-be47-e304a185f932}">
           <RegistryValue Type="string" Name="Cmdline" Value="[INSTALLFOLDER]NAPS2.exe /StiDevice:%1 /StiEvent:%2" />
           <RegistryValue Type="string" Name="Desc" Value="Scan with NAPS2" />
           <RegistryValue Type="string" Name="Icon" Value="[INSTALLFOLDER]NAPS2.exe,0" />
-          <RegistryValue Type="string" Name="Name" Value="NAPS2" />
+          <RegistryValue Type="string" Name="Name" Value="Rayvarz Scanner Service" />
         </RegistryKey>
       </Component>
     </Directory>
@@ -124,12 +124,12 @@
     <DirectoryRef Id="ProgramMenuDir">
       <Component Id="ApplicationShortcut" Guid="F5122C0C-7DCA-4D0A-AF70-C87C972267AB">
         <Shortcut Id="ApplicationStartMenuShortcut"
-                  Name="NAPS2"
+                  Name="Rayvarz Scanner Service"
                   Description="Not Another PDF Scanner 2"
                   Target="[INSTALLFOLDER]NAPS2.exe"
                   WorkingDirectory="INSTALLFOLDER" />
         <RemoveFolder Id="ProgramMenuDir" On="uninstall"/>
-        <RegistryValue Root="HKCU" Key="Software\Microsoft\NAPS2" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+        <RegistryValue Root="HKCU" Key="Software\Microsoft\Rayvarz Scanner Service" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
       </Component>
     </DirectoryRef>
 
