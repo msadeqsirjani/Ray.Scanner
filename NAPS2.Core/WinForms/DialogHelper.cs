@@ -25,8 +25,6 @@ namespace NAPS2.WinForms
                 AddExtension = true,
                 Filter = MiscResources.FileTypePdf + @"|*.pdf|" +
                          MiscResources.FileTypeBmp + @"|*.bmp|" +
-                         //MiscResources.FileTypeEmf + @"|*.emf|" +
-                         //MiscResources.FileTypeExif + @"|*.exif|" +
                          MiscResources.FileTypeGif + @"|*.gif|" +
                          MiscResources.FileTypeJpeg + @"|*.jpg;*.jpeg|" +
                          MiscResources.FileTypePng + @"|*.png|" +
@@ -71,12 +69,10 @@ namespace NAPS2.WinForms
                 OverwritePrompt = false,
                 AddExtension = true,
                 Filter = MiscResources.FileTypeBmp + @"|*.bmp|" +
-                            //MiscResources.FileTypeEmf + @"|*.emf|" +
-                            //MiscResources.FileTypeExif + @"|*.exif|" +
-                            MiscResources.FileTypeGif + @"|*.gif|" +
-                            MiscResources.FileTypeJpeg + @"|*.jpg;*.jpeg|" +
-                            MiscResources.FileTypePng + @"|*.png|" +
-                            MiscResources.FileTypeTiff + @"|*.tiff;*.tif",
+                         MiscResources.FileTypeGif + @"|*.gif|" +
+                         MiscResources.FileTypeJpeg + @"|*.jpg;*.jpeg|" +
+                         MiscResources.FileTypePng + @"|*.png|" +
+                         MiscResources.FileTypeTiff + @"|*.tiff;*.tif",
                 FileName = fileName,
                 InitialDirectory = fileDir
             };
@@ -105,6 +101,7 @@ namespace NAPS2.WinForms
                     sd.FilterIndex = 5;
                     break;
             }
+
             if (sd.ShowDialog() == DialogResult.OK)
             {
                 savePath = sd.FileName;
@@ -112,6 +109,7 @@ namespace NAPS2.WinForms
                 userConfigManager.Save();
                 return true;
             }
+
             savePath = null;
             return false;
         }
