@@ -4,7 +4,6 @@ using NAPS2.Config;
 using NAPS2.ImportExport;
 using NAPS2.Lang.Resources;
 using NAPS2.Logging;
-using NAPS2.Ocr;
 using NAPS2.Operation;
 using NAPS2.Platform;
 using NAPS2.Recovery;
@@ -72,7 +71,7 @@ namespace NAPS2.WinForms
         #region Initialization and Culture
 
         public FDesktop(StringWrapper stringWrapper, AppConfigManager appConfigManager, RecoveryManager recoveryManager,
-            OcrManager ocrManager, IProfileManager profileManager, IScanPerformer scanPerformer, ChangeTracker changeTracker, StillImage stillImage,
+            IProfileManager profileManager, IScanPerformer scanPerformer, ChangeTracker changeTracker, StillImage stillImage,
             IOperationFactory operationFactory, IUserConfigManager userConfigManager, KeyboardShortcutManager ksm,
             ThumbnailRenderer thumbnailRenderer, WinFormsExportHelper exportHelper,
             ScannedImageRenderer scannedImageRenderer, NotificationManager notify,
@@ -143,7 +142,6 @@ namespace NAPS2.WinForms
 
             LoadToolStripLocation();
             RelayoutToolbar();
-            //InitLanguageDropdown();
             AssignKeyboardShortcuts();
             UpdateScanButton();
 
@@ -372,28 +370,26 @@ namespace NAPS2.WinForms
                 }
             }
 
-            if (!e.Cancel && operationProgress.ActiveOperations.Any())
+            if (e.Cancel || !operationProgress.ActiveOperations.Any()) return;
+            operationProgress.ActiveOperations.ForEach(op => op.Cancel());
+            e.Cancel = true;
+            Hide();
+            ShowInTaskbar = false;
+            Task.Factory.StartNew(() =>
             {
-                operationProgress.ActiveOperations.ForEach(op => op.Cancel());
-                e.Cancel = true;
-                Hide();
-                ShowInTaskbar = false;
-                Task.Factory.StartNew(() =>
+                var timeoutCts = new CancellationTokenSource();
+                timeoutCts.CancelAfter(TimeSpan.FromSeconds(60));
+                try
                 {
-                    var timeoutCts = new CancellationTokenSource();
-                    timeoutCts.CancelAfter(TimeSpan.FromSeconds(60));
-                    try
-                    {
-                        operationProgress.ActiveOperations.ForEach(op => op.Wait(timeoutCts.Token));
-                    }
-                    catch (OperationCanceledException)
-                    {
-                    }
+                    operationProgress.ActiveOperations.ForEach(op => op.Wait(timeoutCts.Token));
+                }
+                catch (OperationCanceledException)
+                {
+                }
 
-                    closed = true;
-                    SafeInvoke(Close);
-                });
-            }
+                closed = true;
+                SafeInvoke(Close);
+            });
         }
 
         private void FDesktop_Closed(object sender, EventArgs e)
