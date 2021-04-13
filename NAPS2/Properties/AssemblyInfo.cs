@@ -1,17 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NAPS2 (Not Another PDF Scanner 2)")]
+[assembly: AssemblyTitle("Rayvarz Scanner Service")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NAPS2 (Not Another PDF Scanner 2)")]
+[assembly: AssemblyProduct("Rayvarz Scanner Service")]
 [assembly: AssemblyCopyright("Copyright 2009, 2012-2018 NAPS2 Contributors; Icons from http://www.fatcow.com/free-icons")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
