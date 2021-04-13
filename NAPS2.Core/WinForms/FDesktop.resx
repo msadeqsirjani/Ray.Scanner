@@ -130,7 +130,7 @@
     <value>4</value>
   </data>
   <data name="btnZoomIn.AccessibleName" xml:space="preserve">
-    <value>Zoom In</value>
+    <value>بزرگنمایی</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnZoomIn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
@@ -141,10 +141,13 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnZoomIn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 439</value>
+    <value>43, 540</value>
+  </data>
+  <data name="btnZoomIn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnZoomIn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 23</value>
+    <value>31, 28</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnZoomIn.TabIndex" type="System.Int32, mscorlib">
@@ -163,16 +166,19 @@
     <value>0</value>
   </data>
   <data name="btnZoomOut.AccessibleName" xml:space="preserve">
-    <value>Zoom Out</value>
+    <value>کوچک نمایی</value>
   </data>
   <data name="btnZoomOut.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="btnZoomOut.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 439</value>
+    <value>13, 540</value>
+  </data>
+  <data name="btnZoomOut.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnZoomOut.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 23</value>
+    <value>31, 28</value>
   </data>
   <data name="btnZoomOut.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -196,10 +202,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnZoomMouseCatcher.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 439</value>
+    <value>13, 540</value>
+  </data>
+  <data name="btnZoomMouseCatcher.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnZoomMouseCatcher.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 23</value>
+    <value>60, 28</value>
   </data>
   <data name="btnZoomMouseCatcher.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -223,19 +232,19 @@
     <value>Segoe UI, 9pt, style=Bold</value>
   </data>
   <data name="ctxView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>202, 24</value>
   </data>
   <data name="ctxView.Text" xml:space="preserve">
     <value>نما</value>
   </data>
   <data name="ctxSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 6</value>
+    <value>199, 6</value>
   </data>
   <data name="ctxSelectAll.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+A</value>
   </data>
   <data name="ctxSelectAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>202, 24</value>
   </data>
   <data name="ctxSelectAll.Text" xml:space="preserve">
     <value>انتخاب همه</value>
@@ -244,7 +253,7 @@
     <value>Ctrl+C</value>
   </data>
   <data name="ctxCopy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>202, 24</value>
   </data>
   <data name="ctxCopy.Text" xml:space="preserve">
     <value>کپی</value>
@@ -253,22 +262,22 @@
     <value>Ctrl+V</value>
   </data>
   <data name="ctxPaste.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>202, 24</value>
   </data>
   <data name="ctxPaste.Text" xml:space="preserve">
     <value>چسباندن</value>
   </data>
   <data name="ctxSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 6</value>
+    <value>199, 6</value>
   </data>
   <data name="ctxDelete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>202, 24</value>
   </data>
   <data name="ctxDelete.Text" xml:space="preserve">
     <value>حذف</value>
   </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 126</value>
+    <value>203, 136</value>
   </data>
   <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
     <value>contextMenuStrip</value>
@@ -282,8 +291,11 @@
   <data name="thumbnailList1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="thumbnailList1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="thumbnailList1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1204, 472</value>
+    <value>1605, 584</value>
   </data>
   <data name="thumbnailList1.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -292,7 +304,7 @@
     <value>thumbnailList1</value>
   </data>
   <data name="&gt;&gt;thumbnailList1.Type" xml:space="preserve">
-    <value>NAPS2.WinForms.ThumbnailList, NAPS2.Core, Version=6.1.2.28849, Culture=neutral, PublicKeyToken=null</value>
+    <value>NAPS2.WinForms.ThumbnailList, NAPS2.Core, Version=6.1.2.20676, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;thumbnailList1.Parent" xml:space="preserve">
     <value>toolStripContainer1.ContentPanel</value>
@@ -300,8 +312,11 @@
   <data name="&gt;&gt;thumbnailList1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="toolStripContainer1.ContentPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="toolStripContainer1.ContentPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1204, 472</value>
+    <value>1605, 584</value>
   </data>
   <data name="&gt;&gt;toolStripContainer1.ContentPanel.Name" xml:space="preserve">
     <value>toolStripContainer1.ContentPanel</value>
@@ -333,6 +348,9 @@
   <data name="toolStripContainer1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="toolStripContainer1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="&gt;&gt;toolStripContainer1.RightToolStripPanel.Name" xml:space="preserve">
     <value>toolStripContainer1.RightToolStripPanel</value>
   </data>
@@ -346,7 +364,7 @@
     <value>2</value>
   </data>
   <data name="toolStripContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1204, 526</value>
+    <value>1605, 647</value>
   </data>
   <data name="toolStripContainer1.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -361,7 +379,7 @@
     <value>None</value>
   </data>
   <data name="tsNewProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>237, 26</value>
   </data>
   <data name="tsNewProfile.Text" xml:space="preserve">
     <value>&amp;مجموعه تنظیمات جدید</value>
@@ -370,7 +388,7 @@
     <value>None</value>
   </data>
   <data name="tsBatchScan.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>237, 26</value>
   </data>
   <data name="tsBatchScan.Text" xml:space="preserve">
     <value>&amp;اسکن دسته‌ای</value>
@@ -379,7 +397,7 @@
     <value>Magenta</value>
   </data>
   <data name="tsScan.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 51</value>
+    <value>73, 60</value>
   </data>
   <data name="tsScan.Text" xml:space="preserve">
     <value>&amp;اسکن</value>
@@ -390,7 +408,7 @@
   <data name="tsProfiles.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAcsSURBVFhHnZZrUJTXGcfttP2YmX6Rr/3QZmy8hZh02n7q
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAcsSURBVFhHnZZrUJTXGcfttP2YmX6Rr/3QZmy8hZh02n7q
         TMygEhAQ2AtgmiZiRATEW20naZM29UpSjVyXO7rswiLiJU1MveCN+7KwsCzsIpogl10EzaXTmaD8+3/O
         hgTwXVDPzH/Oe877nvP8z/P83t130WO2n7yQbj0Xmn4SK9NsWLnNhhWU9Avp+bQa9lV1skdgq6drz0jw
         GqcPVscoKu3DONE6DIt9BFUca8naPgpL+wiqO0bxl2onVqSYa7nPjwPbPXlbLCev5KbrDl1C2IGL8P4X
@@ -428,7 +446,7 @@
     <value>Magenta</value>
   </data>
   <data name="tsProfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 51</value>
+    <value>92, 60</value>
   </data>
   <data name="tsProfiles.Text" xml:space="preserve">
     <value>&amp;پروفایل‌ها</value>
@@ -440,7 +458,7 @@
     <value>Magenta</value>
   </data>
   <data name="tsImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 51</value>
+    <value>93, 60</value>
   </data>
   <data name="tsImport.Text" xml:space="preserve">
     <value>&amp;وارد کردن</value>
@@ -449,25 +467,25 @@
     <value>ImageAboveText</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 54</value>
+    <value>6, 63</value>
   </data>
   <data name="tsSavePDFAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 22</value>
+    <value>207, 26</value>
   </data>
   <data name="tsSavePDFAll.Text" xml:space="preserve">
-    <value>&amp;همه ({0})</value>
+    <value>&amp;همه</value>
   </data>
   <data name="tsSavePDFSelected.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 22</value>
+    <value>207, 26</value>
   </data>
   <data name="tsSavePDFSelected.Text" xml:space="preserve">
-    <value>&amp;انتخاب شده ({0})</value>
+    <value>&amp;انتخاب شده</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 6</value>
+    <value>204, 6</value>
   </data>
   <data name="tsPDFSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 22</value>
+    <value>207, 26</value>
   </data>
   <data name="tsPDFSettings.Text" xml:space="preserve">
     <value>&amp;تنظیمات پی‌دی‌اف</value>
@@ -476,7 +494,7 @@
     <value>Magenta</value>
   </data>
   <data name="tsdSavePDF.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 51</value>
+    <value>93, 60</value>
   </data>
   <data name="tsdSavePDF.Text" xml:space="preserve">
     <value>&amp;ذخیره PDF</value>
@@ -485,22 +503,22 @@
     <value>ImageAboveText</value>
   </data>
   <data name="tsSaveImagesAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 22</value>
+    <value>191, 26</value>
   </data>
   <data name="tsSaveImagesAll.Text" xml:space="preserve">
-    <value>&amp;همه ({0})</value>
+    <value>&amp;همه</value>
   </data>
   <data name="tsSaveImagesSelected.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 22</value>
+    <value>191, 26</value>
   </data>
   <data name="tsSaveImagesSelected.Text" xml:space="preserve">
-    <value>&amp;انتخاب شده ({0})</value>
+    <value>&amp;انتخاب شده</value>
   </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 6</value>
+    <value>188, 6</value>
   </data>
   <data name="tsImageSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 22</value>
+    <value>191, 26</value>
   </data>
   <data name="tsImageSettings.Text" xml:space="preserve">
     <value>&amp;تنظیمات تصویر</value>
@@ -509,7 +527,7 @@
     <value>Magenta</value>
   </data>
   <data name="tsdSaveImages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 51</value>
+    <value>146, 60</value>
   </data>
   <data name="tsdSaveImages.Text" xml:space="preserve">
     <value>&amp;ذخیره کردن تصاویر</value>
@@ -518,22 +536,22 @@
     <value>ImageAboveText</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 54</value>
+    <value>6, 63</value>
   </data>
   <data name="tsView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>217, 26</value>
   </data>
   <data name="tsView.Text" xml:space="preserve">
     <value>&amp;نما</value>
   </data>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 6</value>
+    <value>214, 6</value>
   </data>
   <data name="tsCrop.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
     <value>None</value>
   </data>
   <data name="tsCrop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>217, 26</value>
   </data>
   <data name="tsCrop.Text" xml:space="preserve">
     <value>&amp;برش کناره‌ها</value>
@@ -542,25 +560,25 @@
     <value>None</value>
   </data>
   <data name="tsBrightnessContrast.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>217, 26</value>
   </data>
   <data name="tsBrightnessContrast.Text" xml:space="preserve">
-    <value>&amp;Brightness / Contrast</value>
+    <value>&amp; روشنایی / کنتراست</value>
   </data>
   <data name="tsHueSaturation.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
     <value>None</value>
   </data>
   <data name="tsHueSaturation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>217, 26</value>
   </data>
   <data name="tsHueSaturation.Text" xml:space="preserve">
-    <value>&amp;Hue / Saturation</value>
+    <value>&amp;اشباع رنگ</value>
   </data>
   <data name="tsBlackWhite.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
     <value>None</value>
   </data>
   <data name="tsBlackWhite.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>217, 26</value>
   </data>
   <data name="tsBlackWhite.Text" xml:space="preserve">
     <value>&amp;سیاه و سفید</value>
@@ -569,16 +587,16 @@
     <value>None</value>
   </data>
   <data name="tsSharpen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>217, 26</value>
   </data>
   <data name="tsSharpen.Text" xml:space="preserve">
     <value>&amp;Sharpen</value>
   </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 6</value>
+    <value>214, 6</value>
   </data>
   <data name="tsReset.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>217, 26</value>
   </data>
   <data name="tsReset.Text" xml:space="preserve">
     <value>&amp;تنظیم مجدد</value>
@@ -587,7 +605,7 @@
     <value>Magenta</value>
   </data>
   <data name="tsdImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 51</value>
+    <value>73, 60</value>
   </data>
   <data name="tsdImage.Text" xml:space="preserve">
     <value>&amp;تصویر</value>
@@ -599,7 +617,7 @@
     <value>None</value>
   </data>
   <data name="tsRotateLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 22</value>
+    <value>189, 26</value>
   </data>
   <data name="tsRotateLeft.Text" xml:space="preserve">
     <value>&amp;چرخش چپ</value>
@@ -608,7 +626,7 @@
     <value>None</value>
   </data>
   <data name="tsRotateRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 22</value>
+    <value>189, 26</value>
   </data>
   <data name="tsRotateRight.Text" xml:space="preserve">
     <value>&amp;چرخش راست</value>
@@ -617,7 +635,7 @@
     <value>None</value>
   </data>
   <data name="tsFlip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 22</value>
+    <value>189, 26</value>
   </data>
   <data name="tsFlip.Text" xml:space="preserve">
     <value>&amp;پشت و رو</value>
@@ -626,13 +644,13 @@
     <value>None</value>
   </data>
   <data name="tsDeskew.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 22</value>
+    <value>189, 26</value>
   </data>
   <data name="tsDeskew.Text" xml:space="preserve">
     <value>&amp;Deskew</value>
   </data>
   <data name="tsCustomRotation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 22</value>
+    <value>189, 26</value>
   </data>
   <data name="tsCustomRotation.Text" xml:space="preserve">
     <value>&amp;چرخش سفارشی</value>
@@ -641,7 +659,7 @@
     <value>Magenta</value>
   </data>
   <data name="tsdRotate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 51</value>
+    <value>75, 60</value>
   </data>
   <data name="tsdRotate.Text" xml:space="preserve">
     <value>&amp;چرخش</value>
@@ -656,52 +674,52 @@
     <value>بردن به پایین</value>
   </data>
   <data name="tsMove.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 51</value>
+    <value>99, 60</value>
   </data>
   <data name="tsInterleave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>364, 26</value>
   </data>
   <data name="tsInterleave.Text" xml:space="preserve">
     <value>&amp;جایگذاری</value>
   </data>
   <data name="tsDeinterleave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>364, 26</value>
   </data>
   <data name="tsDeinterleave.Text" xml:space="preserve">
     <value>&amp;صفحات سفید را حذف کردن</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 6</value>
+    <value>361, 6</value>
   </data>
   <data name="tsAltInterleave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>364, 26</value>
   </data>
   <data name="tsAltInterleave.Text" xml:space="preserve">
     <value>&amp;جایگذاری متناوب</value>
   </data>
   <data name="tsAltDeinterleave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>364, 26</value>
   </data>
   <data name="tsAltDeinterleave.Text" xml:space="preserve">
     <value>&amp;صفحات سفید را بصورت متناوب حذف کردن</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 6</value>
+    <value>361, 6</value>
   </data>
   <data name="tsReverseAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 22</value>
+    <value>166, 26</value>
   </data>
   <data name="tsReverseAll.Text" xml:space="preserve">
-    <value>&amp;همه ({0})</value>
+    <value>&amp;همه</value>
   </data>
   <data name="tsReverseSelected.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 22</value>
+    <value>166, 26</value>
   </data>
   <data name="tsReverseSelected.Text" xml:space="preserve">
-    <value>&amp;انتخاب شده ({0})</value>
+    <value>&amp;انتخاب شده</value>
   </data>
   <data name="tsReverse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>364, 26</value>
   </data>
   <data name="tsReverse.Text" xml:space="preserve">
     <value>&amp;معکوس</value>
@@ -710,7 +728,7 @@
     <value>Magenta</value>
   </data>
   <data name="tsdReorder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 51</value>
+    <value>120, 60</value>
   </data>
   <data name="tsdReorder.Text" xml:space="preserve">
     <value>&amp;چیدمان دوباره</value>
@@ -719,13 +737,13 @@
     <value>ImageAboveText</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 54</value>
+    <value>6, 63</value>
   </data>
   <data name="tsDelete.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="tsDelete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 51</value>
+    <value>65, 60</value>
   </data>
   <data name="tsDelete.Text" xml:space="preserve">
     <value>&amp;حذف</value>
@@ -737,7 +755,7 @@
     <value>Magenta</value>
   </data>
   <data name="tsClear.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 51</value>
+    <value>87, 60</value>
   </data>
   <data name="tsClear.Text" xml:space="preserve">
     <value>&amp;پاک‌کردن</value>
@@ -746,13 +764,13 @@
     <value>ImageAboveText</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 54</value>
+    <value>6, 63</value>
   </data>
   <data name="tStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+    <value>4, 0</value>
   </data>
   <data name="tStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>948, 54</value>
+    <value>1083, 63</value>
   </data>
   <data name="tStrip.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -800,10 +818,10 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1204, 526</value>
+    <value>1605, 647</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -828,6 +846,9 @@
         AAAAAAAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIADAADAAwAAwAMAAMADAADAAwAAgAMAAIAB
         AACAAQAAgAMAAA==
 </value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>اسکنر اتوماسیون اداری رایورز</value>
@@ -1076,7 +1097,7 @@
     <value>tsMove</value>
   </data>
   <data name="&gt;&gt;tsMove.Type" xml:space="preserve">
-    <value>NAPS2.WinForms.ToolStripDoubleButton, NAPS2.Core, Version=6.1.2.28849, Culture=neutral, PublicKeyToken=null</value>
+    <value>NAPS2.WinForms.ToolStripDoubleButton, NAPS2.Core, Version=6.1.2.20676, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;tsdReorder.Name" xml:space="preserve">
     <value>tsdReorder</value>
@@ -1166,6 +1187,6 @@
     <value>FDesktop</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>NAPS2.WinForms.FormBase, NAPS2.Core, Version=6.1.2.28849, Culture=neutral, PublicKeyToken=null</value>
+    <value>NAPS2.WinForms.FormBase, NAPS2.Core, Version=6.1.2.20676, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>
