@@ -102,7 +102,7 @@ namespace NAPS2.WinForms
                 lvProfiles.Items.Add(profile.DisplayName,
                     profile.IsDefault
                         ? profile.IsLocked ? DEFAULT_LOCK_PROFILE_ICON_ID : DEFAULT_PROFILE_ICON_ID
-                        : profile.IsLocked ? LOCK_PROFILE_ICON_ID : profile.IconID);
+                        : profile.IsLocked ? LOCK_PROFILE_ICON_ID : profile.IconId);
             }
         }
 

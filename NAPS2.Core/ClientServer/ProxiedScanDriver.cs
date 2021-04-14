@@ -63,7 +63,7 @@ namespace NAPS2.ClientServer
                 {
                     using (var client = clientContextFactory.Create(ScanProfile.ProxyConfig))
                     {
-                        var noUi = ScanParams.NoUI;
+                        var noUi = ScanParams.NoUi;
                         var form = Invoker.Current.InvokeGet(() => noUi ? null : formFactory.Create<FScanProgress>());
                         var pageNumber = 1;
                         var sem = new Semaphore(0, int.MaxValue);

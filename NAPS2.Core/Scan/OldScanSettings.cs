@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace NAPS2.Scan
@@ -18,7 +15,7 @@ namespace NAPS2.Scan
 
         public string DisplayName { get; set; }
 
-        public int IconID { get; set; }
+        public int IconId { get; set; }
 
         public bool MaxQuality { get; set; }
 
@@ -43,7 +40,7 @@ namespace NAPS2.Scan
 
         public int Version { get; set; }
 
-        public bool UseNativeUI { get; set; }
+        public bool UseNativeUi { get; set; }
 
         public ScanScale AfterScanScale { get; set; }
 

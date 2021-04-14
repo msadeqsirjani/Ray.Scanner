@@ -617,7 +617,7 @@ namespace NAPS2.Automation
                 scanList.Add(new List<ScannedImage>());
                 var scanParams = new ScanParams
                 {
-                    NoUI = !options.Progress,
+                    NoUi = !options.Progress,
                     NoAutoSave = !options.AutoSave,
                     NoThumbnails = true,
                     DetectPatchCodes = options.SplitPatchT,

@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
 using NAPS2.Util;
+using System;
+using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace NAPS2.Scan.Twain.Legacy
 {
@@ -23,15 +21,15 @@ namespace NAPS2.Scan.Twain.Legacy
         //THIS METHOD SAVES THE CONTENTS OF THE DIB POINTER INTO A BITMAP OBJECT
         public static Bitmap BitmapFromDib(IntPtr pDib, out int bitdepth)
         {
-            IntPtr dibhand = pDib;
-            IntPtr bmpptr = GlobalLock(dibhand);
-            IntPtr pixptr = GetPixelInfo(bmpptr);
-            BitmapInfoHeader binfo = GetDibInfo(bmpptr);
-            float resx = binfo.biXPelsPerMeter * 0.0254f;
-            float resy = binfo.biYPelsPerMeter * 0.0254f;
+            var dibhand = pDib;
+            var bmpptr = GlobalLock(dibhand);
+            var pixptr = GetPixelInfo(bmpptr);
+            var binfo = GetDibInfo(bmpptr);
+            var resx = binfo.biXPelsPerMeter * 0.0254f;
+            var resy = binfo.biYPelsPerMeter * 0.0254f;
             var scannedImage = new Bitmap(binfo.biWidth, binfo.biHeight);
-            Graphics scannedImageGraphics = Graphics.FromImage(scannedImage);
-            IntPtr hdc = scannedImageGraphics.GetHdc();
+            var scannedImageGraphics = Graphics.FromImage(scannedImage);
+            var hdc = scannedImageGraphics.GetHdc();
             SetDIBitsToDevice(hdc, 0, 0, binfo.biWidth, binfo.biHeight, 0, 0, 0, binfo.biHeight, pixptr, bmpptr, 0);
             scannedImageGraphics.ReleaseHdc(hdc);
             GlobalFree(dibhand);
@@ -47,12 +45,12 @@ namespace NAPS2.Scan.Twain.Legacy
             var bmi = (BitmapInfoHeader)Marshal.PtrToStructure(bmpPtr, typeof(BitmapInfoHeader));
 
             if (bmi.biSizeImage == 0)
-                bmi.biSizeImage = (uint)(((((bmi.biWidth * bmi.biBitCount) + 31) & ~31) >> 3) * bmi.biHeight);
+                bmi.biSizeImage = (uint)((((bmi.biWidth * bmi.biBitCount + 31) & ~31) >> 3) * bmi.biHeight);
 
             var p = (int)bmi.biClrUsed;
-            if ((p == 0) && (bmi.biBitCount <= 8))
+            if (p == 0 && bmi.biBitCount <= 8)
                 p = 1 << bmi.biBitCount;
-            p = (p * 4) + (int)bmi.biSize + (int)bmpPtr;
+            p = p * 4 + (int)bmi.biSize + (int)bmpPtr;
             return (IntPtr)p;
         }
 

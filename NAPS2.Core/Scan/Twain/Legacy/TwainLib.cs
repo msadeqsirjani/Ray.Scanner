@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -30,9 +28,9 @@ namespace NAPS2.Scan.Twain.Legacy
         public Twain()
         {
             appid = new TwIdentity
-                {
-                    Id = IntPtr.Zero,
-                    Version =
+            {
+                Id = IntPtr.Zero,
+                Version =
                         {
                             MajorNum = 1,
                             MinorNum = 1,
@@ -40,13 +38,13 @@ namespace NAPS2.Scan.Twain.Legacy
                             Country = COUNTRY_USA,
                             Info = "Hack 1"
                         },
-                    ProtocolMajor = TwProtocol.MAJOR,
-                    ProtocolMinor = TwProtocol.MINOR,
-                    SupportedGroups = (int)(TwDG.Image | TwDG.Control),
-                    Manufacturer = "NETMaster",
-                    ProductFamily = "Freeware",
-                    ProductName = "Hack"
-                };
+                ProtocolMajor = TwProtocol.MAJOR,
+                ProtocolMinor = TwProtocol.MINOR,
+                SupportedGroups = (int)(TwDG.Image | TwDG.Control),
+                Manufacturer = "NETMaster",
+                ProductFamily = "Freeware",
+                ProductName = "Hack"
+            };
 
             srcds = new TwIdentity { Id = IntPtr.Zero };
 
@@ -57,8 +55,8 @@ namespace NAPS2.Scan.Twain.Legacy
         {
             get
             {
-                IntPtr screenDC = CreateDC("DISPLAY", null, null, IntPtr.Zero);
-                int bitDepth = GetDeviceCaps(screenDC, 12);
+                var screenDC = CreateDC("DISPLAY", null, null, IntPtr.Zero);
+                var bitDepth = GetDeviceCaps(screenDC, 12);
                 bitDepth *= GetDeviceCaps(screenDC, 14);
                 DeleteDC(screenDC);
                 return bitDepth;
@@ -73,7 +71,7 @@ namespace NAPS2.Scan.Twain.Legacy
         public bool Init(IntPtr hwndp)
         {
             Finish();
-            TwReturnCode returnCode = DSMparent(appid, IntPtr.Zero, TwDG.Control, TwData.Parent, TwMessageCode.OpenDSM, ref hwndp);
+            var returnCode = DSMparent(appid, IntPtr.Zero, TwDG.Control, TwData.Parent, TwMessageCode.OpenDSM, ref hwndp);
             if (returnCode == TwReturnCode.Success)
             {
                 returnCode = DSMident(appid, IntPtr.Zero, TwDG.Control, TwData.Identity, TwMessageCode.GetFirst, srcds);
@@ -107,7 +105,7 @@ namespace NAPS2.Scan.Twain.Legacy
 
         public bool GetNext()
         {
-            TwReturnCode returnCode = DSMident(appid, IntPtr.Zero, TwDG.Control, TwData.Identity, TwMessageCode.GetNext, srcds);
+            var returnCode = DSMident(appid, IntPtr.Zero, TwDG.Control, TwData.Identity, TwMessageCode.GetNext, srcds);
             return returnCode == TwReturnCode.Success;
         }
 
@@ -185,7 +183,7 @@ namespace NAPS2.Scan.Twain.Legacy
                 return pics;
 
             TwReturnCode returnCode;
-            IntPtr hbitmap = IntPtr.Zero;
+            var hbitmap = IntPtr.Zero;
             var pxfr = new TwPendingXfers();
 
             do
@@ -228,7 +226,7 @@ namespace NAPS2.Scan.Twain.Legacy
             if (srcds.Id == IntPtr.Zero)
                 return TwainCommand.Not;
 
-            int pos = GetMessagePos();
+            var pos = GetMessagePos();
 
             winmsg.hwnd = m.HWnd;
             winmsg.message = m.Msg;
@@ -240,7 +238,7 @@ namespace NAPS2.Scan.Twain.Legacy
 
             Marshal.StructureToPtr(winmsg, evtmsg.EventPtr, false);
             evtmsg.Message = 0;
-            TwReturnCode returnCode = DSevent(appid, srcds, TwDG.Control, TwData.Event, TwMessageCode.ProcessEvent, ref evtmsg);
+            var returnCode = DSevent(appid, srcds, TwDG.Control, TwData.Event, TwMessageCode.ProcessEvent, ref evtmsg);
             if (returnCode == TwReturnCode.NotDSEvent)
                 return TwainCommand.Not;
             if (evtmsg.Message == (short)TwMessageCode.XFerReady)

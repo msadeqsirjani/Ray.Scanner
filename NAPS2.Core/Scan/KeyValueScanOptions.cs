@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -35,8 +33,8 @@ namespace NAPS2.Scan
                     break;
                 }
                 reader.MoveToAttribute("name");
-                string k = reader.Value;
-                string v = reader.ReadElementString();
+                var k = reader.Value;
+                var v = reader.ReadElementString();
                 Add(k, v);
             }
         }

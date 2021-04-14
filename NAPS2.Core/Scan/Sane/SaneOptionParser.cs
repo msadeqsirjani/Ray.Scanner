@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace NAPS2.Scan.Sane
 {
@@ -57,7 +56,7 @@ namespace NAPS2.Scan.Sane
                     case OptionParseState.ReadingDescription:
                         if (line.StartsWith("        ", StringComparison.InvariantCultureIgnoreCase))
                         {
-                            string descLine = line.Substring(8).Trim();
+                            var descLine = line.Substring(8).Trim();
                             if (lastOption.Desc == null)
                             {
                                 lastOption.Desc = descLine;
@@ -81,7 +80,7 @@ namespace NAPS2.Scan.Sane
 
         private void ParseOption()
         {
-            int i = 4;
+            var i = 4;
             var option = new SaneOption
             {
                 Capabilities = SaneCapabilities.SoftSelect
@@ -91,7 +90,7 @@ namespace NAPS2.Scan.Sane
             state = OptionParseState.ReadingName;
             while (i < line.Length)
             {
-                char c = line[i];
+                var c = line[i];
                 switch (state)
                 {
                     case OptionParseState.ReadingName:
@@ -149,7 +148,7 @@ namespace NAPS2.Scan.Sane
                             i += 1;
                             break;
                         }
-                        string optionValue = builder.ToString();
+                        var optionValue = builder.ToString();
                         builder.Clear();
                         if (c == ' ' || c == '\n')
                         {
@@ -297,7 +296,7 @@ namespace NAPS2.Scan.Sane
                             break;
                         }
 
-                        string current = builder.ToString();
+                        var current = builder.ToString();
                         builder.Clear();
 
                         if (current == "inactive")

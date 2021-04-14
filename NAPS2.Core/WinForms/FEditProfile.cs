@@ -64,12 +64,12 @@ namespace NAPS2.WinForms
             // Don't trigger any onChange events
             suppressChangeEvent = true;
 
-            pctIcon.Image = ilProfileIcons.IconsList.Images[ScanProfile.IconID];
+            pctIcon.Image = ilProfileIcons.IconsList.Images[ScanProfile.IconId];
             txtName.Text = ScanProfile.DisplayName;
             CurrentDevice ??= ScanProfile.Device;
             isDefault = ScanProfile.IsDefault;
             useProxy = ScanProfile.DriverName == ProxiedScanDriver.DRIVER_NAME;
-            iconID = ScanProfile.IconID;
+            iconID = ScanProfile.IconId;
 
             cmbSource.SelectedIndex = (int)ScanProfile.PaperSource;
             cmbDepth.SelectedIndex = (int)ScanProfile.BitDepth;
@@ -86,8 +86,8 @@ namespace NAPS2.WinForms
             // The setter updates the driver selection checkboxes
             DeviceDriverName = useProxy ? ScanProfile.ProxyDriverName : ScanProfile.DriverName;
 
-            rdbNative.Checked = ScanProfile.UseNativeUI;
-            rdbConfig.Checked = !ScanProfile.UseNativeUI;
+            rdbNative.Checked = ScanProfile.UseNativeUi;
+            rdbConfig.Checked = !ScanProfile.UseNativeUi;
 
             // Start triggering onChange events again
             suppressChangeEvent = false;
@@ -286,9 +286,9 @@ namespace NAPS2.WinForms
                 ProxyConfig = ScanProfile.ProxyConfig,
                 ProxyDriverName = useProxy ? DeviceDriverName : null,
                 DisplayName = txtName.Text,
-                IconID = iconID,
+                IconId = iconID,
                 MaxQuality = ScanProfile.MaxQuality,
-                UseNativeUI = rdbNative.Checked,
+                UseNativeUi = rdbNative.Checked,
 
                 AfterScanScale = (ScanScale)cmbScale.SelectedIndex,
                 BitDepth = (ScanBitDepth)cmbDepth.SelectedIndex,

@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using NAPS2.Config;
+﻿using NAPS2.Config;
 using NAPS2.ImportExport;
 using NAPS2.Lang.Resources;
 using NAPS2.Logging;
 using NAPS2.Scan.Exceptions;
 using NAPS2.Scan.Images;
 using NAPS2.Util;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace NAPS2.Scan
 {
@@ -25,16 +24,14 @@ namespace NAPS2.Scan
         private readonly IAutoSave autoSave;
         private readonly AppConfigManager appConfigManager;
         private readonly IProfileManager profileManager;
-        private readonly ScannedImageHelper scannedImageHelper;
 
-        public ScanPerformer(IScanDriverFactory driverFactory, IErrorOutput errorOutput, IAutoSave autoSave, AppConfigManager appConfigManager, IProfileManager profileManager, ScannedImageHelper scannedImageHelper)
+        public ScanPerformer(IScanDriverFactory driverFactory, IErrorOutput errorOutput, IAutoSave autoSave, AppConfigManager appConfigManager, IProfileManager profileManager)
         {
             this.driverFactory = driverFactory;
             this.errorOutput = errorOutput;
             this.autoSave = autoSave;
             this.appConfigManager = appConfigManager;
             this.profileManager = profileManager;
-            this.scannedImageHelper = scannedImageHelper;
         }
 
         public async Task PerformScan(ScanProfile scanProfile, ScanParams scanParams, IWin32Window dialogParent, ISaveNotify notify,
@@ -70,10 +67,10 @@ namespace NAPS2.Scan
                 }
 
                 // Start the scan
-                int imageCount = 0;
+                var imageCount = 0;
                 var source = driver.Scan().Then(img => imageCount++);
 
-                bool doAutoSave = !scanParams.NoAutoSave && !appConfigManager.Config.DisableAutoSave && scanProfile.EnableAutoSave && scanProfile.AutoSaveSettings != null;
+                var doAutoSave = !scanParams.NoAutoSave && !appConfigManager.Config.DisableAutoSave && scanProfile.EnableAutoSave && scanProfile.AutoSaveSettings != null;
                 if (doAutoSave)
                 {
                     if (scanProfile.AutoSaveSettings.ClearImagesAfterSaving)
@@ -82,7 +79,7 @@ namespace NAPS2.Scan
                         var images = await source.ToList();
                         if (await autoSave.Save(scanProfile.AutoSaveSettings, images, notify))
                         {
-                            foreach (ScannedImage img in images)
+                            foreach (var img in images)
                             {
                                 img.Dispose();
                             }
@@ -90,7 +87,7 @@ namespace NAPS2.Scan
                         else
                         {
                             // Fallback in case auto save failed; pipe all the images back at once
-                            foreach (ScannedImage img in images)
+                            foreach (var img in images)
                             {
                                 imageCallback(img);
                             }

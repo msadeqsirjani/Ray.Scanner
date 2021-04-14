@@ -104,9 +104,9 @@ namespace NAPS2.Scan.Wia
         private void Scan(ScannedImageSource.Concrete source)
         {
             using (var deviceManager = new WiaDeviceManager(ScanProfile.WiaVersion))
-            using (var device = deviceManager.FindDevice(ScanDevice.ID))
+            using (var device = deviceManager.FindDevice(ScanDevice.Id))
             {
-                if (device.Version == WiaVersion.Wia20 && ScanProfile.UseNativeUI)
+                if (device.Version == WiaVersion.Wia20 && ScanProfile.UseNativeUi)
                 {
                     DoWia20NativeTransfer(source, deviceManager, device);
                     return;
@@ -148,10 +148,10 @@ namespace NAPS2.Scan.Wia
                     return;
                 }
 
-                ScanBitDepth bitDepth = ScanProfile.UseNativeUI ? ScanBitDepth.C24Bit : ScanProfile.BitDepth;
+                var bitDepth = ScanProfile.UseNativeUi ? ScanBitDepth.C24Bit : ScanProfile.BitDepth;
                 var image = new ScannedImage(result, bitDepth, ScanProfile.MaxQuality, ScanProfile.Quality);
                 scannedImageHelper.PostProcessStep2(image, result, ScanProfile, ScanParams, pageNumber);
-                string tempPath = scannedImageHelper.SaveForBackgroundOcr(result, ScanParams);
+                var tempPath = scannedImageHelper.SaveForBackgroundOcr(result, ScanParams);
                 scannedImageHelper.RunBackgroundOcr(image, ScanParams, tempPath);
                 source.Put(image);
 
@@ -173,7 +173,7 @@ namespace NAPS2.Scan.Wia
                 return;
             }
 
-            int pageNumber = 1;
+            var pageNumber = 1;
             InitProgress(device);
 
             try
@@ -183,8 +183,8 @@ namespace NAPS2.Scan.Wia
                     using (var stream = new FileStream(path, FileMode.Open))
                     using (var output = Image.FromStream(stream))
                     {
-                        int frameCount = output.GetFrameCount(FrameDimension.Page);
-                        for (int i = 0; i < frameCount; i++)
+                        var frameCount = output.GetFrameCount(FrameDimension.Page);
+                        for (var i = 0; i < frameCount; i++)
                         {
                             output.SelectActiveFrame(FrameDimension.Page, i);
                             ProduceImage(source, output, ref pageNumber);
@@ -224,7 +224,7 @@ namespace NAPS2.Scan.Wia
 
             using (var transfer = item.StartTransfer())
             {
-                int pageNumber = 1;
+                var pageNumber = 1;
                 transfer.PageScanned += (sender, args) =>
                 {
                     try
@@ -271,10 +271,10 @@ namespace NAPS2.Scan.Wia
 
         private WiaItem GetItem(WiaDevice device)
         {
-            if (ScanProfile.UseNativeUI)
+            if (ScanProfile.UseNativeUi)
             {
                 var hwnd = Invoker.Current.InvokeGet(() => DialogParent.Handle);
-                bool useWorker = Environment.Is64BitProcess && device.Version == WiaVersion.Wia10;
+                var useWorker = Environment.Is64BitProcess && device.Version == WiaVersion.Wia10;
                 if (useWorker)
                 {
                     WiaConfiguration config;
@@ -312,7 +312,7 @@ namespace NAPS2.Scan.Wia
 
         private void ConfigureProps(WiaDevice device, WiaItem item)
         {
-            if (ScanProfile.UseNativeUI)
+            if (ScanProfile.UseNativeUi)
             {
                 return;
             }
@@ -370,18 +370,18 @@ namespace NAPS2.Scan.Wia
                     break;
             }
 
-            int xRes = ScanProfile.Resolution.ToIntDpi();
-            int yRes = xRes;
+            var xRes = ScanProfile.Resolution.ToIntDpi();
+            var yRes = xRes;
             item.SetPropertyClosest(WiaPropertyId.IPS_XRES, ref xRes);
             item.SetPropertyClosest(WiaPropertyId.IPS_YRES, ref yRes);
 
-            PageDimensions pageDimensions = ScanProfile.PageSize.PageDimensions() ?? ScanProfile.CustomPageSize;
+            var pageDimensions = ScanProfile.PageSize.PageDimensions() ?? ScanProfile.CustomPageSize;
             if (pageDimensions == null)
             {
                 throw new InvalidOperationException("No page size specified");
             }
-            int pageWidth = pageDimensions.WidthInThousandthsOfAnInch() * xRes / 1000;
-            int pageHeight = pageDimensions.HeightInThousandthsOfAnInch() * yRes / 1000;
+            var pageWidth = pageDimensions.WidthInThousandthsOfAnInch() * xRes / 1000;
+            var pageHeight = pageDimensions.HeightInThousandthsOfAnInch() * yRes / 1000;
 
             int horizontalSize, verticalSize;
             if (device.Version == WiaVersion.Wia10)
@@ -401,10 +401,10 @@ namespace NAPS2.Scan.Wia
                 verticalSize = (int)item.Properties[WiaPropertyId.IPS_MAX_VERTICAL_SIZE].Value;
             }
 
-            int pagemaxwidth = horizontalSize * xRes / 1000;
-            int pagemaxheight = verticalSize * yRes / 1000;
+            var pagemaxwidth = horizontalSize * xRes / 1000;
+            var pagemaxheight = verticalSize * yRes / 1000;
 
-            int horizontalPos = 0;
+            var horizontalPos = 0;
             if (ScanProfile.PageAlign == ScanHorizontalAlign.Center)
                 horizontalPos = (pagemaxwidth - pageWidth) / 2;
             else if (ScanProfile.PageAlign == ScanHorizontalAlign.Left)

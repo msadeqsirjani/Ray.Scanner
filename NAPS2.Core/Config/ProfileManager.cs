@@ -113,7 +113,7 @@ namespace NAPS2.Config
             {
                 if (settings.DriverName == TwainScanDriver.DRIVER_NAME)
                 {
-                    settings.UseNativeUI = true;
+                    settings.UseNativeUi = true;
                 }
 
                 settings.Version = ScanProfile.CURRENT_VERSION;
@@ -131,7 +131,7 @@ namespace NAPS2.Config
             {
                 if (settings.DriverName == TwainScanDriver.DRIVER_NAME)
                 {
-                    settings.UseNativeUI = true;
+                    settings.UseNativeUi = true;
                 }
 
                 settings.Version = ScanProfile.CURRENT_VERSION;
@@ -145,7 +145,7 @@ namespace NAPS2.Config
                 DisplayName = profile.DisplayName,
                 MaxQuality = profile.MaxQuality,
                 IsDefault = profile.IsDefault,
-                IconID = profile.IconID,
+                IconId = profile.IconId,
                 AfterScanScale = profile.AfterScanScale,
                 BitDepth = profile.BitDepth,
                 Brightness = profile.Brightness,
@@ -155,7 +155,7 @@ namespace NAPS2.Config
                 PageSize = profile.PageSize,
                 PaperSource = profile.PaperSource,
                 Resolution = profile.Resolution,
-                UseNativeUI = profile.UseNativeUI
+                UseNativeUi = profile.UseNativeUi
             }).ToList();
         }
 
@@ -187,9 +187,9 @@ namespace NAPS2.Config
                     DisplayName = profile.DisplayName,
                     MaxQuality = profile.MaxQuality,
                     IsDefault = profile.IsDefault,
-                    IconID = profile.IconID,
+                    IconId = profile.IconId,
                     // If the driver is WIA and the profile type is not Extended, that meant the native UI was to be used
-                    UseNativeUI = profile.DriverName == WiaScanDriver.DRIVER_NAME
+                    UseNativeUi = profile.DriverName == WiaScanDriver.DRIVER_NAME
                 };
                 if (!(profile is OldExtendedScanSettings ext)) return result;
                 result.AfterScanScale = ext.AfterScanScale;
@@ -201,7 +201,7 @@ namespace NAPS2.Config
                 result.PageSize = ext.PageSize;
                 result.PaperSource = ext.PaperSource;
                 result.Resolution = ext.Resolution;
-                result.UseNativeUI = ext.UseNativeUI;
+                result.UseNativeUi = ext.UseNativeUi;
                 return result;
             }).ToList();
         }

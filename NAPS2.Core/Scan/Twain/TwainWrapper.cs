@@ -1,4 +1,12 @@
-﻿using System;
+﻿using NAPS2.Logging;
+using NAPS2.Platform;
+using NAPS2.Scan.Exceptions;
+using NAPS2.Scan.Images;
+using NAPS2.Util;
+using NAPS2.WinForms;
+using NTwain;
+using NTwain.Data;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -8,14 +16,6 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using NAPS2.Logging;
-using NAPS2.Platform;
-using NAPS2.Scan.Exceptions;
-using NAPS2.Scan.Images;
-using NAPS2.WinForms;
-using NTwain;
-using NTwain.Data;
-using NAPS2.Util;
 
 namespace NAPS2.Scan.Twain
 {
@@ -31,14 +31,12 @@ namespace NAPS2.Scan.Twain
         {
             // Path to the folder containing the 64-bit twaindsm.dll relative to NAPS2.Core.dll
             const string lib64Dir = "64";
-            if (Environment.Is64BitProcess && PlatformCompat.System.CanUseWin32)
+            if (!Environment.Is64BitProcess || !PlatformCompat.System.CanUseWin32) return;
+            var location = Assembly.GetExecutingAssembly().Location;
+            var coreDllDir = System.IO.Path.GetDirectoryName(location);
+            if (coreDllDir != null)
             {
-                var location = Assembly.GetExecutingAssembly().Location;
-                var coreDllDir = System.IO.Path.GetDirectoryName(location);
-                if (coreDllDir != null)
-                {
-                    Win32.SetDllDirectory(System.IO.Path.Combine(coreDllDir, lib64Dir));
-                }
+                Win32.SetDllDirectory(System.IO.Path.Combine(coreDllDir, lib64Dir));
             }
 #if DEBUG
             PlatformInfo.Current.Log.IsDebugEnabled = true;
@@ -111,10 +109,7 @@ namespace NAPS2.Scan.Twain
         private void InternalScan(TwainImpl twainImpl, IWin32Window dialogParent, ScanDevice scanDevice, ScanProfile scanProfile, ScanParams scanParams,
             CancellationToken cancelToken, ScannedImageSource.Concrete source, Action<ScannedImage, ScanParams, string> runBackgroundOcr)
         {
-            if (dialogParent == null)
-            {
-                dialogParent = new BackgroundForm();
-            }
+            dialogParent ??= new BackgroundForm();
             if (twainImpl == TwainImpl.Legacy)
             {
                 Legacy.TwainApi.Scan(scanProfile, scanDevice, dialogParent, formFactory, source);
@@ -123,13 +118,13 @@ namespace NAPS2.Scan.Twain
 
             PlatformInfo.Current.PreferNewDSM = twainImpl != TwainImpl.OldDsm;
             var session = new TwainSession(TwainAppId);
-            var twainForm = Invoker.Current.InvokeGet(() => scanParams.NoUI ? null : formFactory.Create<FTwainGui>());
+            var twainForm = Invoker.Current.InvokeGet(() => scanParams.NoUi ? null : formFactory.Create<FTwainGui>());
             Exception error = null;
-            bool cancel = false;
+            var cancel = false;
             DataSource ds = null;
             var waitHandle = new AutoResetEvent(false);
 
-            int pageNumber = 0;
+            var pageNumber = 0;
 
             session.TransferReady += (sender, eventArgs) =>
             {
@@ -171,7 +166,7 @@ namespace NAPS2.Scan.Twain
                                 }
                             }
                             scannedImageHelper.PostProcessStep2(image, result, scanProfile, scanParams, pageNumber);
-                            string tempPath = scannedImageHelper.SaveForBackgroundOcr(result, scanParams);
+                            var tempPath = scannedImageHelper.SaveForBackgroundOcr(result, scanParams);
                             runBackgroundOcr(image, scanParams, tempPath);
                             source.Put(image);
                         }
@@ -213,7 +208,7 @@ namespace NAPS2.Scan.Twain
             void StopTwain()
             {
                 waitHandle.Set();
-                if (!scanParams.NoUI)
+                if (!scanParams.NoUi)
                 {
                     Invoker.Current.Invoke(() => twainForm.Close());
                 }
@@ -224,14 +219,14 @@ namespace NAPS2.Scan.Twain
                 try
                 {
                     var windowHandle = (Invoker.Current as Form)?.Handle;
-                    ReturnCode rc = windowHandle != null ? session.Open(new WindowsFormsMessageLoopHook(windowHandle.Value)) : session.Open();
+                    var rc = windowHandle != null ? session.Open(new WindowsFormsMessageLoopHook(windowHandle.Value)) : session.Open();
                     if (rc != ReturnCode.Success)
                     {
                         Debug.WriteLine("NAPS2.TW - Could not open session - {0}", rc);
                         StopTwain();
                         return;
                     }
-                    ds = session.FirstOrDefault(x => x.Name == scanDevice.ID);
+                    ds = session.FirstOrDefault(x => x.Name == scanDevice.Id);
                     if (ds == null)
                     {
                         Debug.WriteLine("NAPS2.TW - Could not find DS - DS count = {0}", session.Count());
@@ -245,9 +240,9 @@ namespace NAPS2.Scan.Twain
                         return;
                     }
                     ConfigureDS(ds, scanProfile, scanParams);
-                    var ui = scanProfile.UseNativeUI ? SourceEnableMode.ShowUI : SourceEnableMode.NoUI;
+                    var ui = scanProfile.UseNativeUi ? SourceEnableMode.ShowUI : SourceEnableMode.NoUI;
                     Debug.WriteLine("NAPS2.TW - Enabling DS");
-                    rc = scanParams.NoUI ? ds.Enable(ui, true, windowHandle ?? IntPtr.Zero) : ds.Enable(ui, true, twainForm.Handle);
+                    rc = scanParams.NoUi ? ds.Enable(ui, true, windowHandle ?? IntPtr.Zero) : ds.Enable(ui, true, twainForm.Handle);
                     Debug.WriteLine("NAPS2.TW - Enable finished");
                     if (rc != ReturnCode.Success)
                     {
@@ -272,13 +267,13 @@ namespace NAPS2.Scan.Twain
                 }
             }
 
-            if (!scanParams.NoUI)
+            if (!scanParams.NoUi)
             {
                 twainForm.Shown += (sender, eventArgs) => { InitTwain(); };
                 twainForm.Closed += (sender, args) => waitHandle.Set();
             }
 
-            if (scanParams.NoUI)
+            if (scanParams.NoUi)
             {
                 Debug.WriteLine("NAPS2.TW - Init with no form");
                 Invoker.Current.Invoke(InitTwain);
@@ -307,57 +302,61 @@ namespace NAPS2.Scan.Twain
                 session.Close();
             }
 
-            if (error != null)
+            if (error == null) return;
+            Debug.WriteLine("NAPS2.TW - Throwing error - {0}", error);
+            if (error is ScanDriverException)
             {
-                Debug.WriteLine("NAPS2.TW - Throwing error - {0}", error);
-                if (error is ScanDriverException)
-                {
-                    throw error;
-                }
-                throw new ScanDriverUnknownException(error);
+                throw error;
             }
+            throw new ScanDriverUnknownException(error);
         }
 
         private static Bitmap GetBitmapFromMemXFer(byte[] memoryData, TWImageInfo imageInfo)
         {
-            int bytesPerPixel = memoryData.Length / (imageInfo.ImageWidth * imageInfo.ImageLength);
-            PixelFormat pixelFormat = bytesPerPixel == 0 ? PixelFormat.Format1bppIndexed : PixelFormat.Format24bppRgb;
-            int imageWidth = imageInfo.ImageWidth;
-            int imageHeight = imageInfo.ImageLength;
+            var bytesPerPixel = memoryData.Length / (imageInfo.ImageWidth * imageInfo.ImageLength);
+            var pixelFormat = bytesPerPixel == 0 ? PixelFormat.Format1bppIndexed : PixelFormat.Format24bppRgb;
+            var imageWidth = imageInfo.ImageWidth;
+            var imageHeight = imageInfo.ImageLength;
             var bitmap = new Bitmap(imageWidth, imageHeight, pixelFormat);
             var data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.WriteOnly, bitmap.PixelFormat);
             try
             {
-                byte[] source = memoryData;
-                if (bytesPerPixel == 1)
+                var source = memoryData;
+                switch (bytesPerPixel)
                 {
-                    // No 8-bit greyscale format, so we have to transform into 24-bit
-                    int rowWidth = data.Stride;
-                    int originalRowWidth = source.Length / imageHeight;
-                    byte[] source2 = new byte[rowWidth * imageHeight];
-                    for (int row = 0; row < imageHeight; row++)
-                    {
-                        for (int col = 0; col < imageWidth; col++)
+                    case 1:
                         {
-                            source2[row * rowWidth + col * 3] = source[row * originalRowWidth + col];
-                            source2[row * rowWidth + col * 3 + 1] = source[row * originalRowWidth + col];
-                            source2[row * rowWidth + col * 3 + 2] = source[row * originalRowWidth + col];
+                            // No 8-bit greyscale format, so we have to transform into 24-bit
+                            var rowWidth = data.Stride;
+                            var originalRowWidth = source.Length / imageHeight;
+                            var source2 = new byte[rowWidth * imageHeight];
+                            for (var row = 0; row < imageHeight; row++)
+                            {
+                                for (var col = 0; col < imageWidth; col++)
+                                {
+                                    source2[row * rowWidth + col * 3] = source[row * originalRowWidth + col];
+                                    source2[row * rowWidth + col * 3 + 1] = source[row * originalRowWidth + col];
+                                    source2[row * rowWidth + col * 3 + 2] = source[row * originalRowWidth + col];
+                                }
+                            }
+                            source = source2;
+                            break;
                         }
-                    }
-                    source = source2;
-                }
-                else if (bytesPerPixel == 3)
-                {
-                    // Colors are provided as BGR, they need to be swapped to RGB
-                    int rowWidth = data.Stride;
-                    for (int row = 0; row < imageHeight; row++)
-                    {
-                        for (int col = 0; col < imageWidth; col++)
+                    case 3:
                         {
-                            (source[row * rowWidth + col * 3], source[row * rowWidth + col * 3 + 2]) =
-                                (source[row * rowWidth + col * 3 + 2], source[row * rowWidth + col * 3]);
+                            // Colors are provided as BGR, they need to be swapped to RGB
+                            var rowWidth = data.Stride;
+                            for (var row = 0; row < imageHeight; row++)
+                            {
+                                for (var col = 0; col < imageWidth; col++)
+                                {
+                                    (source[row * rowWidth + col * 3], source[row * rowWidth + col * 3 + 2]) =
+                                        (source[row * rowWidth + col * 3 + 2], source[row * rowWidth + col * 3]);
+                                }
+                            }
+
+                            break;
                         }
-                    }
                 }
                 Marshal.Copy(source, 0, data.Scan0, source.Length);
             }
@@ -391,7 +390,7 @@ namespace NAPS2.Scan.Twain
 
         private void ConfigureDS(DataSource ds, ScanProfile scanProfile, ScanParams scanParams)
         {
-            if (scanProfile.UseNativeUI)
+            if (scanProfile.UseNativeUi)
             {
                 return;
             }
@@ -403,7 +402,7 @@ namespace NAPS2.Scan.Twain
             }
 
             // Hide UI for console
-            if (scanParams.NoUI)
+            if (scanParams.NoUi)
             {
                 ds.Capabilities.CapIndicators.SetValue(BoolType.False);
             }
@@ -440,24 +439,24 @@ namespace NAPS2.Scan.Twain
             }
 
             // Page Size, Horizontal Align
-            PageDimensions pageDimensions = scanProfile.PageSize.PageDimensions() ?? scanProfile.CustomPageSize;
+            var pageDimensions = scanProfile.PageSize.PageDimensions() ?? scanProfile.CustomPageSize;
             if (pageDimensions == null)
             {
                 throw new InvalidOperationException("No page size specified");
             }
-            float pageWidth = pageDimensions.WidthInThousandthsOfAnInch() / 1000.0f;
-            float pageHeight = pageDimensions.HeightInThousandthsOfAnInch() / 1000.0f;
+            var pageWidth = pageDimensions.WidthInThousandthsOfAnInch() / 1000.0f;
+            var pageHeight = pageDimensions.HeightInThousandthsOfAnInch() / 1000.0f;
             var pageMaxWidthFixed = ds.Capabilities.ICapPhysicalWidth.GetCurrent();
-            float pageMaxWidth = pageMaxWidthFixed.Whole + (pageMaxWidthFixed.Fraction / (float)UInt16.MaxValue);
+            var pageMaxWidth = pageMaxWidthFixed.Whole + (pageMaxWidthFixed.Fraction / (float)UInt16.MaxValue);
 
-            float horizontalOffset = 0.0f;
+            var horizontalOffset = 0.0f;
             if (scanProfile.PageAlign == ScanHorizontalAlign.Center)
                 horizontalOffset = (pageMaxWidth - pageWidth) / 2;
             else if (scanProfile.PageAlign == ScanHorizontalAlign.Left)
                 horizontalOffset = (pageMaxWidth - pageWidth);
 
             ds.Capabilities.ICapUnits.SetValue(Unit.Inches);
-            ds.DGImage.ImageLayout.Get(out TWImageLayout imageLayout);
+            ds.DGImage.ImageLayout.Get(out var imageLayout);
             imageLayout.Frame = new TWFrame
             {
                 Left = horizontalOffset,
@@ -476,7 +475,7 @@ namespace NAPS2.Scan.Twain
             }
 
             // Resolution
-            int dpi = scanProfile.Resolution.ToIntDpi();
+            var dpi = scanProfile.Resolution.ToIntDpi();
             ds.Capabilities.ICapXResolution.SetValue(dpi);
             ds.Capabilities.ICapYResolution.SetValue(dpi);
 

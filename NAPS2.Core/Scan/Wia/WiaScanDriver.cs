@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using NAPS2.Operation;
 using NAPS2.Platform;
 using NAPS2.Scan.Exceptions;
@@ -9,6 +5,10 @@ using NAPS2.Scan.Images;
 using NAPS2.Scan.Wia.Native;
 using NAPS2.Util;
 using NAPS2.WinForms;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NAPS2.Scan.Wia
 {
@@ -75,7 +75,7 @@ namespace NAPS2.Scan.Wia
                 op.Start(ScanProfile, ScanDevice, ScanParams, DialogParent, source);
                 Invoker.Current.SafeInvoke(() =>
                 {
-                    if (ScanParams.Modal && !ScanParams.NoUI)
+                    if (ScanParams.Modal && !ScanParams.NoUi)
                     {
                         operationProgress.ShowModalProgress(op);
                     }

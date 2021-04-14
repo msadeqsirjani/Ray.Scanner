@@ -1,20 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
 using NAPS2.Logging;
 using NAPS2.Scan.Exceptions;
 using NAPS2.Scan.Images;
 using NAPS2.Util;
 using NAPS2.WinForms;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace NAPS2.Scan.Twain.Legacy
 {
     internal static class TwainApi
     {
-        public static ScanDevice SelectDeviceUI()
+        public static ScanDevice SelectDeviceUi()
         {
             var tw = new Twain();
             if (!tw.Init(Application.OpenForms[0].Handle))
@@ -25,12 +22,8 @@ namespace NAPS2.Scan.Twain.Legacy
             {
                 return null;
             }
-            string name = tw.GetCurrentName();
-            if (name == null)
-            {
-                return null;
-            }
-            return new ScanDevice(name, name);
+            var name = tw.GetCurrentName();
+            return name == null ? null : new ScanDevice(name, name);
         }
 
         public static List<ScanDevice> GetDeviceList()
@@ -47,7 +40,7 @@ namespace NAPS2.Scan.Twain.Legacy
             }
             do
             {
-                string name = tw.GetCurrentName();
+                var name = tw.GetCurrentName();
                 result.Add(new ScanDevice(name, name));
             } while (tw.GetNext());
             return result;
@@ -61,7 +54,7 @@ namespace NAPS2.Scan.Twain.Legacy
             {
                 throw new DeviceNotFoundException();
             }
-            if (!tw.SelectByName(device.ID))
+            if (!tw.SelectByName(device.Id))
             {
                 throw new DeviceNotFoundException();
             }
@@ -96,7 +89,7 @@ namespace NAPS2.Scan.Twain.Legacy
 
             public bool PreFilterMessage(ref Message m)
             {
-                TwainCommand cmd = tw.PassMessage(ref m);
+                var cmd = tw.PassMessage(ref m);
                 if (cmd == TwainCommand.Not)
                     return false;
 
@@ -121,14 +114,14 @@ namespace NAPS2.Scan.Twain.Legacy
                         }
                     case TwainCommand.TransferReady:
                         {
-                            ArrayList pics = tw.TransferPictures();
+                            var pics = tw.TransferPictures();
                             EndingScan();
                             tw.CloseSrc();
                             foreach (IntPtr img in pics)
                             {
-                                int bitcount = 0;
+                                int bitcount;
 
-                                using (Bitmap bmp = DibUtils.BitmapFromDib(img, out bitcount))
+                                using (var bmp = DibUtils.BitmapFromDib(img, out bitcount))
                                 {
                                     Bitmaps.Add(new ScannedImage(bmp, bitcount == 1 ? ScanBitDepth.BlackWhite : ScanBitDepth.C24Bit, settings.MaxQuality, settings.Quality));
                                 }
@@ -142,13 +135,11 @@ namespace NAPS2.Scan.Twain.Legacy
             }
             private void EndingScan()
             {
-                if (msgfilter)
-                {
-                    Application.RemoveMessageFilter(this);
-                    msgfilter = false;
-                    form.Enabled = true;
-                    form.Activate();
-                }
+                if (!msgfilter) return;
+                Application.RemoveMessageFilter(this);
+                msgfilter = false;
+                form.Enabled = true;
+                form.Activate();
             }
 
             private void FTwainGui_Activated(object sender, EventArgs e)
@@ -164,11 +155,9 @@ namespace NAPS2.Scan.Twain.Legacy
                 }
                 try
                 {
-                    if (!tw.Acquire())
-                    {
-                        EndingScan();
-                        form.Close();
-                    }
+                    if (tw.Acquire()) return;
+                    EndingScan();
+                    form.Close();
                 }
                 catch (Exception ex)
                 {

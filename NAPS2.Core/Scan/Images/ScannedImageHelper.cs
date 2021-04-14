@@ -124,13 +124,13 @@ namespace NAPS2.Scan.Images
         public Bitmap PostProcessStep1(Image output, ScanProfile profile, bool supportsNativeUI = true)
         {
             double scaleFactor = 1;
-            if (!profile.UseNativeUI || !supportsNativeUI)
+            if (!profile.UseNativeUi || !supportsNativeUI)
             {
                 scaleFactor = profile.AfterScanScale.ToIntScaleFactor();
             }
             var result = ImageScaleHelper.ScaleImage(output, scaleFactor);
 
-            if ((profile.UseNativeUI && supportsNativeUI) || (!profile.ForcePageSize && !profile.ForcePageSizeCrop))
+            if ((profile.UseNativeUi && supportsNativeUI) || (!profile.ForcePageSize && !profile.ForcePageSizeCrop))
                 return result;
             var width = output.Width / output.HorizontalResolution;
             var height = output.Height / output.VerticalResolution;
@@ -185,7 +185,7 @@ namespace NAPS2.Scan.Images
             {
                 return;
             }
-            if ((!profile.UseNativeUI || !supportsNativeUI) && profile.BrightnessContrastAfterScan)
+            if ((!profile.UseNativeUi || !supportsNativeUI) && profile.BrightnessContrastAfterScan)
             {
                 if (profile.Brightness != 0)
                 {

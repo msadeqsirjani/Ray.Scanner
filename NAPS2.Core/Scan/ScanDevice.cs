@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace NAPS2.Scan
 {
@@ -12,7 +10,7 @@ namespace NAPS2.Scan
     {
         public ScanDevice(string id, string name)
         {
-            ID = id;
+            Id = id;
             Name = name;
         }
 
@@ -20,7 +18,7 @@ namespace NAPS2.Scan
         {
         }
 
-        public string ID { get; set; }
+        public string Id { get; set; }
 
         public string Name { get; set; }
 

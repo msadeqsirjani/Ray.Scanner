@@ -1,11 +1,9 @@
-using System;
+using NAPS2.Scan.Images;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NAPS2.Scan.Images;
 
 namespace NAPS2.Scan.Stub
 {
@@ -40,7 +38,7 @@ namespace NAPS2.Scan.Stub
             var source = new ScannedImageSource.Concrete();
             Task.Factory.StartNew(() =>
             {
-                for (int i = 0; i < ImageCount; i++)
+                for (var i = 0; i < ImageCount; i++)
                 {
                     Thread.Sleep(500);
                     source.Put(MakeImage());
@@ -70,7 +68,7 @@ namespace NAPS2.Scan.Stub
         private ScannedImage MakeImage()
         {
             var bitmap = new Bitmap(600, 800);
-            using (Graphics g = Graphics.FromImage(bitmap))
+            using (var g = Graphics.FromImage(bitmap))
             {
                 g.FillRectangle(Brushes.LightGray, 0, 0, bitmap.Width, bitmap.Height);
                 g.DrawString((_number++).ToString("G"), new Font("Times New Roman", 80), Brushes.Black, 0, 350);

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 
@@ -55,7 +53,7 @@ namespace NAPS2.Scan.Wia.Native
         {
             if (offset != 0) throw new NotImplementedException();
             source.Read(buffer, count, nativeLong);
-            int bytesRead = Marshal.ReadInt32(nativeLong);
+            var bytesRead = Marshal.ReadInt32(nativeLong);
             position += bytesRead;
             return bytesRead;
         }

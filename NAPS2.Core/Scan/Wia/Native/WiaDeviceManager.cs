@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace NAPS2.Scan.Wia.Native
 {
@@ -28,7 +27,7 @@ namespace NAPS2.Scan.Wia.Native
 
         public IEnumerable<WiaDeviceInfo> GetDeviceInfos()
         {
-            List<WiaDeviceInfo> result = new List<WiaDeviceInfo>();
+            var result = new List<WiaDeviceInfo>();
             WiaException.Check(Version == WiaVersion.Wia10
                 ? NativeWiaMethods.EnumerateDevices1(Handle, x => result.Add(new WiaDeviceInfo(Version, x)))
                 : NativeWiaMethods.EnumerateDevices2(Handle, x => result.Add(new WiaDeviceInfo(Version, x))));
@@ -59,9 +58,9 @@ namespace NAPS2.Scan.Wia.Native
         public string[] PromptForImage(IntPtr parentWindowHandle, WiaDevice device)
         {
             var fileName = Path.GetRandomFileName();
-            IntPtr itemHandle = IntPtr.Zero;
-            int fileCount = 0;
-            string[] filePaths = new string[10];
+            var itemHandle = IntPtr.Zero;
+            var fileCount = 0;
+            var filePaths = new string[10];
             var hr = Version == WiaVersion.Wia10
                 ? NativeWiaMethods.GetImage1(Handle, parentWindowHandle, SCANNER_DEVICE_TYPE, 0, 0, Path.Combine(Paths.Temp, fileName), IntPtr.Zero)
                 : NativeWiaMethods.GetImage2(Handle, 0, device.Id(), parentWindowHandle, Paths.Temp, fileName, ref fileCount, ref filePaths, ref itemHandle);

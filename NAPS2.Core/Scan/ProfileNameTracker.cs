@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NAPS2.Config;
+﻿using NAPS2.Config;
 
 namespace NAPS2.Scan
 {
@@ -25,14 +22,11 @@ namespace NAPS2.Scan
             {
                 return;
             }
-            if (userConfigManager.Config.LastBatchSettings != null)
-            {
-                if (userConfigManager.Config.LastBatchSettings.ProfileDisplayName == oldName)
-                {
-                    userConfigManager.Config.LastBatchSettings.ProfileDisplayName = newName;
-                    userConfigManager.Save();
-                }
-            }
+
+            if (userConfigManager.Config.LastBatchSettings == null) return;
+            if (userConfigManager.Config.LastBatchSettings.ProfileDisplayName != oldName) return;
+            userConfigManager.Config.LastBatchSettings.ProfileDisplayName = newName;
+            userConfigManager.Save();
         }
 
         public void DeletingProfile(string name)
@@ -41,14 +35,11 @@ namespace NAPS2.Scan
             {
                 return;
             }
-            if (userConfigManager.Config.LastBatchSettings != null)
-            {
-                if (userConfigManager.Config.LastBatchSettings.ProfileDisplayName == name)
-                {
-                    userConfigManager.Config.LastBatchSettings.ProfileDisplayName = null;
-                    userConfigManager.Save();
-                }
-            }
+
+            if (userConfigManager.Config.LastBatchSettings == null) return;
+            if (userConfigManager.Config.LastBatchSettings.ProfileDisplayName != name) return;
+            userConfigManager.Config.LastBatchSettings.ProfileDisplayName = null;
+            userConfigManager.Save();
         }
     }
 }

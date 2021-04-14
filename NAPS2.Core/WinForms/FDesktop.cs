@@ -51,7 +51,6 @@ namespace NAPS2.WinForms
         private readonly WinFormsExportHelper exportHelper;
         private readonly ScannedImageRenderer scannedImageRenderer;
         private readonly NotificationManager notify;
-        private readonly CultureInitializer cultureInitializer;
         private readonly IWorkerServiceFactory workerServiceFactory;
         private readonly IOperationProgress operationProgress;
         private readonly UpdateChecker updateChecker;
@@ -73,10 +72,8 @@ namespace NAPS2.WinForms
         public FDesktop(StringWrapper stringWrapper, AppConfigManager appConfigManager, RecoveryManager recoveryManager,
             IProfileManager profileManager, IScanPerformer scanPerformer, ChangeTracker changeTracker, StillImage stillImage,
             IOperationFactory operationFactory, IUserConfigManager userConfigManager, KeyboardShortcutManager ksm,
-            ThumbnailRenderer thumbnailRenderer, WinFormsExportHelper exportHelper,
-            ScannedImageRenderer scannedImageRenderer, NotificationManager notify,
-            CultureInitializer cultureInitializer, IWorkerServiceFactory workerServiceFactory,
-            IOperationProgress operationProgress, UpdateChecker updateChecker)
+            ThumbnailRenderer thumbnailRenderer, WinFormsExportHelper exportHelper, ScannedImageRenderer scannedImageRenderer,
+            NotificationManager notify, IWorkerServiceFactory workerServiceFactory, IOperationProgress operationProgress, UpdateChecker updateChecker)
         {
             this.stringWrapper = stringWrapper;
             this.appConfigManager = appConfigManager;
@@ -92,7 +89,6 @@ namespace NAPS2.WinForms
             this.exportHelper = exportHelper;
             this.scannedImageRenderer = scannedImageRenderer;
             this.notify = notify;
-            this.cultureInitializer = cultureInitializer;
             this.workerServiceFactory = workerServiceFactory;
             this.operationProgress = operationProgress;
             this.updateChecker = updateChecker;
@@ -416,9 +412,9 @@ namespace NAPS2.WinForms
         private async Task ScanWithDevice(string deviceId)
         {
             Activate();
-            var profile = profileManager.DefaultProfile?.Device?.ID == deviceId
+            var profile = profileManager.DefaultProfile?.Device?.Id == deviceId
                 ? profileManager.DefaultProfile
-                : profileManager.Profiles.FirstOrDefault(x => x.Device != null && x.Device.ID == deviceId);
+                : profileManager.Profiles.FirstOrDefault(x => x.Device != null && x.Device.Id == deviceId);
 
             if (profile == null)
             {

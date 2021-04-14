@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using NAPS2.Ocr;
 using System.Runtime.Serialization;
 using System.Threading;
-using NAPS2.Ocr;
 
 namespace NAPS2.Scan
 {
@@ -17,7 +14,7 @@ namespace NAPS2.Scan
 
         public bool Modal { get; set; } = true;
 
-        public bool NoUI { get; set; }
+        public bool NoUi { get; set; }
 
         public bool NoAutoSave { get; set; }
 

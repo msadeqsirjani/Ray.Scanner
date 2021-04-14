@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace NAPS2.Scan.Twain.Legacy
@@ -287,7 +285,7 @@ namespace NAPS2.Scan.Twain.Legacy
             Cap = (short)cap;
             ConType = (short)TwOn.One;
             Handle = Twain.GlobalAlloc(0x42, 6);
-            IntPtr pv = Twain.GlobalLock(Handle);
+            var pv = Twain.GlobalLock(Handle);
             Marshal.WriteInt16(pv, 0, (short)TwType.Int16);
             Marshal.WriteInt32(pv, 2, sval);
             Twain.GlobalUnlock(Handle);

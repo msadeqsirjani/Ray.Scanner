@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NAPS2.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using NAPS2.Logging;
 
 namespace NAPS2.Scan.Wia.Native
 {
@@ -29,19 +29,19 @@ namespace NAPS2.Scan.Wia.Native
 
         public static bool SupportsFeeder(this WiaDevice device)
         {
-            int capabilities = (int)device.Properties[WiaPropertyId.DPS_DOCUMENT_HANDLING_CAPABILITIES].Value;
+            var capabilities = (int)device.Properties[WiaPropertyId.DPS_DOCUMENT_HANDLING_CAPABILITIES].Value;
             return (capabilities & WiaPropertyValue.FEEDER) != 0;
         }
 
         public static bool SupportsDuplex(this WiaDevice device)
         {
-            int capabilities = (int)device.Properties[WiaPropertyId.DPS_DOCUMENT_HANDLING_CAPABILITIES].Value;
+            var capabilities = (int)device.Properties[WiaPropertyId.DPS_DOCUMENT_HANDLING_CAPABILITIES].Value;
             return (capabilities & WiaPropertyValue.DUPLEX) != 0;
         }
 
         public static bool FeederReady(this WiaDevice device)
         {
-            int status = (int)device.Properties[WiaPropertyId.DPS_DOCUMENT_HANDLING_STATUS].Value;
+            var status = (int)device.Properties[WiaPropertyId.DPS_DOCUMENT_HANDLING_STATUS].Value;
             return (status & WiaPropertyValue.FEED_READY) != 0;
         }
 
@@ -68,7 +68,7 @@ namespace NAPS2.Scan.Wia.Native
             {
                 if (prop.Attributes.Flags.HasFlag(WiaPropertyFlags.List))
                 {
-                    int value2 = value;
+                    var value2 = value;
                     var choice = prop.Attributes.Values.OfType<int>().OrderBy(x => Math.Abs(x - value2)).Cast<int?>().FirstOrDefault();
                     if (choice != null)
                     {
@@ -98,10 +98,10 @@ namespace NAPS2.Scan.Wia.Native
             {
                 if (prop.Attributes.Flags.HasFlag(WiaPropertyFlags.Range))
                 {
-                    int expectedAbs = value - expectedMin;
-                    int expectedRange = expectedMax - expectedMin;
-                    int actualRange = prop.Attributes.Max - prop.Attributes.Min;
-                    int actualValue = expectedAbs * actualRange / expectedRange + prop.Attributes.Min;
+                    var expectedAbs = value - expectedMin;
+                    var expectedRange = expectedMax - expectedMin;
+                    var actualRange = prop.Attributes.Max - prop.Attributes.Min;
+                    var actualValue = expectedAbs * actualRange / expectedRange + prop.Attributes.Min;
                     if (prop.Attributes.Step != 0)
                     {
                         actualValue -= actualValue % prop.Attributes.Step;

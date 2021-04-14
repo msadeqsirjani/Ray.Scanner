@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace NAPS2.Scan.Wia.Native
 {
@@ -23,19 +21,19 @@ namespace NAPS2.Scan.Wia.Native
         public string Name { get; }
 
         public ushort Type { get; }
-        
+
         public object Value
         {
             get
             {
                 if (Type == WiaPropertyType.I4)
                 {
-                    WiaException.Check(NativeWiaMethods.GetPropertyInt(Storage, Id, out int value));
+                    WiaException.Check(NativeWiaMethods.GetPropertyInt(Storage, Id, out var value));
                     return value;
                 }
                 if (Type == WiaPropertyType.BSTR)
                 {
-                    WiaException.Check(NativeWiaMethods.GetPropertyBstr(Storage, Id, out string value));
+                    WiaException.Check(NativeWiaMethods.GetPropertyBstr(Storage, Id, out var value));
                     return value;
                 }
                 throw new NotImplementedException($"Not implemented property type: {Type}");
@@ -45,7 +43,7 @@ namespace NAPS2.Scan.Wia.Native
                 uint hr;
                 if (Type == WiaPropertyType.I4)
                 {
-                    hr = NativeWiaMethods.SetPropertyInt(Storage, Id, (int) value);
+                    hr = NativeWiaMethods.SetPropertyInt(Storage, Id, (int)value);
                 }
                 else
                 {

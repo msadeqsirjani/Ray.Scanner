@@ -1,12 +1,11 @@
+using NAPS2.ImportExport;
+using NAPS2.Lang.Resources;
+using NAPS2.Scan.Wia.Native;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Xml.Serialization;
-using NAPS2.ImportExport;
-using NAPS2.Lang.Resources;
-using NAPS2.Scan.Wia.Native;
 
 namespace NAPS2.Scan
 {
@@ -34,7 +33,7 @@ namespace NAPS2.Scan
 
         public ScanProfile Clone()
         {
-            var profile = (ScanProfile) MemberwiseClone();
+            var profile = (ScanProfile)MemberwiseClone();
             if (profile.AutoSaveSettings != null)
             {
                 profile.AutoSaveSettings = AutoSaveSettings.Clone();
@@ -58,7 +57,7 @@ namespace NAPS2.Scan
 
         public string DisplayName { get; set; }
 
-        public int IconID { get; set; }
+        public int IconId { get; set; }
 
         public bool MaxQuality { get; set; }
 
@@ -66,7 +65,7 @@ namespace NAPS2.Scan
 
         public int Version { get; set; }
 
-        public bool UseNativeUI { get; set; }
+        public bool UseNativeUi { get; set; }
 
         public ScanScale AfterScanScale { get; set; }
 
@@ -146,7 +145,7 @@ namespace NAPS2.Scan
             Separator = SaveSeparator.FilePerPage;
         }
 
-        internal AutoSaveSettings Clone() => (AutoSaveSettings) MemberwiseClone();
+        internal AutoSaveSettings Clone() => (AutoSaveSettings)MemberwiseClone();
 
         public string FilePath { get; set; }
 
@@ -437,7 +436,7 @@ namespace NAPS2.Scan
 
         public static PageDimensions PageDimensions(this Enum enumValue)
         {
-            object[] attrs = enumValue.GetType().GetField(enumValue.ToString()).GetCustomAttributes(typeof(PageDimensionsAttribute), false);
+            var attrs = enumValue.GetType().GetField(enumValue.ToString()).GetCustomAttributes(typeof(PageDimensionsAttribute), false);
             return attrs.Cast<PageDimensionsAttribute>().Select(x => x.PageDimensions).SingleOrDefault();
         }
 
@@ -485,7 +484,7 @@ namespace NAPS2.Scan
 
         public static string Description(this Enum enumValue)
         {
-            object[] attrs = enumValue.GetType().GetField(enumValue.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false);
+            var attrs = enumValue.GetType().GetField(enumValue.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false);
             return attrs.Cast<DescriptionAttribute>().Select(x => x.Description).SingleOrDefault();
         }
     }

@@ -1,4 +1,11 @@
-﻿using System;
+﻿using NAPS2.Logging;
+using NAPS2.Platform;
+using NAPS2.Scan.Exceptions;
+using NAPS2.Scan.Images;
+using NAPS2.Scan.Images.Transforms;
+using NAPS2.Util;
+using NAPS2.WinForms;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -7,13 +14,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NAPS2.Logging;
-using NAPS2.Platform;
-using NAPS2.Scan.Exceptions;
-using NAPS2.Scan.Images;
-using NAPS2.Scan.Images.Transforms;
-using NAPS2.Util;
-using NAPS2.WinForms;
 
 namespace NAPS2.Scan.Sane
 {
@@ -50,7 +50,7 @@ namespace NAPS2.Scan.Sane
         {
             // TODO: Test ADF
             var options = new Lazy<KeyValueScanOptions>(GetOptions);
-            int pageNumber = 1;
+            var pageNumber = 1;
             var (img, done) = await Transfer(options, pageNumber);
             if (img != null)
             {
@@ -83,7 +83,7 @@ namespace NAPS2.Scan.Sane
 
         private KeyValueScanOptions GetOptions()
         {
-            var saneOptions = SaneOptionCache.GetOrSet(ScanDevice.ID, () => saneWrapper.GetOptions(ScanDevice.ID));
+            var saneOptions = SaneOptionCache.GetOrSet(ScanDevice.Id, () => saneWrapper.GetOptions(ScanDevice.Id));
             var options = new KeyValueScanOptions(ScanProfile.KeyValueOptions ?? new KeyValueScanOptions());
 
             bool ChooseStringOption(string name, Func<string, bool> match)
@@ -224,15 +224,15 @@ namespace NAPS2.Scan.Sane
             return await Task.Factory.StartNew(() =>
             {
                 Stream stream;
-                if (ScanParams.NoUI)
+                if (ScanParams.NoUi)
                 {
-                    stream = saneWrapper.ScanOne(ScanDevice.ID, options.Value, null, CancelToken);
+                    stream = saneWrapper.ScanOne(ScanDevice.Id, options.Value, null, CancelToken);
                 }
                 else
                 {
                     var form = formFactory.Create<FScanProgress>();
                     var unifiedCancelToken = CancellationTokenSource.CreateLinkedTokenSource(form.CancelToken, CancelToken).Token;
-                    form.Transfer = () => saneWrapper.ScanOne(ScanDevice.ID, options.Value, form.OnProgress, unifiedCancelToken);
+                    form.Transfer = () => saneWrapper.ScanOne(ScanDevice.Id, options.Value, form.OnProgress, unifiedCancelToken);
                     form.PageNumber = pageNumber;
                     ((FormBase)Application.OpenForms[0]).SafeInvoke(() => form.ShowDialog());
 
@@ -267,7 +267,7 @@ namespace NAPS2.Scan.Sane
                     {
                         var image = new ScannedImage(encoded, ScanProfile.BitDepth, ScanProfile.MaxQuality, ScanProfile.Quality);
                         scannedImageHelper.PostProcessStep2(image, result, ScanProfile, ScanParams, 1, false);
-                        string tempPath = scannedImageHelper.SaveForBackgroundOcr(result, ScanParams);
+                        var tempPath = scannedImageHelper.SaveForBackgroundOcr(result, ScanParams);
                         scannedImageHelper.RunBackgroundOcr(image, ScanParams, tempPath);
                         return (image, false);
                     }

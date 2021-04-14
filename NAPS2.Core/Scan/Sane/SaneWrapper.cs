@@ -1,4 +1,7 @@
-﻿using System;
+﻿using NAPS2.Lang.Resources;
+using NAPS2.Scan.Exceptions;
+using NAPS2.Util;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -7,9 +10,6 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using NAPS2.Lang.Resources;
-using NAPS2.Scan.Exceptions;
-using NAPS2.Util;
 
 namespace NAPS2.Scan.Sane
 {
@@ -27,7 +27,7 @@ namespace NAPS2.Scan.Sane
             string line;
             while ((line = proc.StandardOutput.ReadLine()?.Trim()) != null)
             {
-                string[] parts = line.Split('|');
+                var parts = line.Split('|');
                 if (parts.Length == 2)
                 {
                     yield return new ScanDevice(parts[0], parts[1]);
@@ -52,7 +52,7 @@ namespace NAPS2.Scan.Sane
             var procExitWaitHandle = new ManualResetEvent(false);
             var outputFinishedWaitHandle = new ManualResetEvent(false);
             var errorOutput = new List<string>();
-            bool cancelled = false;
+            var cancelled = false;
             const int maxProgress = 1000;
 
             // Set up events
@@ -101,7 +101,7 @@ namespace NAPS2.Scan.Sane
             if (errorOutput.Count > 0)
             {
                 // Non-progress output to stderr indicates that the scan was not successful
-                string stderr = string.Join(". ", errorOutput).Trim();
+                var stderr = string.Join(". ", errorOutput).Trim();
                 ThrowDeviceError(stderr);
             }
             // No unexpected stderr output, so we can assume that the output stream is complete and valid

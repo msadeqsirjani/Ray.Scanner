@@ -73,12 +73,12 @@ namespace NAPS2.ClientServer
                 scanProfile.TwainImpl = TwainImpl.OldDsm;
             }
 
-            scanProfile.UseNativeUI = false;
+            scanProfile.UseNativeUi = false;
 
             var internalParams = new ScanParams
             {
                 DetectPatchCodes = scanParams.DetectPatchCodes,
-                NoUI = true,
+                NoUi = true,
                 NoAutoSave = true,
                 DoOcr = false,
                 NoThumbnails = true,
