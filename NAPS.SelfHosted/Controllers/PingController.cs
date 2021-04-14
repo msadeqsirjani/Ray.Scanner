@@ -1,10 +1,8 @@
-﻿using NAPS.SelfHosted.Attributes;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace NAPS.SelfHosted.Controllers
 {
-    [OnlyLocalhost]
-    public class PingController : ApiController
+    public class PingController : BaseController
     {
         public IHttpActionResult Get()
         {

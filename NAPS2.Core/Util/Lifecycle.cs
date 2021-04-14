@@ -1,12 +1,12 @@
-﻿using System;
+﻿using NAPS2.Config;
+using NAPS2.Logging;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Security.Principal;
 using System.Windows.Forms;
-using NAPS2.Config;
-using NAPS2.Logging;
 
 namespace NAPS2.Util
 {
@@ -35,8 +35,8 @@ namespace NAPS2.Util
         /// <param name="args"></param>
         public void ParseArgs(string[] args)
         {
-            bool silent = args.Any(x => x.Equals("/Silent", StringComparison.InvariantCultureIgnoreCase));
-            bool noElevation = args.Any(x => x.Equals("/NoElevation", StringComparison.InvariantCultureIgnoreCase));
+            var silent = args.Any(x => x.Equals("/Silent", StringComparison.InvariantCultureIgnoreCase));
+            var noElevation = args.Any(x => x.Equals("/NoElevation", StringComparison.InvariantCultureIgnoreCase));
 
             // Utility function to send a message to the user (if /Silent is not specified)
             void Out(string message)
@@ -57,12 +57,9 @@ namespace NAPS2.Util
                 }
                 catch (Exception)
                 {
-                    if (!noElevation && !IsElevated)
-                    {
-                        RelaunchAsElevated();
-                        return false;
-                    }
-                    throw;
+                    if (noElevation || IsElevated) throw;
+                    RelaunchAsElevated();
+                    return false;
                 }
             }
 
@@ -122,26 +119,22 @@ namespace NAPS2.Util
             }
         }
 
-        private bool IsElevated
+        private static bool IsElevated
         {
             get
             {
                 var identity = WindowsIdentity.GetCurrent();
-                if (identity == null)
-                {
-                    return false;
-                }
-                var pricipal = new WindowsPrincipal(identity);
-                return pricipal.IsInRole(WindowsBuiltInRole.Administrator);
+                var principal = new WindowsPrincipal(identity);
+                return principal.IsInRole(WindowsBuiltInRole.Administrator);
             }
         }
 
-        private void RelaunchAsElevated()
+        private static void RelaunchAsElevated()
         {
             Process.Start(new ProcessStartInfo
             {
                 Verb = "runas",
-                FileName = Assembly.GetEntryAssembly().Location,
+                FileName = Assembly.GetEntryAssembly()?.Location ?? string.Empty,
                 Arguments = string.Join(" ", Environment.GetCommandLineArgs().Skip(1)) + " /NoElevation"
             });
         }
@@ -174,18 +167,16 @@ namespace NAPS2.Util
             }
 
             // Only start one instance if configured for SingleInstance
-            if (appConfigManager.Config.SingleInstance)
+            if (!appConfigManager.Config.SingleInstance) return;
+            // See if there's another NAPS2 process running
+            foreach (var process in GetOtherNaps2Processes())
             {
-                // See if there's another NAPS2 process running
-                foreach (var process in GetOtherNaps2Processes())
+                // Another instance of NAPS2 is running, so send it the "Activate" signal
+                ActivateProcess(process);
+                if (Pipes.SendMessage(process, Pipes.MSG_ACTIVATE))
                 {
-                    // Another instance of NAPS2 is running, so send it the "Activate" signal
-                    ActivateProcess(process);
-                    if (Pipes.SendMessage(process, Pipes.MSG_ACTIVATE))
-                    {
-                        // Successful, so this instance should be closed
-                        Environment.Exit(0);
-                    }
+                    // Successful, so this instance should be closed
+                    Environment.Exit(0);
                 }
             }
         }
@@ -200,7 +191,7 @@ namespace NAPS2.Util
 
         private static IEnumerable<Process> GetOtherNaps2Processes()
         {
-            Process currentProcess = Process.GetCurrentProcess();
+            var currentProcess = Process.GetCurrentProcess();
             var otherProcesses = Process.GetProcessesByName(currentProcess.ProcessName)
                 .Where(x => x.Id != currentProcess.Id)
                 .OrderByDescending(x => x.StartTime);

@@ -1,16 +1,28 @@
-﻿using NAPS.SelfHosted.Attributes;
-using NAPS2.Config;
+﻿using NAPS2.Config;
 using NAPS2.Scan;
+using NAPS2.Scan.Twain;
+using Ninject;
 using System.Collections.Generic;
 using System.Web.Http;
 
 namespace NAPS.SelfHosted.Controllers
 {
-    [OnlyLocalhost]
-    public class ScannerController : ApiController
+    public class ScannerController : BaseController
     {
-        private IScanDriverFactory ScanDriverFactory;
+        private readonly IProfileManager profileManager;
+        private readonly TwainScanDriver twainScanDriver;
 
+        public ScannerController()
+        {
+            profileManager = Kernel.Get<ProfileManager>();
+            twainScanDriver = Kernel.Get<TwainScanDriver>();
+        }
 
+        [HttpGet]
+
+        public List<ScanDevice> GetProfiles()
+        {
+            return twainScanDriver.GetDeviceList();
+        }
     }
 }

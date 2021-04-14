@@ -6,7 +6,7 @@ namespace NAPS.SelfHosted
 {
     public class Program
     {
-        public static void Main()
+        public static void Main(string[] args)
         {
             Run();
         }
